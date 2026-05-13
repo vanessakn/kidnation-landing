@@ -288,6 +288,14 @@
     }
     .hero-video-mute:hover { background: var(--yellow); }
 
+    .hero-visual { position: relative; flex-shrink: 0; padding-bottom: 90px; padding-right: 30px; }
+    .hero-character {
+      position: absolute; bottom: 0; right: -10px;
+      width: 220px; pointer-events: none; z-index: 3;
+      filter: drop-shadow(5px 7px 0 var(--ink));
+      animation: float-b 5s ease-in-out infinite;
+    }
+
     /* ── WAVE purple→ink ── */
     .wave-pu-ink { background: var(--purple); line-height: 0; }
     .wave-pu-ink svg { display: block; }
@@ -781,15 +789,18 @@
         <span class="rating-text">4.8 on App Store &nbsp;·&nbsp; 10K+ Reviews</span>
       </div>
     </div>
-    <div class="hero-video reveal d2">
-      <iframe
-        id="heroVideo"
-        src="https://player.vimeo.com/video/710567921?autoplay=1&muted=1&loop=1&background=1&title=0&byline=0&portrait=0"
-        allow="autoplay; fullscreen; picture-in-picture"
-        allowfullscreen
-        title="KidNation — See What's Inside"
-      ></iframe>
-      <button class="hero-video-mute" id="muteBtn" aria-label="Unmute video" onclick="toggleMute()">🔇</button>
+    <div class="hero-visual reveal d2">
+      <div class="hero-video">
+        <iframe
+          id="heroVideo"
+          src="https://player.vimeo.com/video/710567921?autoplay=1&muted=1&loop=1&background=1&title=0&byline=0&portrait=0"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowfullscreen
+          title="KidNation — See What's Inside"
+        ></iframe>
+        <button class="hero-video-mute" id="muteBtn" aria-label="Unmute video" onclick="toggleMute()">🔇</button>
+      </div>
+      <img class="hero-character" src="assets/melli-cutout.png" alt="" aria-hidden="true" />
     </div>
   </div>
 </section>
