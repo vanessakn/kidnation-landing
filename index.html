@@ -202,6 +202,7 @@
     #hero {
       background: var(--purple); padding: 100px 40px 90px;
       min-height: 90vh; display: flex; align-items: center;
+      overflow: visible;
     }
     #hero .inner { display: flex; align-items: center; justify-content: space-between; gap: 64px; }
     .hero-copy { flex: 1; max-width: 600px; }
@@ -290,7 +291,7 @@
 
     .hero-visual { position: relative; flex-shrink: 0; padding-bottom: 90px; padding-right: 30px; }
     .hero-character {
-      position: absolute; bottom: -80px; right: -156px;
+      position: absolute; bottom: -80px; right: -60px;
       width: 520px; pointer-events: none; z-index: 3;
       filter: drop-shadow(5px 7px 0 var(--ink));
       animation: float-b 5s ease-in-out infinite;
