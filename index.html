@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KidNation — Where Every Kid Is A Superstar</title>
+  <meta name="description" content="The free, ad-free entertainment app for kids 6–11. Watch, play, read & listen — co-founded by Ludacris." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Sniglet:wght@400;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --purple:   #4F2DC9;
+      --purple-dk:#3B1FA0;
+      --ink:      #1A0F4A;
+      --yellow:   #FFD23F;
+      --pink:     #FF3D8A;
+      --mint:     #4CE0B3;
+      --sky:      #4DA8FF;
+      --orange:   #FF7A45;
+      --paper:    #FFFBF2;
+      --paper-dk: #FFF5DE;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Nunito', sans-serif; background: var(--paper); overflow-x: hidden; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes float-a {
+      0%,100% { transform: translateY(0) rotate(var(--r,0deg)); }
+      50%      { transform: translateY(-13px) rotate(calc(var(--r,0deg) + 8deg)); }
+    }
+    @keyframes float-b {
+      0%,100% { transform: translateY(0) rotate(var(--r,0deg)); }
+      50%      { transform: translateY(-9px) rotate(calc(var(--r,0deg) - 6deg)); }
+    }
+    @keyframes float-c {
+      0%,100% { transform: translateY(0) rotate(var(--r,0deg)); }
+      50%      { transform: translateY(-18px) rotate(calc(var(--r,0deg) + 4deg)); }
+    }
+    @keyframes marquee-run {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    @keyframes phone-bob-a {
+      0%,100% { transform: rotate(-4deg) translateY(0); }
+      50%      { transform: rotate(-4deg) translateY(-10px); }
+    }
+    @keyframes phone-bob-b {
+      0%,100% { transform: rotate(3deg) translateY(0); }
+      50%      { transform: rotate(3deg) translateY(-8px); }
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(36px); transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: .08s; } .d2 { transition-delay: .16s; }
+    .d3 { transition-delay: .24s; } .d4 { transition-delay: .32s; }
+    .d5 { transition-delay: .40s; } .d6 { transition-delay: .48s; }
+
+    /* ── REDUCED MOTION ── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        transition-delay: 0ms !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+      .marquee-inner { animation: none; }
+    }
+
+    /* ── FOCUS RINGS (keyboard nav) ── */
+    :focus-visible {
+      outline: 3px solid var(--yellow);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+    .btn:focus-visible { outline-color: #fff; }
+    .mobile-menu a:focus-visible { outline-color: var(--mint); }
+
+    /* ── SKIP LINK ── */
+    .skip-link {
+      position: absolute; top: -100px; left: 16px; z-index: 9999;
+      background: var(--yellow); color: var(--ink);
+      font-family: 'Sniglet', cursive; font-weight: 800;
+      padding: 10px 20px; border-radius: 8px; border: 3px solid var(--ink);
+      text-decoration: none; transition: top .2s;
+    }
+    .skip-link:focus { top: 16px; }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--purple); padding: 13px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 300;
+      border-bottom: 4px solid var(--ink);
+    }
+    .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-icon {
+      width: 40px; height: 40px; border-radius: 11px;
+      border: 3px solid var(--ink); box-shadow: 2px 3px 0 var(--ink);
+      overflow: hidden; flex-shrink: 0;
+    }
+    .nav-icon img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .nav-logo {
+      font-family: 'Bagel Fat One', cursive; font-size: 1.7rem;
+      color: var(--yellow); -webkit-text-stroke: 2px var(--ink);
+      paint-order: stroke fill; text-shadow: 2px 3px 0 var(--ink);
+      transform: rotate(-1.5deg); display: inline-block;
+    }
+    .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+    .nav-links a {
+      font-family: 'Sniglet', cursive; font-weight: 800;
+      color: rgba(255,255,255,.9); text-decoration: none;
+      font-size: .93rem; letter-spacing: .02em; transition: color .15s;
+    }
+    .nav-links a:hover { color: var(--yellow); }
+    .nav-cta {
+      background: var(--yellow) !important; color: var(--ink) !important;
+      padding: 8px 22px !important; border-radius: 999px !important;
+      border: 3px solid var(--ink) !important; box-shadow: 3px 4px 0 var(--ink) !important;
+    }
+    .nav-cta:hover { background: var(--pink) !important; color: #fff !important; transform: translateY(-2px) !important; }
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 26px; height: 3px;
+      background: #fff; border-radius: 3px;
+      transition: transform .3s, opacity .3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    /* ── MOBILE OVERLAY ── */
+    .mobile-menu {
+      display: none; position: fixed; inset: 0;
+      background: var(--ink); z-index: 299;
+      padding: 100px 40px 40px;
+      flex-direction: column; align-items: center; gap: 30px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: 'Bagel Fat One', cursive; font-size: 2.4rem;
+      color: var(--yellow); -webkit-text-stroke: 3px var(--ink);
+      paint-order: stroke fill; text-shadow: 4px 5px 0 var(--purple);
+      text-decoration: none; transform: rotate(-2deg); display: inline-block;
+    }
+    .mobile-menu a.m-cta {
+      background: var(--yellow); color: var(--ink) !important;
+      -webkit-text-stroke: 0; text-shadow: none; transform: none;
+      padding: 16px 48px; border-radius: 999px;
+      border: 4px solid var(--ink); box-shadow: 5px 6px 0 var(--ink);
+      font-family: 'Sniglet', cursive; font-size: 1.3rem;
+    }
+
+    /* ── CONFETTI ── */
+    .confetti { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 1; }
+    .confetti span { position: absolute; display: block; }
+    .dot  { border-radius: 50%; }
+    .rect { border-radius: 3px; }
+    .squig { border-radius: 999px; }
+    .fa { animation: float-a 4s ease-in-out infinite; }
+    .fb { animation: float-b 5.5s ease-in-out infinite; }
+    .fc { animation: float-c 3.8s ease-in-out infinite; }
+    .confetti span:nth-child(2n)   { animation-delay: -1.4s; }
+    .confetti span:nth-child(3n)   { animation-delay: -2.9s; }
+    .confetti span:nth-child(4n+1) { animation-delay: -.7s; }
+
+    /* ── STAR DECO ── */
+    .star-deco {
+      position: absolute; z-index: 1; pointer-events: none;
+      filter: drop-shadow(3px 4px 0 var(--ink)); font-style: normal;
+    }
+
+    /* ── LAYOUT ── */
+    section { position: relative; overflow: hidden; }
+    .inner { position: relative; z-index: 2; max-width: 1180px; margin: 0 auto; }
+
+    /* ── PILLS ── */
+    .pill {
+      display: inline-block; font-family: 'Sniglet', cursive;
+      font-weight: 800; font-size: .76rem; letter-spacing: .12em;
+      text-transform: uppercase; padding: 8px 20px; border-radius: 999px;
+      border: 3px solid var(--ink); box-shadow: 3px 4px 0 var(--ink);
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: 'Sniglet', cursive; font-weight: 800; font-size: 1.05rem;
+      padding: 15px 36px; border-radius: 999px;
+      border: 4px solid var(--ink); box-shadow: 5px 6px 0 var(--ink);
+      text-decoration: none; cursor: pointer;
+      transition: transform .15s cubic-bezier(.16,1,.3,1), box-shadow .15s;
+    }
+    .btn:hover  { transform: translateY(-4px); box-shadow: 5px 10px 0 var(--ink); }
+    .btn:active { transform: translateY(2px);  box-shadow: 3px 3px 0 var(--ink); }
+    .btn-yellow { background: var(--yellow); color: var(--ink); }
+    .btn-ghost  { background: transparent; color: #fff; border-color: rgba(255,255,255,.7); box-shadow: 5px 6px 0 rgba(0,0,0,.25); }
+    .btn-purple { background: var(--purple); color: var(--yellow); }
+    .btn-mint   { background: var(--mint); color: var(--ink); }
+
+    /* ════════════════════════════
+       HERO
+    ════════════════════════════ */
+    #hero {
+      background: var(--purple); padding: 100px 40px 90px;
+      min-height: 90vh; display: flex; align-items: center;
+    }
+    #hero .inner { display: flex; align-items: center; justify-content: space-between; gap: 64px; }
+    .hero-copy { flex: 1; max-width: 600px; }
+
+    .luda-badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(255,255,255,.1); border: 2px solid rgba(255,255,255,.25);
+      border-radius: 999px; padding: 8px 18px 8px 10px; margin-bottom: 22px;
+    }
+    .luda-icon {
+      width: 28px; height: 28px; background: var(--yellow);
+      border-radius: 50%; border: 2px solid var(--ink);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .9rem; flex-shrink: 0;
+    }
+    .luda-badge span {
+      font-family: 'Nunito', sans-serif; font-weight: 800;
+      font-size: .8rem; color: rgba(255,255,255,.88); letter-spacing: .02em;
+    }
+
+    .hero-tag  { background: #fff; color: var(--ink); margin-bottom: 20px; transform: rotate(-1.5deg); }
+    .hero-h1 {
+      font-family: 'Bagel Fat One', cursive;
+      font-size: clamp(3.2rem, 6vw, 6rem);
+      color: var(--yellow); -webkit-text-stroke: 5px var(--ink);
+      paint-order: stroke fill; text-shadow: 7px 9px 0 var(--ink);
+      line-height: 1.0; transform: rotate(-2deg);
+      display: inline-block; margin-bottom: 22px;
+    }
+    .hero-sub {
+      font-family: 'Sniglet', cursive;
+      font-size: clamp(1rem, 1.7vw, 1.25rem);
+      color: rgba(255,255,255,.92); margin-bottom: 36px;
+      line-height: 1.65; max-width: 460px;
+    }
+    .hero-stats {
+      display: flex; gap: 24px; margin-bottom: 32px; flex-wrap: wrap;
+    }
+    .hero-stat {
+      display: flex; flex-direction: column; gap: 2px;
+    }
+    .hero-stat-num {
+      font-family: 'Bagel Fat One', cursive; font-size: 1.5rem;
+      color: var(--yellow); -webkit-text-stroke: 1.5px var(--ink);
+      paint-order: stroke fill; text-shadow: 2px 3px 0 var(--ink);
+      line-height: 1;
+    }
+    .hero-stat-lbl {
+      font-family: 'Nunito', sans-serif; font-weight: 800;
+      font-size: .72rem; color: rgba(255,255,255,.7);
+      text-transform: uppercase; letter-spacing: .07em;
+    }
+    .hero-stat-div {
+      width: 1px; background: rgba(255,255,255,.2); align-self: stretch;
+    }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 32px; }
+    .hero-rating {
+      display: inline-flex; align-items: center; gap: 10px;
+    }
+    .rating-stars { font-size: 1.1rem; letter-spacing: 2px; color: var(--yellow); }
+    .rating-text {
+      font-family: 'Nunito', sans-serif; font-weight: 800;
+      font-size: .85rem; color: rgba(255,255,255,.8);
+    }
+
+    .hero-phones { flex-shrink: 0; position: relative; width: 360px; height: 530px; }
+    .hero-phones .pw { position: absolute; }
+    .hero-phones .pw:nth-child(1) {
+      width: 242px; left: 0; top: 0; z-index: 2;
+      animation: phone-bob-a 4s ease-in-out infinite;
+    }
+    .hero-phones .pw:nth-child(2) {
+      width: 222px; right: 0; top: 80px; z-index: 1;
+      animation: phone-bob-b 5.2s ease-in-out infinite;
+    }
+    .hero-phones .pw img {
+      width: 100%; display: block; border-radius: 36px;
+      filter: drop-shadow(10px 14px 0 var(--ink));
+    }
+
+    /* ── WAVE purple→ink ── */
+    .wave-pu-ink { background: var(--purple); line-height: 0; }
+    .wave-pu-ink svg { display: block; }
+    /* ── WAVE ink→paper ── */
+    .wave-ink-paper { background: var(--ink); line-height: 0; }
+    .wave-ink-paper svg { display: block; }
+    /* ── WAVE paper→purple ── */
+    .wave-paper-pu { background: var(--paper); line-height: 0; }
+    .wave-paper-pu svg { display: block; }
+    /* ── WAVE purple→yellow ── */
+    .wave-pu-yellow { background: var(--purple); line-height: 0; }
+    .wave-pu-yellow svg { display: block; }
+    /* ── WAVE yellow→pink ── */
+    .wave-yellow-pink { background: var(--yellow); line-height: 0; }
+    .wave-yellow-pink svg { display: block; }
+    /* ── WAVE pink→paper ── */
+    .wave-pink-paper { background: var(--pink); line-height: 0; }
+    .wave-pink-paper svg { display: block; }
+    /* ── WAVE paper→sky ── */
+    .wave-paper-sky { background: var(--paper); line-height: 0; }
+    .wave-paper-sky svg { display: block; }
+    /* ── WAVE sky→purple ── */
+    .wave-sky-pu { background: var(--sky); line-height: 0; }
+    .wave-sky-pu svg { display: block; }
+
+    /* ════════════════════════════
+       MARQUEE
+    ════════════════════════════ */
+    .marquee-strip {
+      background: var(--ink);
+      border-top: 4px solid var(--yellow);
+      border-bottom: 4px solid var(--yellow);
+      padding: 13px 0; overflow: hidden; white-space: nowrap;
+    }
+    .marquee-inner {
+      display: inline-flex;
+      animation: marquee-run 24s linear infinite;
+    }
+    .marquee-item {
+      display: inline-flex; align-items: center; gap: 12px;
+      padding: 0 36px;
+      font-family: 'Sniglet', cursive; font-weight: 800;
+      font-size: .95rem; color: var(--yellow);
+      letter-spacing: .07em; text-transform: uppercase;
+    }
+    .m-dot {
+      width: 9px; height: 9px; border-radius: 50%;
+      background: var(--pink); flex-shrink: 0;
+      border: 2px solid rgba(255,255,255,.2);
+    }
+
+    /* ════════════════════════════
+       CONTENT PILLARS
+    ════════════════════════════ */
+    #pillars { background: var(--paper); padding: 90px 40px; }
+    .pillars-head { text-align: center; margin-bottom: 52px; }
+    .pillars-head .pill { background: var(--purple); color: var(--yellow); margin-bottom: 18px; }
+    .pillars-hed {
+      font-family: 'Bagel Fat One', cursive;
+      font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+      color: var(--ink); -webkit-text-stroke: 3px var(--ink);
+      paint-order: stroke fill;
+      text-shadow: 4px 5px 0 rgba(26,15,74,.15);
+      line-height: 1.05; transform: rotate(-1deg); display: inline-block;
+    }
+    .pillars-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 22px; }
+    .pillar-card {
+      background: #fff; border: 4px solid var(--ink);
+      border-radius: 26px; box-shadow: 6px 8px 0 var(--ink);
+      padding: 38px 24px 30px; text-align: center;
+      transition: transform .2s cubic-bezier(.16,1,.3,1), box-shadow .2s;
+      cursor: default;
+    }
+    .pillar-card:hover { transform: translateY(-6px) rotate(-1deg); box-shadow: 6px 14px 0 var(--ink); }
+    .pillar-card:nth-child(2) { transform: rotate(1deg); }
+    .pillar-card:nth-child(2):hover { transform: translateY(-6px) rotate(0deg); }
+    .pillar-card:nth-child(4) { transform: rotate(-1.5deg); }
+    .pillar-card:nth-child(4):hover { transform: translateY(-6px) rotate(-2.5deg); }
+    .pillar-emoji { font-size: 3.4rem; margin-bottom: 16px; display: block; }
+    .pillar-word {
+      font-family: 'Bagel Fat One', cursive; font-size: 1.9rem;
+      -webkit-text-stroke: 3px var(--ink); paint-order: stroke fill;
+      text-shadow: 3px 4px 0 var(--ink); display: block; margin-bottom: 10px;
+    }
+    .pillar-desc {
+      font-family: 'Nunito', sans-serif; font-size: .88rem;
+      font-weight: 800; color: rgba(26,15,74,.7); line-height: 1.5;
+    }
+
+    /* ════════════════════════════
+       WATCH.PLAY.READ.LISTEN
+    ════════════════════════════ */
+    #wprl { background: var(--purple); padding: 90px 40px; }
+    #wprl .inner { display: flex; align-items: center; gap: 72px; }
+    .wprl-copy { flex: 1; }
+    .wprl-pill { background: var(--mint); color: var(--ink); margin-bottom: 28px; transform: rotate(1.5deg); }
+    .wprl-hed {
+      font-family: 'Bagel Fat One', cursive;
+      font-size: clamp(2.6rem, 5.5vw, 5.2rem); line-height: 1.0; margin-bottom: 28px;
+    }
+    .wprl-hed span { display: block; -webkit-text-stroke: 5px var(--ink); paint-order: stroke fill; text-shadow: 6px 8px 0 var(--ink); }
+    .wprl-hed .w { color: var(--yellow); }
+    .wprl-hed .p { color: var(--pink); }
+    .wprl-hed .r { color: var(--mint); }
+    .wprl-hed .l { color: var(--sky); }
+    .wprl-sub {
+      font-family: 'Sniglet', cursive; color: rgba(255,255,255,.92);
+      font-size: 1.15rem; line-height: 1.65; margin-bottom: 36px; max-width: 440px;
+    }
+    .phone-float {
+      flex-shrink: 0; width: 290px;
+      animation: float-b 5s ease-in-out infinite;
+    }
+    .phone-float img {
+      width: 100%; display: block; border-radius: 38px;
+      filter: drop-shadow(10px 14px 0 var(--ink));
+    }
+
+    /* ════════════════════════════
+       EDUTAINMENT SLAPS
+    ════════════════════════════ */
+    #edu { background: var(--yellow); padding: 90px 40px; }
+    #edu .inner { display: flex; align-items: center; gap: 72px; }
+    .edu-phone { flex-shrink: 0; width: 280px; animation: float-a 4.5s ease-in-out infinite; }
+    .edu-phone img {
+      width: 100%; display: block; border-radius: 38px;
+      filter: drop-shadow(10px 14px 0 var(--ink));
+    }
+    .edu-copy { flex: 1; }
+    .edu-eye {
+      font-family: 'Sniglet', cursive; font-weight: 800; font-size: 1rem;
+      color: var(--purple); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 6px; display: block;
+    }
+    .edu-slaps {
+      font-family: 'Bagel Fat One', cursive;
+      font-size: clamp(4.5rem, 9vw, 9rem); color: var(--pink);
+      -webkit-text-stroke: 7px var(--ink); paint-order: stroke fill;
+      text-shadow: 9px 11px 0 var(--ink); line-height: .9;
+      transform: rotate(-2deg); display: inline-block; margin-bottom: 22px;
+    }
+    .edu-body {
+      font-family: 'Sniglet', cursive; font-size: 1.15rem;
+      color: var(--ink); line-height: 1.65; max-width: 420px; margin-bottom: 34px;
+    }
+
+    /* ════════════════════════════
+       MEET THE GANG
+    ════════════════════════════ */
+    #gang { background: var(--pink); padding: 90px 40px; }
+    .gang-header { text-align: center; margin-bottom: 52px; }
+    .gang-pill { background: var(--yellow); color: var(--ink); margin-bottom: 18px; transform: rotate(-2deg); }
+    .gang-hed {
+      font-family: 'Bagel Fat One', cursive;
+      font-size: clamp(3rem, 6.5vw, 5.8rem); color: #fff;
+      -webkit-text-stroke: 6px var(--ink); paint-order: stroke fill;
+      text-shadow: 7px 9px 0 var(--ink); transform: rotate(-1.5deg);
+      display: inline-block; margin-bottom: 14px;
+    }
+    .gang-sub {
+      font-family: 'Sniglet', cursive; color: rgba(255,255,255,.95);
+      font-size: 1.18rem; max-width: 500px; margin: 0 auto; line-height: 1.55;
+    }
+    .gang-layout { display: flex; align-items: center; gap: 52px; }
+    .gang-grid {
+      flex: 1; display: grid; grid-template-columns: repeat(3,1fr); gap: 18px;
+    }
+    .char-card {
+      background: #fff; border: 4px solid var(--ink);
+      border-radius: 24px; box-shadow: 5px 7px 0 var(--ink);
+      padding: 26px 14px 22px; text-align: center;
+      transition: transform .2s cubic-bezier(.16,1,.3,1), box-shadow .2s;
+    }
+    .char-card:hover { transform: translateY(-8px) rotate(-2deg); box-shadow: 5px 15px 0 var(--ink); }
+    .char-card:nth-child(even) { transform: rotate(1deg); }
+    .char-card:nth-child(even):hover { transform: translateY(-8px) rotate(-1deg); }
+    .char-avatar {
+      width: 68px; height: 68px; border-radius: 50%;
+      border: 4px solid var(--ink); box-shadow: 3px 4px 0 var(--ink);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; margin: 0 auto 12px;
+    }
+    .char-name {
+      font-family: 'Sniglet', cursive; font-weight: 800;
+      font-size: 1rem; color: var(--ink); display: block; margin-bottom: 4px;
+    }
+    .char-vibe {
+      font-family: 'Nunito', sans-serif; font-weight: 800;
+      font-size: .74rem; color: rgba(26,15,74,.6);
+      text-transform: uppercase; letter-spacing: .07em;
+    }
+    .gang-phone { flex-shrink: 0; width: 270px; animation: float-b 5s ease-in-out infinite; }
+    .gang-phone img {
+      width: 100%; display: block; border-radius: 38px;
+      filter: drop-shadow(10px 14px 0 var(--ink));
+    }
+
+    /* ════════════════════════════
+       TESTIMONIALS
+    ════════════════════════════ */
+    #testimonials { background: var(--paper); padding: 90px 40px; }
+    .test-header { text-align: center; margin-bottom: 52px; }
+    .test-pill { background: var(--orange); color: var(--ink); margin-bottom: 18px; transform: rotate(1.5deg); }
+    .test-hed {
+      font-family: 'Bagel Fat One', cursive;
+      font-size: clamp(2.4rem, 5vw, 4.4rem); color: var(--purple);
+      -webkit-text-stroke: 4px var(--ink); paint-order: stroke fill;
+      text-shadow: 5px 7px 0 var(--ink); transform: rotate(-1.5deg); display: inline-block;
+    }
+    .test-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
+    .test-card {
+      background: #fff; border: 4px solid var(--ink);
+      border-radius: 26px; box-shadow: 6px 8px 0 var(--ink);
+      padding: 36px 28px 28px; position: relative;
+      transition: transform .2s cubic-bezier(.16,1,.3,1);
+    }
+    .test-card:hover { transform: translateY(-5px); }
+    .test-card:nth-child(2) { transform: rotate(.8deg); }
+    .test-card:nth-child(2):hover { transform: translateY(-5px) rotate(.8deg); }
+    .qmark {
+      position: absolute; top: -18px; left: 24px;
+      background: var(--yellow); border: 3px solid var(--ink);
+      border-radius: 50%; width: 38px; height: 38px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Bagel Fat One', cursive; font-size: 1.5rem;
+      color: var(--ink); box-shadow: 2px 3px 0 var(--ink);
+    }
+    .test-stars { font-size: 1.2rem; margin-bottom: 14px; display: block; letter-spacing: 3px; }
+    .test-quote {
+      font-family: 'Nunito', sans-serif; font-weight: 800;
+      font-size: .97rem; color: var(--ink); line-height: 1.65; margin-bottom: 20px;
+    }
+    .test-author { display: flex; align-items: center; gap: 12px; }
+    .author-av {
+      width: 44px; height: 44px; border-radius: 50%;
+      border: 3px solid var(--ink); box-shadow: 2px 3px 0 var(--ink);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; flex-shrink: 0;
+    }
+    .author-info strong {
+      display: block; font-family: 'Sniglet', cursive;
+      font-weight: 800; font-size: .88rem; color: var(--ink);
+    }
+    .author-info span {
+      font-family: 'Nunito', sans-serif; font-size: .76rem;
+      color: rgba(26,15,74,.55);
+    }
+
+    /* ════════════════════════════
+       PARENTS APPROVE
+    ════════════════════════════ */
+    #parents { background: var(--sky); padding: 90px 40px; }
+    #parents .inner { display: flex; align-items: center; gap: 72px; }
+    .par-copy { flex: 1; }
+    .par-eye {
+      font-family: 'Sniglet', cursive; font-weight: 800; font-size: .92rem;
+      color: var(--ink); text-transform: uppercase; letter-spacing: .1em;
+      margin-bottom: 10px; display: block;
+    }
+    .par-hed {
+      font-family: 'Bagel Fat One', cursive;
+      font-size: clamp(2.8rem, 5.5vw, 5rem); color: var(--yellow);
+      -webkit-text-stroke: 5px var(--ink); paint-order: stroke fill;
+      text-shadow: 6px 8px 0 var(--ink); line-height: 1.0;
+      transform: rotate(-1.5deg); display: inline-block; margin-bottom: 36px;
+    }
+    .trust-list { display: flex; flex-direction: column; gap: 14px; }
+    .trust-card {
+      background: #fff; border: 3px solid var(--ink);
+      border-radius: 20px; box-shadow: 5px 6px 0 var(--ink);
+      padding: 16px 22px; display: flex; align-items: center; gap: 16px;
+      transition: transform .15s;
+    }
+    .trust-card:hover { transform: translateX(4px); }
+    .trust-icon { font-size: 1.9rem; flex-shrink: 0; }
+    .trust-txt strong { display: block; font-family: 'Sniglet', cursive; font-weight: 800; font-size: .98rem; color: var(--ink); }
+    .trust-txt span { font-family: 'Nunito', sans-serif; font-size: .86rem; color: rgba(26,15,74,.65); line-height: 1.4; }
+    .par-phone { flex-shrink: 0; width: 285px; animation: float-a 4.8s ease-in-out infinite; }
+    .par-phone img {
+      width: 100%; display: block; border-radius: 38px;
+      filter: drop-shadow(10px 14px 0 var(--ink));
+    }
+
+    /* ════════════════════════════
+       CTA
+    ════════════════════════════ */
+    #cta { background: var(--purple); padding: 120px 40px; text-align: center; }
+    #cta .inner { display: flex; flex-direction: column; align-items: center; }
+    .cta-pill { background: var(--mint); color: var(--ink); margin-bottom: 28px; transform: rotate(-2deg); }
+    .cta-hed {
+      font-family: 'Bagel Fat One', cursive;
+      font-size: clamp(3rem, 6.5vw, 6rem); color: var(--pink);
+      -webkit-text-stroke: 6px var(--ink); paint-order: stroke fill;
+      text-shadow: 7px 9px 0 var(--ink); line-height: 1.0;
+      transform: rotate(-2deg); display: inline-block; margin-bottom: 18px;
+    }
+    .cta-sub {
+      font-family: 'Sniglet', cursive; font-size: 1.22rem;
+      color: rgba(255,255,255,.92); max-width: 480px; line-height: 1.6; margin-bottom: 52px;
+    }
+    .store-row { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 60px; }
+    .store-btn {
+      display: flex; align-items: center; gap: 14px;
+      background: var(--ink); color: #fff;
+      padding: 16px 36px; border-radius: 20px;
+      border: 3px solid rgba(255,255,255,.2);
+      box-shadow: 5px 6px 0 var(--yellow);
+      text-decoration: none;
+      transition: transform .15s, box-shadow .15s;
+    }
+    .store-btn:hover { transform: translateY(-4px); box-shadow: 5px 10px 0 var(--yellow); }
+    .store-icon { width: 32px; height: 32px; flex-shrink: 0; display: block; }
+    .store-txt small { display: block; font-family: 'Nunito', sans-serif; font-size: .72rem; opacity: .75; letter-spacing: .03em; }
+    .store-txt strong { display: block; font-family: 'Sniglet', cursive; font-size: 1.15rem; }
+    .cta-phone { width: 252px; margin: 0 auto; animation: float-b 5s ease-in-out infinite; }
+    .cta-phone img {
+      width: 100%; display: block; border-radius: 38px;
+      filter: drop-shadow(10px 14px 0 var(--ink));
+    }
+
+    /* ════════════════════════════
+       FOOTER
+    ════════════════════════════ */
+    footer { background: var(--ink); padding: 60px 40px 36px; }
+    .footer-inner {
+      max-width: 1180px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: flex-start;
+      gap: 40px; padding-bottom: 40px;
+      border-bottom: 2px solid rgba(255,255,255,.1); flex-wrap: wrap;
+    }
+    .footer-brand { flex: 1; min-width: 200px; }
+    .footer-logo-wrap { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    .footer-icon {
+      width: 46px; height: 46px; border-radius: 13px;
+      border: 3px solid rgba(255,255,255,.15); overflow: hidden;
+    }
+    .footer-icon img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .footer-logo { font-family: 'Bagel Fat One', cursive; font-size: 2rem; color: var(--yellow); }
+    .footer-tagline { font-family: 'Nunito', sans-serif; font-size: .88rem; color: rgba(255,255,255,.5); line-height: 1.55; max-width: 260px; }
+    .footer-cols { display: flex; gap: 56px; flex-wrap: wrap; }
+    .footer-col h4 {
+      font-family: 'Sniglet', cursive; font-weight: 800; font-size: .82rem;
+      color: var(--yellow); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 16px;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col a {
+      font-family: 'Nunito', sans-serif; font-size: .86rem;
+      color: rgba(255,255,255,.55); text-decoration: none; transition: color .15s;
+    }
+    .footer-col a:hover { color: var(--yellow); }
+    .footer-bottom {
+      max-width: 1180px; margin: 24px auto 0;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 10px;
+    }
+    .footer-bottom p { font-family: 'Nunito', sans-serif; font-size: .8rem; color: rgba(255,255,255,.38); }
+    .footer-bottom a { color: rgba(255,255,255,.45); text-decoration: none; }
+    .footer-bottom a:hover { color: var(--mint); }
+    .footer-luda { font-family: 'Nunito', sans-serif; font-size: .8rem; color: rgba(255,255,255,.38); }
+    .footer-luda strong { color: var(--yellow); font-weight: 800; }
+
+    /* ════════════════════════════
+       RESPONSIVE
+    ════════════════════════════ */
+    @media (max-width: 1050px) {
+      .gang-grid { grid-template-columns: repeat(2,1fr); }
+      .pillars-grid { grid-template-columns: repeat(2,1fr); }
+      .gang-layout { flex-direction: column; text-align: center; }
+      .gang-phone { margin: 0 auto; }
+    }
+    @media (max-width: 860px) {
+      nav { padding: 13px 20px; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      section { padding: 64px 20px !important; }
+      #hero { padding: 80px 20px 70px !important; min-height: auto; }
+      .hero-rating { flex-wrap: wrap; justify-content: center; }
+      .hero-stats { justify-content: center; }
+      .hero-stat-div { display: none; }
+      #hero .inner, #wprl .inner, #edu .inner, #parents .inner {
+        flex-direction: column; text-align: center; gap: 44px;
+      }
+      .hero-h1 { font-size: clamp(2.6rem,10vw,3.8rem); }
+      .hero-phones { width: 270px; height: 395px; margin: 0 auto; }
+      .hero-phones .pw:nth-child(1) { width: 180px; }
+      .hero-phones .pw:nth-child(2) { width: 168px; }
+      .hero-btns { justify-content: center; }
+      .hero-sub, .wprl-sub, .edu-body, .cta-sub { margin-left: auto; margin-right: auto; }
+      .phone-float, .edu-phone, .par-phone { width: 230px; margin: 0 auto; }
+      .edu-slaps { font-size: clamp(3.2rem,14vw,6rem); }
+      .gang-grid { grid-template-columns: repeat(3,1fr); gap: 12px; }
+      .char-avatar { width: 58px; height: 58px; font-size: 1.8rem; }
+      .char-card { padding: 20px 10px 18px; }
+      .test-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+      .pillars-grid { grid-template-columns: repeat(2,1fr); gap: 14px; }
+      .trust-list { align-items: center; }
+      .trust-card { max-width: 400px; width: 100%; }
+      .store-row { flex-direction: column; align-items: center; }
+      .footer-inner { flex-direction: column; }
+      .footer-cols { gap: 28px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 520px) {
+      .gang-grid { grid-template-columns: repeat(2,1fr); }
+      .pillars-grid { grid-template-columns: 1fr; }
+      .hero-phones { width: 230px; height: 340px; }
+      .hero-phones .pw:nth-child(1) { width: 155px; }
+      .hero-phones .pw:nth-child(2) { width: 145px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- SKIP LINK -->
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#pillars" onclick="closeMenu()">Watch &amp; Play</a>
+  <a href="#gang"    onclick="closeMenu()">Characters</a>
+  <a href="#parents" onclick="closeMenu()">For Parents</a>
+  <a href="#cta" class="m-cta" onclick="closeMenu()">Download Free</a>
+</div>
+
+<!-- NAV -->
+<nav aria-label="Main navigation">
+  <a class="nav-brand" href="#">
+    <div class="nav-icon"><img src="assets/app-icon.png" alt="KidNation icon" /></div>
+    <span class="nav-logo">KidNation</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#pillars">Watch &amp; Play</a></li>
+    <li><a href="#gang">Characters</a></li>
+    <li><a href="#parents">For Parents</a></li>
+    <li><a href="#cta" class="nav-cta">Download Free</a></li>
+  </ul>
+  <button class="hamburger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ══ HERO ══ -->
+<main id="main-content">
+<section id="hero">
+  <div class="confetti" aria-hidden="true">
+    <span class="dot fa"  style="width:18px;height:18px;background:var(--yellow);top:8%;left:6%;--r:0deg"></span>
+    <span class="dot fb"  style="width:14px;height:14px;background:var(--pink);top:16%;left:18%;--r:10deg"></span>
+    <span class="rect fc" style="width:22px;height:22px;background:var(--mint);top:22%;left:3%;--r:30deg"></span>
+    <span class="dot fa"  style="width:12px;height:12px;background:var(--sky);top:44%;left:8%;--r:0deg"></span>
+    <span class="rect fb" style="width:16px;height:16px;background:var(--pink);top:63%;left:4%;--r:-10deg"></span>
+    <span class="dot fc"  style="width:20px;height:20px;background:var(--yellow);top:78%;left:13%;--r:0deg"></span>
+    <span class="squig fa" style="width:30px;height:8px;background:var(--mint);top:87%;left:6%;--r:-5deg"></span>
+    <span class="rect fb" style="width:14px;height:14px;background:var(--yellow);top:5%;right:8%;--r:25deg"></span>
+    <span class="dot fc"  style="width:18px;height:18px;background:var(--pink);top:20%;right:4%;--r:0deg"></span>
+    <span class="rect fa" style="width:20px;height:20px;background:var(--sky);top:36%;right:6%;--r:15deg"></span>
+    <span class="squig fb" style="width:28px;height:8px;background:var(--yellow);top:58%;right:3%;--r:10deg"></span>
+    <span class="dot fc"  style="width:12px;height:12px;background:var(--mint);top:74%;right:8%;--r:0deg"></span>
+    <span class="rect fa" style="width:16px;height:16px;background:var(--orange);top:83%;right:5%;--r:-15deg"></span>
+  </div>
+  <i class="star-deco" style="top:9%;left:2%;color:var(--yellow);font-size:3.8rem;transform:rotate(15deg)">★</i>
+  <i class="star-deco" style="top:12%;right:2%;color:var(--pink);font-size:2.6rem;transform:rotate(-10deg)">★</i>
+  <i class="star-deco" style="bottom:14%;left:1.5%;color:var(--mint);font-size:2.2rem;transform:rotate(5deg)">★</i>
+  <i class="star-deco" style="bottom:18%;right:1.5%;color:var(--sky);font-size:3rem;transform:rotate(-20deg)">★</i>
+
+  <div class="inner">
+    <div class="hero-copy reveal">
+      <div class="luda-badge">
+        <div class="luda-icon">🎤</div>
+        <span>Co-Founded by Ludacris</span>
+      </div>
+      <div class="pill hero-tag">FREE TO PLAY &nbsp;·&nbsp; AGES 6–11</div>
+      <h1 class="hero-h1">WHERE EVERY KID IS A SUPERSTAR</h1>
+      <p class="hero-sub">Videos, music, AI stories &amp; games — all in one safe, ad-free world built for kids 6–11. We're here to inspire kids to be smarter, kinder and healthier.</p>
+      <div class="hero-stats" aria-label="App statistics">
+        <div class="hero-stat">
+          <span class="hero-stat-num">500K+</span>
+          <span class="hero-stat-lbl">Kids Strong</span>
+        </div>
+        <div class="hero-stat-div" aria-hidden="true"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">100%</span>
+          <span class="hero-stat-lbl">Ad-Free</span>
+        </div>
+        <div class="hero-stat-div" aria-hidden="true"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">FREE</span>
+          <span class="hero-stat-lbl">To Download</span>
+        </div>
+      </div>
+      <div class="hero-btns">
+        <a href="#cta" class="btn btn-yellow">&#9654;&nbsp; Download Free</a>
+        <a href="#pillars" class="btn btn-ghost">See What's Inside</a>
+      </div>
+      <div class="hero-rating">
+        <span class="rating-stars" aria-label="4.8 out of 5 stars">★★★★★</span>
+        <span class="rating-text">4.8 on App Store &nbsp;·&nbsp; 10K+ Reviews</span>
+      </div>
+    </div>
+    <div class="hero-phones reveal d2">
+      <div class="pw"><img src="assets/screen-01.png" alt="KidNation home screen" /></div>
+      <div class="pw"><img src="assets/screen-03.png" alt="KidNation characters" /></div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE: purple → ink -->
+<div class="wave-pu-ink" aria-hidden="true">
+  <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" width="100%" height="56">
+    <path d="M0,28 C240,56 480,0 720,28 C960,56 1200,0 1440,28 L1440,56 L0,56 Z" fill="#1A0F4A"/>
+  </svg>
+</div>
+
+<!-- ══ MARQUEE ══ -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-inner">
+    <div class="marquee-item"><span class="m-dot"></span>500K+ Kids Worldwide</div>
+    <div class="marquee-item"><span class="m-dot"></span>100% Ad-Free</div>
+    <div class="marquee-item"><span class="m-dot"></span>Co-Founded by Ludacris</div>
+    <div class="marquee-item"><span class="m-dot"></span>Ages 6–11</div>
+    <div class="marquee-item"><span class="m-dot"></span>Zero Strangers</div>
+    <div class="marquee-item"><span class="m-dot"></span>Free to Play</div>
+    <div class="marquee-item"><span class="m-dot"></span>Kid-Safe &amp; Wholesome</div>
+    <div class="marquee-item"><span class="m-dot"></span>Grammy-Winning Creator</div>
+    <!-- duplicate for seamless loop -->
+    <div class="marquee-item"><span class="m-dot"></span>500K+ Kids Worldwide</div>
+    <div class="marquee-item"><span class="m-dot"></span>100% Ad-Free</div>
+    <div class="marquee-item"><span class="m-dot"></span>Co-Founded by Ludacris</div>
+    <div class="marquee-item"><span class="m-dot"></span>Ages 6–11</div>
+    <div class="marquee-item"><span class="m-dot"></span>Zero Strangers</div>
+    <div class="marquee-item"><span class="m-dot"></span>Free to Play</div>
+    <div class="marquee-item"><span class="m-dot"></span>Kid-Safe &amp; Wholesome</div>
+    <div class="marquee-item"><span class="m-dot"></span>Grammy-Winning Creator</div>
+  </div>
+</div>
+
+<!-- WAVE: ink → paper -->
+<div class="wave-ink-paper" aria-hidden="true">
+  <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" width="100%" height="56">
+    <path d="M0,28 C240,0 480,56 720,28 C960,0 1200,56 1440,28 L1440,56 L0,56 Z" fill="#FFFBF2"/>
+  </svg>
+</div>
+
+<!-- ══ CONTENT PILLARS ══ -->
+<section id="pillars" aria-label="Content features">
+  <div class="confetti" aria-hidden="true">
+    <span class="dot fb"  style="width:16px;height:16px;background:var(--purple);top:8%;left:3%"></span>
+    <span class="rect fa" style="width:18px;height:18px;background:var(--yellow);top:55%;left:2%;transform:rotate(20deg)"></span>
+    <span class="dot fc"  style="width:12px;height:12px;background:var(--pink);top:80%;left:6%"></span>
+    <span class="dot fa"  style="width:14px;height:14px;background:var(--mint);top:12%;right:4%"></span>
+    <span class="rect fb" style="width:16px;height:16px;background:var(--sky);top:72%;right:3%;transform:rotate(-18deg)"></span>
+  </div>
+  <div class="inner">
+    <div class="pillars-head reveal">
+      <div class="pill" style="background:var(--purple);color:var(--yellow);margin-bottom:18px">Everything They Love</div>
+      <h2 class="pillars-hed">One App.<br>Infinite Fun.</h2>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar-card reveal d1">
+        <span class="pillar-emoji">🎬</span>
+        <span class="pillar-word" style="color:var(--purple)">WATCH.</span>
+        <span class="pillar-desc">Original shows and music videos that are catchy, danceable, and perfect for brain breaks.</span>
+      </div>
+      <div class="pillar-card reveal d2">
+        <span class="pillar-emoji">🎮</span>
+        <span class="pillar-word" style="color:var(--pink)">PLAY.</span>
+        <span class="pillar-desc">Interactive mini-games that build real skills disguised as pure fun.</span>
+      </div>
+      <div class="pillar-card reveal d3">
+        <span class="pillar-emoji">📖</span>
+        <span class="pillar-word" style="color:var(--mint)">READ.</span>
+        <span class="pillar-desc">Storybooks and illustrated adventures starring the KidNation crew.</span>
+      </div>
+      <div class="pillar-card reveal d4">
+        <span class="pillar-emoji">🎵</span>
+        <span class="pillar-word" style="color:var(--sky)">LISTEN.</span>
+        <span class="pillar-desc">Original songs, audio stories, and rhythms kids beg to hear on repeat.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE: paper → purple -->
+<div class="wave-paper-pu" aria-hidden="true">
+  <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" width="100%" height="56">
+    <path d="M0,28 C240,56 480,0 720,28 C960,56 1200,0 1440,28 L1440,56 L0,56 Z" fill="#4F2DC9"/>
+  </svg>
+</div>
+
+<!-- ══ WATCH.PLAY.READ.LISTEN ══ -->
+<section id="wprl">
+  <div class="confetti" aria-hidden="true">
+    <span class="dot fb"  style="width:16px;height:16px;background:var(--yellow);top:10%;left:5%"></span>
+    <span class="rect fa" style="width:18px;height:18px;background:var(--pink);top:30%;left:2%;transform:rotate(20deg)"></span>
+    <span class="dot fc"  style="width:12px;height:12px;background:var(--mint);top:54%;left:7%"></span>
+    <span class="rect fb" style="width:14px;height:14px;background:var(--sky);top:74%;left:3%;transform:rotate(-10deg)"></span>
+    <span class="dot fa"  style="width:16px;height:16px;background:var(--yellow);top:8%;right:5%;transform:rotate(30deg)"></span>
+    <span class="dot fc"  style="width:14px;height:14px;background:var(--pink);top:34%;right:3%"></span>
+    <span class="squig fa" style="width:26px;height:7px;background:var(--mint);top:58%;right:4%;transform:rotate(5deg)"></span>
+    <span class="rect fb" style="width:18px;height:18px;background:var(--sky);top:78%;right:6%;transform:rotate(15deg)"></span>
+  </div>
+  <i class="star-deco" style="top:7%;left:1%;color:var(--pink);font-size:3rem;transform:rotate(-5deg)">★</i>
+  <i class="star-deco" style="top:9%;right:1%;color:var(--mint);font-size:2.6rem;transform:rotate(10deg)">★</i>
+  <i class="star-deco" style="bottom:9%;right:2%;color:var(--yellow);font-size:3.2rem;transform:rotate(-15deg)">★</i>
+
+  <div class="inner">
+    <div class="wprl-copy reveal">
+      <div class="pill wprl-pill">Ad-Free &nbsp;·&nbsp; Kid-Safe</div>
+      <div class="wprl-hed">
+        <span class="w">WATCH.</span>
+        <span class="p">PLAY.</span>
+        <span class="r">READ.</span>
+        <span class="l">LISTEN.</span>
+      </div>
+      <p class="wprl-sub">High-quality, kid-safe and wholesome content — videos, interactive games, storybooks &amp; songs — in one ad-free app your kids will beg for every single day.</p>
+      <a href="#cta" class="btn btn-yellow">Get Started Free</a>
+    </div>
+    <div class="phone-float reveal d2" style="transform:rotate(-3deg)">
+      <img src="assets/screen-01.png" alt="KidNation app home screen" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+<!-- WAVE: purple → yellow -->
+<div class="wave-pu-yellow" aria-hidden="true">
+  <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" width="100%" height="56">
+    <path d="M0,14 C360,56 720,0 1080,42 C1200,56 1320,14 1440,28 L1440,56 L0,56 Z" fill="#FFD23F"/>
+  </svg>
+</div>
+
+<!-- ══ EDUTAINMENT SLAPS ══ -->
+<section id="edu">
+  <div class="confetti" aria-hidden="true">
+    <span class="dot fa"  style="width:20px;height:20px;background:var(--pink);top:6%;left:4%"></span>
+    <span class="rect fb" style="width:16px;height:16px;background:var(--purple);top:24%;left:2%;transform:rotate(25deg)"></span>
+    <span class="dot fc"  style="width:14px;height:14px;background:var(--mint);top:46%;left:6%"></span>
+    <span class="squig fa" style="width:28px;height:8px;background:var(--pink);top:64%;left:3%;transform:rotate(-8deg)"></span>
+    <span class="dot fb"  style="width:16px;height:16px;background:var(--mint);top:5%;right:5%"></span>
+    <span class="rect fc" style="width:22px;height:22px;background:var(--pink);top:30%;right:3%;transform:rotate(-20deg)"></span>
+    <span class="dot fa"  style="width:12px;height:12px;background:var(--purple);top:56%;right:6%"></span>
+    <span class="squig fb" style="width:24px;height:7px;background:var(--mint);top:76%;right:4%;transform:rotate(8deg)"></span>
+  </div>
+  <i class="star-deco" style="top:6%;left:1%;color:var(--purple);font-size:4rem;transform:rotate(20deg)">★</i>
+  <i class="star-deco" style="bottom:7%;right:1%;color:var(--mint);font-size:3.2rem;transform:rotate(-12deg)">★</i>
+
+  <div class="inner">
+    <div class="edu-phone reveal">
+      <img src="assets/screen-02.png" alt="KidNation interactives" loading="lazy" />
+    </div>
+    <div class="edu-copy reveal d2">
+      <span class="edu-eye">Edutainment that</span>
+      <div class="edu-slaps">SLAPS</div>
+      <p class="edu-body">Math, reading &amp; rhythm — disguised as the most fun part of their day. Common Core aligned K–5 skills that actually stick because kids actually love them.</p>
+      <a href="#cta" class="btn btn-purple">Try It Free</a>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE: yellow → pink -->
+<div class="wave-yellow-pink" aria-hidden="true">
+  <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" width="100%" height="56">
+    <path d="M0,42 C360,0 720,56 1080,14 C1200,0 1320,42 1440,28 L1440,56 L0,56 Z" fill="#FF3D8A"/>
+  </svg>
+</div>
+
+<!-- ══ MEET THE GANG ══ -->
+<section id="gang" aria-label="Meet the characters">
+  <div class="confetti" aria-hidden="true">
+    <span class="dot fa"  style="width:18px;height:18px;background:var(--yellow);top:5%;left:5%"></span>
+    <span class="rect fb" style="width:16px;height:16px;background:#fff;top:24%;left:3%;transform:rotate(15deg)"></span>
+    <span class="dot fc"  style="width:14px;height:14px;background:var(--mint);top:44%;left:8%"></span>
+    <span class="squig fa" style="width:26px;height:7px;background:var(--sky);top:64%;left:2%;transform:rotate(-5deg)"></span>
+    <span class="dot fb"  style="width:16px;height:16px;background:#fff;top:8%;right:4%"></span>
+    <span class="rect fc" style="width:14px;height:14px;background:var(--mint);top:28%;right:6%;transform:rotate(-12deg)"></span>
+    <span class="dot fa"  style="width:20px;height:20px;background:var(--yellow);top:54%;right:3%"></span>
+    <span class="squig fb" style="width:28px;height:8px;background:var(--sky);top:74%;right:5%;transform:rotate(8deg)"></span>
+  </div>
+  <i class="star-deco" style="top:5%;left:1%;color:var(--yellow);font-size:4rem;transform:rotate(-8deg)">★</i>
+  <i class="star-deco" style="top:7%;right:1%;color:#fff;font-size:3.5rem;transform:rotate(15deg)">★</i>
+  <i class="star-deco" style="bottom:9%;left:2%;color:var(--sky);font-size:2.6rem;transform:rotate(5deg)">★</i>
+
+  <div class="inner">
+    <div class="gang-header reveal">
+      <div class="pill gang-pill">Six Best Friends</div>
+      <h2 class="gang-hed">MEET THE GANG</h2>
+      <p class="gang-sub">Six wildly different vibes. One hometown. Your kid will find their person.</p>
+    </div>
+    <div class="gang-layout">
+      <div class="gang-grid">
+        <div class="char-card reveal d1">
+          <div class="char-avatar" style="background:var(--orange)">💃</div>
+          <span class="char-name">Salome</span>
+          <span class="char-vibe">The Performer</span>
+        </div>
+        <div class="char-card reveal d2">
+          <div class="char-avatar" style="background:var(--mint)">🎮</div>
+          <span class="char-name">Nari</span>
+          <span class="char-vibe">The Tech Wizard</span>
+        </div>
+        <div class="char-card reveal d3">
+          <div class="char-avatar" style="background:var(--yellow)">🎨</div>
+          <span class="char-name">Melli</span>
+          <span class="char-vibe">The Artist</span>
+        </div>
+        <div class="char-card reveal d4">
+          <div class="char-avatar" style="background:var(--sky)">⚽</div>
+          <span class="char-name">Jordan</span>
+          <span class="char-vibe">The Athlete</span>
+        </div>
+        <div class="char-card reveal d5">
+          <div class="char-avatar" style="background:#C4B5FD">🔬</div>
+          <span class="char-name">Bjorn</span>
+          <span class="char-vibe">The Explorer</span>
+        </div>
+        <div class="char-card reveal d6">
+          <div class="char-avatar" style="background:var(--pink)">🎵</div>
+          <span class="char-name">Arjun</span>
+          <span class="char-vibe">The Musician</span>
+        </div>
+      </div>
+      <div class="gang-phone reveal d3">
+        <img src="assets/screen-03.png" alt="KidNation meet the gang" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE: pink → paper -->
+<div class="wave-pink-paper" aria-hidden="true">
+  <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" width="100%" height="56">
+    <path d="M0,28 C240,0 480,56 720,28 C960,0 1200,56 1440,28 L1440,56 L0,56 Z" fill="#FFFBF2"/>
+  </svg>
+</div>
+
+<!-- ══ TESTIMONIALS ══ -->
+<section id="testimonials" aria-label="Parent reviews">
+  <div class="inner">
+    <div class="test-header reveal">
+      <div class="pill test-pill">Real Parents · Real Kids</div>
+      <h2 class="test-hed">Parents Love It Too</h2>
+    </div>
+    <div class="test-grid">
+      <div class="test-card reveal d1">
+        <div class="qmark">"</div>
+        <span class="test-stars">⭐⭐⭐⭐⭐</span>
+        <p class="test-quote">My daughter literally asks for screen time now just to do her lessons. KidNation is unlike anything we've ever tried — she's dancing, she's reading, she's actually learning.</p>
+        <div class="test-author">
+          <div class="author-av" style="background:var(--pink)">👩</div>
+          <div class="author-info">
+            <strong>Ashley M.</strong>
+            <span>Mom of 2 · Atlanta, GA</span>
+          </div>
+        </div>
+      </div>
+      <div class="test-card reveal d2">
+        <div class="qmark">"</div>
+        <span class="test-stars">⭐⭐⭐⭐⭐</span>
+        <p class="test-quote">Finally an app I don't have to police. Zero ads, zero sketchy videos — just pure wholesome fun. My son has been begging to use KidNation every single day.</p>
+        <div class="test-author">
+          <div class="author-av" style="background:var(--sky)">👨</div>
+          <div class="author-info">
+            <strong>Marcus T.</strong>
+            <span>Dad of 3 · Houston, TX</span>
+          </div>
+        </div>
+      </div>
+      <div class="test-card reveal d3">
+        <div class="qmark">"</div>
+        <span class="test-stars">⭐⭐⭐⭐⭐</span>
+        <p class="test-quote">The music alone is worth it! My kids dance all day to KidNation songs. And somehow they're also learning math and reading? Pure genius — Ludacris built something special here.</p>
+        <div class="test-author">
+          <div class="author-av" style="background:var(--mint)">👩</div>
+          <div class="author-info">
+            <strong>Priya K.</strong>
+            <span>Mom of 2 · Chicago, IL</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE: paper → sky -->
+<div class="wave-paper-sky" aria-hidden="true">
+  <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" width="100%" height="56">
+    <path d="M0,14 C360,56 720,0 1080,42 C1200,56 1320,14 1440,28 L1440,56 L0,56 Z" fill="#4DA8FF"/>
+  </svg>
+</div>
+
+<!-- ══ PARENTS APPROVE ══ -->
+<section id="parents" aria-label="Parent trust and safety features">
+  <div class="confetti" aria-hidden="true">
+    <span class="dot fa"  style="width:16px;height:16px;background:#fff;top:8%;left:4%"></span>
+    <span class="rect fb" style="width:18px;height:18px;background:var(--yellow);top:26%;left:2%;transform:rotate(18deg)"></span>
+    <span class="dot fc"  style="width:12px;height:12px;background:var(--pink);top:48%;left:7%"></span>
+    <span class="squig fa" style="width:24px;height:7px;background:var(--mint);top:68%;left:3%;transform:rotate(-6deg)"></span>
+    <span class="dot fb"  style="width:18px;height:18px;background:var(--yellow);top:6%;right:5%"></span>
+    <span class="rect fc" style="width:14px;height:14px;background:var(--pink);top:34%;right:3%;transform:rotate(-15deg)"></span>
+    <span class="dot fa"  style="width:16px;height:16px;background:var(--mint);top:58%;right:6%"></span>
+    <span class="squig fb" style="width:28px;height:8px;background:#fff;top:78%;right:4%;transform:rotate(10deg)"></span>
+  </div>
+  <i class="star-deco" style="top:6%;right:2%;color:var(--yellow);font-size:3.2rem;transform:rotate(12deg)">★</i>
+  <i class="star-deco" style="bottom:7%;left:1%;color:#fff;font-size:2.6rem;transform:rotate(-8deg)">★</i>
+
+  <div class="inner">
+    <div class="par-copy reveal">
+      <span class="par-eye">Built for Kids · Trusted by Parents</span>
+      <h2 class="par-hed">PARENTS APPROVE</h2>
+      <div class="trust-list">
+        <div class="trust-card">
+          <div class="trust-icon">🛡️</div>
+          <div class="trust-txt">
+            <strong>Zero ads, zero predators</strong>
+            <span>A closed sandbox. No DMs from strangers. No rabbit holes of inappropriate content.</span>
+          </div>
+        </div>
+        <div class="trust-card">
+          <div class="trust-icon">📚</div>
+          <div class="trust-txt">
+            <strong>Aligned to grade-level standards</strong>
+            <span>Common Core math &amp; reading, Kindergarten through 5th grade.</span>
+          </div>
+        </div>
+        <div class="trust-card">
+          <div class="trust-icon">🎤</div>
+          <div class="trust-txt">
+            <strong>Co-Founded by Ludacris</strong>
+            <span>Grammy-winning artist Chris "Ludacris" Bridges is all-in on your kid's future.</span>
+          </div>
+        </div>
+        <div class="trust-card">
+          <div class="trust-icon">⭐</div>
+          <div class="trust-txt">
+            <strong>Reward-driven learning</strong>
+            <span>Stars, levels &amp; unlockable cast moments — kids earn as they grow.</span>
+          </div>
+        </div>
+        <div class="trust-card">
+          <div class="trust-icon">🎁</div>
+          <div class="trust-txt">
+            <strong>Free to play, always</strong>
+            <span>No credit card. No hidden fees. Download and start instantly.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="par-phone reveal d2" style="transform:rotate(2.5deg)">
+      <img src="assets/screen-04.png" alt="KidNation parents approve" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+<!-- WAVE: sky → purple -->
+<div class="wave-sky-pu" aria-hidden="true">
+  <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" width="100%" height="56">
+    <path d="M0,42 C360,0 720,56 1080,14 C1200,0 1320,42 1440,28 L1440,56 L0,56 Z" fill="#4F2DC9"/>
+  </svg>
+</div>
+
+<!-- ══ JOIN THE NATION ══ -->
+<section id="cta">
+  <div class="confetti" aria-hidden="true">
+    <span class="dot fa"  style="width:20px;height:20px;background:var(--yellow);top:5%;left:4%"></span>
+    <span class="rect fb" style="width:18px;height:18px;background:var(--pink);top:18%;left:2%;transform:rotate(20deg)"></span>
+    <span class="dot fc"  style="width:14px;height:14px;background:var(--mint);top:38%;left:6%"></span>
+    <span class="squig fa" style="width:30px;height:8px;background:var(--sky);top:58%;left:3%;transform:rotate(-8deg)"></span>
+    <span class="rect fb" style="width:16px;height:16px;background:var(--yellow);top:78%;left:7%;transform:rotate(12deg)"></span>
+    <span class="dot fa"  style="width:18px;height:18px;background:var(--pink);top:90%;left:4%"></span>
+    <span class="dot fc"  style="width:20px;height:20px;background:var(--yellow);top:4%;right:5%"></span>
+    <span class="rect fa" style="width:16px;height:16px;background:var(--mint);top:20%;right:3%;transform:rotate(-15deg)"></span>
+    <span class="dot fb"  style="width:14px;height:14px;background:var(--sky);top:42%;right:6%"></span>
+    <span class="squig fc" style="width:26px;height:7px;background:var(--yellow);top:62%;right:4%;transform:rotate(6deg)"></span>
+    <span class="rect fa" style="width:18px;height:18px;background:var(--pink);top:82%;right:5%;transform:rotate(-22deg)"></span>
+    <span class="dot fb"  style="width:14px;height:14px;background:var(--mint);top:24%;left:24%"></span>
+    <span class="rect fc" style="width:12px;height:12px;background:var(--sky);top:70%;right:28%;transform:rotate(-10deg)"></span>
+  </div>
+  <i class="star-deco" style="top:5%;left:2%;color:var(--yellow);font-size:4rem;transform:rotate(-10deg)">★</i>
+  <i class="star-deco" style="top:7%;right:2%;color:var(--pink);font-size:3.6rem;transform:rotate(15deg)">★</i>
+  <i class="star-deco" style="bottom:8%;left:3%;color:var(--mint);font-size:3rem;transform:rotate(5deg)">★</i>
+  <i class="star-deco" style="bottom:10%;right:3%;color:var(--sky);font-size:2.6rem;transform:rotate(-18deg)">★</i>
+
+  <div class="inner">
+    <div class="pill cta-pill reveal">Join The Nation</div>
+    <h2 class="cta-hed reveal d1">YOUR KID'S NEW FAVORITE HOMETOWN</h2>
+    <p class="cta-sub reveal d2">Free to download. No ads. No strangers. At KidNation, kids come first — just the most fun their brain has ever had.</p>
+    <div class="store-row reveal d3">
+      <a href="#" class="store-btn" aria-label="Download KidNation on the App Store">
+        <svg class="store-icon" viewBox="0 0 24 24" width="32" height="32" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        <div class="store-txt">
+          <small>Download on the</small>
+          <strong>App Store</strong>
+        </div>
+      </a>
+      <a href="#" class="store-btn" aria-label="Get KidNation on Google Play">
+        <svg class="store-icon" viewBox="0 0 24 24" width="32" height="32" fill="currentColor" aria-hidden="true"><path d="M3.18 23.76c.3.17.64.24.99.2l12.59-7.33-2.65-2.65L3.18 23.76zm-1.41-1.5l-.01.01.01-.01zM1.77 1.74C1.48 2.03 1.32 2.5 1.32 3.12v17.77c0 .62.16 1.08.45 1.37l.07.07 9.96-9.96v-.24L1.77 1.74zm19.41 9.14l-2.83-1.65-3.12 3.12 3.12 3.11 2.85-1.66c.81-.47.81-1.24-.02-1.92z"/></svg>
+        <div class="store-txt">
+          <small>Get it on</small>
+          <strong>Google Play</strong>
+        </div>
+      </a>
+    </div>
+    <p class="reveal d3" style="font-family:'Nunito',sans-serif;font-size:.82rem;color:rgba(255,255,255,.55);margin-top:-36px;margin-bottom:48px;letter-spacing:.04em">
+      ★★★★★ &nbsp;4.8 App Store &nbsp;·&nbsp; Free to download &nbsp;·&nbsp; No credit card
+    </p>
+    <div class="cta-phone reveal d4">
+      <img src="assets/screen-05.png" alt="KidNation join the nation" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo-wrap">
+        <div class="footer-icon"><img src="assets/app-icon.png" alt="KidNation" /></div>
+        <span class="footer-logo">KidNation</span>
+      </div>
+      <p class="footer-tagline">Where every kid is a superstar. High-quality, kid-safe and wholesome content for kids 6–11.</p>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#pillars">Watch &amp; Play</a></li>
+          <li><a href="#gang">Meet the Gang</a></li>
+          <li><a href="#testimonials">Reviews</a></li>
+          <li><a href="#parents">For Parents</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Download</h4>
+        <ul>
+          <li><a href="#">App Store</a></li>
+          <li><a href="#">Google Play</a></li>
+          <li><a href="#">Free to Play</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About KidNation</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Events</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 KidNation. All rights reserved. &nbsp;·&nbsp; <a href="#">Privacy Policy</a> &nbsp;·&nbsp; <a href="#">Terms of Use</a></p>
+    <p class="footer-luda">Co-founded by <strong>Chris "Ludacris" Bridges</strong> 🎤</p>
+  </div>
+</footer>
+
+<script>
+  /* ── HAMBURGER ── */
+  function toggleMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const burger = document.getElementById('burger');
+    const isOpen = menu.classList.toggle('open');
+    burger.classList.toggle('open');
+    burger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    burger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  }
+  function closeMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const burger = document.getElementById('burger');
+    menu.classList.remove('open');
+    burger.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    burger.setAttribute('aria-label', 'Open menu');
+    document.body.style.overflow = '';
+  }
+  /* Close mobile menu on Escape key */
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
+  });
+
+  /* ── SCROLL REVEAL ── */
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => observer.observe(el));
+
+  /* Fire reveal for above-fold elements */
+  window.addEventListener('load', () => {
+    revealEls.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight) {
+        el.classList.add('visible');
+        observer.unobserve(el);
+      }
+    });
+  });
+</script>
+</body>
+</html>
