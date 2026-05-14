@@ -215,10 +215,14 @@
     #hero .inner { display: flex; align-items: center; justify-content: space-between; gap: 72px; }
     .hero-copy { flex: 1; max-width: 580px; }
 
+    .hero-badges {
+      display: flex; align-items: center; gap: 14px;
+      flex-wrap: wrap; margin-bottom: 28px;
+    }
     .luda-badge {
       display: inline-flex; align-items: center; gap: 10px;
       background: rgba(255,255,255,.12); border: 1.5px solid rgba(255,255,255,.3);
-      border-radius: 999px; padding: 9px 20px 9px 12px; margin-bottom: 28px;
+      border-radius: 999px; padding: 9px 20px 9px 12px;
       backdrop-filter: blur(8px);
     }
     .luda-icon {
@@ -232,7 +236,7 @@
       font-size: .85rem; color: rgba(255,255,255,.92); letter-spacing: .02em;
     }
 
-    .hero-tag { background: #fff; color: var(--ink); margin-bottom: 22px; transform: rotate(-1.5deg); }
+    .hero-tag { background: #fff; color: var(--ink); }
     .hero-h1 {
       font-family: 'Fredoka', sans-serif; font-weight: 700;
       font-size: clamp(3rem, 5vw, 5.2rem);
@@ -770,11 +774,13 @@
 
   <div class="inner">
     <div class="hero-copy reveal">
-      <div class="luda-badge">
-        <div class="luda-icon">🎤</div>
-        <span>Co Founded by Ludacris</span>
+      <div class="hero-badges">
+        <div class="luda-badge">
+          <div class="luda-icon">🎤</div>
+          <span>Co Founded by Ludacris</span>
+        </div>
+        <div class="pill hero-tag">FREE TO PLAY &nbsp; · &nbsp; AGES 6 TO 11</div>
       </div>
-      <div class="pill hero-tag">FREE TO PLAY &nbsp; · &nbsp; AGES 6 TO 11</div>
       <h1 class="hero-h1">WHERE EVERY<br>KID IS A<br>SUPERSTAR</h1>
       <p class="hero-sub">Videos, music, AI stories and games. All in one safe ad free world built for kids 6 to 11. We're here to inspire kids to be smarter, kinder and healthier.</p>
       <div class="hero-stats" aria-label="App statistics">
