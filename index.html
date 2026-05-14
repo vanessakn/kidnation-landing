@@ -273,33 +273,52 @@
       font-size: .88rem; color: rgba(255,255,255,.8);
     }
 
-    /* ── HERO VIDEO ── */
-    .hero-video {
-      flex-shrink: 0; position: relative;
-      width: 560px; border-radius: 28px;
-      border: 3px solid rgba(255,255,255,.2);
-      box-shadow: 0 0 60px rgba(255,210,63,.25), 0 0 100px rgba(79,45,201,.35), 8px 14px 0 var(--shadow-md);
-      overflow: hidden; aspect-ratio: 16/9;
-      transform: rotate(6deg);
+    /* ── HERO DEVICE (TABLET FRAME) ── */
+    .hero-device { flex-shrink: 0; position: relative; }
+    .device-bezel {
+      background: #18162B;
+      border-radius: 24px;
+      padding: 16px 12px 22px;
+      border: 2px solid rgba(255,255,255,.14);
+      box-shadow:
+        0 0 50px rgba(255,210,63,.22),
+        0 0 90px rgba(79,45,201,.32),
+        10px 16px 0 var(--shadow-md);
+      width: 560px;
       animation: glow-pulse 4s ease-in-out infinite;
+      transform: rotate(2deg);
     }
-    .hero-video video {
+    .device-camera {
+      width: 9px; height: 9px;
+      background: #2A2742;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255,255,255,.08);
+      margin: 0 auto 12px;
+    }
+    .device-screen {
+      border-radius: 12px;
+      overflow: hidden;
+      aspect-ratio: 16/9;
+      position: relative;
+      background: #000;
+    }
+    .device-screen video {
       width: 100%; height: 100%; display: block; border: none; object-fit: cover;
     }
     .hero-video-mute {
-      position: absolute; bottom: 14px; left: 14px;
-      width: 40px; height: 40px; border-radius: 50%;
-      background: rgba(0,0,0,.5); backdrop-filter: blur(8px);
-      border: 1.5px solid rgba(255,255,255,.35);
+      position: absolute; bottom: 12px; left: 12px;
+      width: 38px; height: 38px; border-radius: 50%;
+      background: rgba(0,0,0,.55); backdrop-filter: blur(8px);
+      border: 1.5px solid rgba(255,255,255,.3);
       cursor: pointer; display: flex; align-items: center; justify-content: center;
-      font-size: 1rem; transition: all .2s; z-index: 10; color: white;
+      font-size: .95rem; transition: all .2s; z-index: 10; color: white;
     }
     .hero-video-mute:hover { background: rgba(255,210,63,.85); color: var(--ink); }
 
-    .hero-visual { position: relative; flex-shrink: 0; padding-bottom: 90px; padding-right: 30px; }
+    .hero-visual { position: relative; flex-shrink: 0; padding-bottom: 40px; padding-right: 60px; }
     .hero-character {
-      position: absolute; bottom: -80px; right: -220px;
-      width: 520px; pointer-events: none; z-index: 3;
+      position: absolute; bottom: -30px; right: -20px;
+      width: 290px; pointer-events: none; z-index: 5;
       filter: drop-shadow(4px 6px 0 var(--shadow-soft));
       animation: float-b 5s ease-in-out infinite;
     }
@@ -686,7 +705,7 @@
         flex-direction: column; text-align: center; gap: 48px;
       }
       .hero-h1 { font-size: clamp(2.8rem, 10vw, 4rem); }
-      .hero-video { width: 100%; max-width: 420px; margin: 0 auto; }
+      .device-bezel { width: 100%; max-width: 420px; margin: 0 auto; transform: none; }
       .hero-visual { padding-bottom: 0; }
       .hero-character { display: none; }
       .hero-btns { justify-content: center; }
@@ -800,11 +819,16 @@
       </div>
     </div>
     <div class="hero-visual reveal d2">
-      <div class="hero-video">
-        <video id="heroVideo" autoplay muted loop playsinline>
-          <source src="https://dl.dropboxusercontent.com/scl/fi/9hujlekf2l3uh4rnz0ej4/KidNation-Reel-2020.mp4?rlkey=hyih2qn80hs2u6zvbn9c09js6&st=95d9cy7h" type="video/mp4">
-        </video>
-        <button class="hero-video-mute" id="muteBtn" aria-label="Unmute video" onclick="toggleMute()">🔇</button>
+      <div class="hero-device">
+        <div class="device-bezel">
+          <div class="device-camera"></div>
+          <div class="device-screen">
+            <video id="heroVideo" autoplay muted loop playsinline>
+              <source src="https://dl.dropboxusercontent.com/scl/fi/9hujlekf2l3uh4rnz0ej4/KidNation-Reel-2020.mp4?rlkey=hyih2qn80hs2u6zvbn9c09js6&st=95d9cy7h" type="video/mp4">
+            </video>
+            <button class="hero-video-mute" id="muteBtn" aria-label="Unmute video" onclick="toggleMute()">🔇</button>
+          </div>
+        </div>
       </div>
       <img class="hero-character" src="assets/melli-pointing.png" alt="" aria-hidden="true" />
     </div>
