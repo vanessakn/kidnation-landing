@@ -223,7 +223,7 @@
       display: inline-flex; align-items: center; gap: 10px;
       background: rgba(255,255,255,.12); border: 1.5px solid rgba(255,255,255,.3);
       border-radius: 999px; padding: 9px 20px 9px 12px;
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px); white-space: nowrap; flex-shrink: 0;
     }
     .luda-icon {
       width: 30px; height: 30px; background: var(--yellow);
@@ -236,7 +236,7 @@
       font-size: .85rem; color: rgba(255,255,255,.92); letter-spacing: .02em;
     }
 
-    .hero-tag { background: #fff; color: var(--ink); }
+    .hero-tag { background: #fff; color: var(--ink); white-space: nowrap; flex-shrink: 0; }
     .hero-h1 {
       font-family: 'Fredoka', sans-serif; font-weight: 700;
       font-size: clamp(3rem, 5vw, 5.2rem);
