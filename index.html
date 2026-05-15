@@ -857,6 +857,70 @@
     .fh-icon-btn:hover { transform: translateY(-5px) scale(1.1); box-shadow: 0 12px 26px rgba(0,0,0,.38); }
 
     /* ════════════════════════════
+       FEATURE HIGHLIGHT 2
+    ════════════════════════════ */
+    #fh2 {
+      background: linear-gradient(160deg, #1A0F4A 0%, #2E1B8C 55%, #1A0F4A 100%);
+      padding: 110px 48px; position: relative; overflow: visible;
+    }
+    #fh2 .inner { display: flex; align-items: center; gap: 72px; }
+
+    /* Copy */
+    .fh2-copy { flex: 1; }
+    .fh2-hed {
+      font-family: 'Fredoka', sans-serif; font-weight: 700;
+      font-size: clamp(2.8rem, 5vw, 4.6rem);
+      color: #fff; line-height: 1.12; margin-bottom: 28px;
+      letter-spacing: .01em;
+    }
+    .fh2-h { color: var(--pink); }
+    .fh2-e { color: var(--yellow); }
+    .fh2-l1 { color: var(--mint); }
+    .fh2-l2 { color: var(--sky); }
+    .fh2-o { color: #C4B5FD; }
+    .fh2-desc {
+      font-family: 'Nunito', sans-serif; font-weight: 600;
+      font-size: 1.15rem; color: rgba(255,255,255,.82);
+      line-height: 1.78; max-width: 460px; margin-bottom: 38px;
+    }
+    .fh2-badges { display: flex; flex-wrap: wrap; gap: 12px; }
+    .fh2-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,.1);
+      border: 1.5px solid rgba(255,255,255,.18);
+      border-radius: 999px; padding: 10px 20px;
+      backdrop-filter: blur(10px);
+      font-family: 'Nunito', sans-serif; font-weight: 700;
+      font-size: .9rem; color: #fff; white-space: nowrap;
+      transition: background .2s, border-color .2s;
+    }
+    .fh2-badge:hover { background: rgba(255,255,255,.17); border-color: rgba(255,255,255,.3); }
+    .fh2-check { font-size: 1rem; font-weight: 900; }
+
+    /* Media */
+    .fh2-media { flex-shrink: 0; position: relative; }
+    .fh2-glow {
+      position: absolute; inset: -40px; border-radius: 50%;
+      background: radial-gradient(ellipse at center, rgba(79,45,201,.45) 0%, transparent 68%);
+      z-index: 0; pointer-events: none;
+    }
+    .fh2-card {
+      width: 540px; border-radius: 28px; overflow: hidden;
+      box-shadow: 0 0 60px rgba(79,45,201,.35), 0 28px 70px rgba(0,0,0,.5);
+      position: relative; z-index: 1;
+      animation: float-b 5.2s ease-in-out infinite;
+    }
+    .fh2-card img {
+      width: 100%; display: block; aspect-ratio: 16/10; object-fit: cover;
+    }
+    .fh2-character {
+      position: absolute; bottom: -60px; left: -100px;
+      width: 260px; pointer-events: none; z-index: 5;
+      filter: drop-shadow(4px 8px 0 rgba(26,15,74,.6));
+      animation: float-a 4.5s ease-in-out infinite;
+    }
+
+    /* ════════════════════════════
        RESPONSIVE
     ════════════════════════════ */
     @media (max-width: 1050px) {
@@ -875,12 +939,15 @@
       .hero-stats { justify-content: center; }
       .hero-stat-div { display: none; }
       #hero .inner, #wprl .inner, #edu .inner, #parents .inner,
-      #feature-highlight .inner {
+      #feature-highlight .inner, #fh2 .inner {
         flex-direction: column; text-align: center; gap: 48px;
       }
       .fh-mockup { width: 100%; max-width: 420px; margin: 0 auto; transform: none; }
       .fh-desc { margin-left: auto; margin-right: auto; }
       .fh-icons { justify-content: center; }
+      .fh2-card { width: 100%; max-width: 460px; margin: 0 auto; }
+      .fh2-badges { align-items: center; }
+      .fh2-character { display: none; }
       .hero-h1 { font-size: clamp(2.8rem, 10vw, 4rem); }
       .hero-video { width: 100%; max-width: 420px; margin: 0 auto; }
       .hero-visual { padding-bottom: 0; }
@@ -1278,6 +1345,42 @@
         <div class="fh-icon-btn" style="background:linear-gradient(135deg,#9B8FD9,#7260C4)" role="listitem" aria-label="Focus and Learning">📷</div>
         <div class="fh-icon-btn" style="background:linear-gradient(135deg,#A09CC0,#7870A8)" role="listitem" aria-label="Discovery">🔍</div>
       </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- thin separator between the two dark feature sections -->
+<div style="background:var(--ink);padding:0 48px" aria-hidden="true">
+  <div style="max-width:1200px;margin:0 auto;height:1px;background:rgba(255,255,255,.08)"></div>
+</div>
+
+<!-- ══ FEATURE HIGHLIGHT 2 ══ -->
+<section id="fh2" aria-label="Why KidNation works for your child">
+  <div class="inner">
+
+    <!-- Left: headline + copy + badges -->
+    <div class="fh2-copy reveal">
+      <h2 class="fh2-hed">
+        Say <span class="fh2-h">H</span><span class="fh2-e">E</span><span class="fh2-l1">L</span><span class="fh2-l2">L</span><span class="fh2-o">O</span> to your<br>
+        kid's favorite way<br>to learn
+      </h2>
+      <p class="fh2-desc">KidNation content is designed to increase enjoyment, engagement, and learning comprehension through fun interactive experiences kids actually love.</p>
+      <div class="fh2-badges">
+        <div class="fh2-badge"><span class="fh2-check" style="color:var(--pink)">✓</span> Increased Engagement</div>
+        <div class="fh2-badge"><span class="fh2-check" style="color:var(--yellow)">✓</span> Future Ready Skills</div>
+        <div class="fh2-badge"><span class="fh2-check" style="color:var(--mint)">✓</span> Better Comprehension</div>
+        <div class="fh2-badge"><span class="fh2-check" style="color:var(--sky)">✓</span> Kids and Parents Preferred</div>
+      </div>
+    </div>
+
+    <!-- Right: media card + character -->
+    <div class="fh2-media reveal d2">
+      <div class="fh2-glow" aria-hidden="true"></div>
+      <div class="fh2-card">
+        <img src="assets/screen-03.png" alt="Happy child using KidNation on a tablet and interacting with characters" loading="lazy" />
+      </div>
+      <img class="fh2-character" src="assets/melli-pointing.png" alt="" aria-hidden="true" />
     </div>
 
   </div>
