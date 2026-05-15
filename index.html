@@ -909,10 +909,22 @@
       z-index: 0; pointer-events: none;
     }
     .fh2-card {
-      width: 540px; border-radius: 28px; overflow: hidden;
+      width: 560px;
+      background: #fff; border-radius: 28px;
+      padding: 8px 8px 20px;
       box-shadow: 0 0 60px rgba(79,45,201,.35), 0 28px 70px rgba(0,0,0,.5);
       position: relative; z-index: 1;
       animation: float-b 5.2s ease-in-out infinite;
+      transform: rotate(2deg);
+    }
+    .fh2-card-cam {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: #ddd; margin: 0 auto 8px;
+    }
+    .fh2-card-screen {
+      border-radius: 16px; overflow: hidden;
+      aspect-ratio: 16/10; background: #111;
+      position: relative;
     }
     .fh2-card-video {
       position: relative; width: 100%; aspect-ratio: 16/10; display: block;
@@ -953,7 +965,7 @@
       .fh-mockup { width: 100%; max-width: 420px; margin: 0 auto; transform: none; }
       .fh-desc { margin-left: auto; margin-right: auto; }
       .fh-icons { justify-content: center; }
-      .fh2-card { width: 100%; max-width: 460px; margin: 0 auto; }
+      .fh2-card { width: 100%; max-width: 460px; margin: 0 auto; transform: none; }
       .fh2-badges { align-items: center; }
       .fh2-character { display: none; }
       .hero-h1 { font-size: clamp(2.8rem, 10vw, 4rem); }
@@ -1391,13 +1403,16 @@
     <div class="fh2-media reveal d2">
       <div class="fh2-glow" aria-hidden="true"></div>
       <div class="fh2-card">
-        <div class="fh2-card-video">
-          <iframe
-            src="https://player.vimeo.com/video/710567921?autoplay=1&muted=1&loop=1&background=1&quality=auto"
-            allow="autoplay; fullscreen; picture-in-picture"
-            title="KidNation — where every kid is a superstar"
-            loading="lazy"
-          ></iframe>
+        <div class="fh2-card-cam"></div>
+        <div class="fh2-card-screen">
+          <div class="fh2-card-video">
+            <iframe
+              src="https://player.vimeo.com/video/710567921?autoplay=1&muted=1&loop=1&background=1&quality=auto"
+              allow="autoplay; fullscreen; picture-in-picture"
+              title="KidNation — where every kid is a superstar"
+              loading="lazy"
+            ></iframe>
+          </div>
         </div>
       </div>
       <img class="fh2-character" src="assets/melli-pointing.png" alt="" aria-hidden="true" />
