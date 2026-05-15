@@ -702,18 +702,26 @@
     .quote-carousel-wrap::before { left: 0; background: linear-gradient(to right, var(--paper), transparent); }
     .quote-carousel-wrap::after  { right: 0; background: linear-gradient(to left, var(--paper), transparent); }
 
+    @keyframes marquee-quotes {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
     .quote-carousel {
       display: flex; gap: 20px;
-      overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
-      -ms-overflow-style: none; scrollbar-width: none;
-      padding: 10px 72px 28px; cursor: grab;
-      user-select: none; -webkit-user-select: none;
+      width: max-content;
+      padding: 10px 0 28px;
+      animation: marquee-quotes 55s linear infinite;
+      will-change: transform;
     }
-    .quote-carousel.dragging { cursor: grabbing; scroll-behavior: auto; }
-    .quote-carousel::-webkit-scrollbar { display: none; }
+    .quote-carousel-wrap:hover .quote-carousel {
+      animation-play-state: paused;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .quote-carousel { animation: none; overflow-x: auto; }
+    }
 
     .quote-card {
-      flex: 0 0 290px; scroll-snap-align: start;
+      flex: 0 0 290px;
       border-radius: 24px; padding: 28px 24px 22px;
       border: 2px solid rgba(26,15,74,.07);
       box-shadow: 4px 6px 0 rgba(26,15,74,.08);
@@ -779,22 +787,18 @@
 
     /* ── Press Logos ── */
     .press-logo-row {
-      display: flex; align-items: center; gap: 8px;
+      display: flex; align-items: center; gap: 32px;
       justify-content: center; flex-wrap: wrap;
     }
     .press-logo-item {
-      opacity: .25; transition: opacity .2s;
-      display: flex; align-items: center; padding: 0 6px;
+      display: flex; align-items: center;
+      transition: filter .25s, opacity .25s;
+      filter: grayscale(1) opacity(.28);
     }
-    .press-logo-item:hover { opacity: .6; }
-    .press-wordmark {
-      font-family: 'Nunito', sans-serif; font-weight: 800;
-      font-size: 1rem; color: var(--ink);
-      white-space: nowrap; letter-spacing: .01em;
-    }
-    .press-logo-sep {
-      width: 4px; height: 4px; border-radius: 50%;
-      background: rgba(26,15,74,.18); flex-shrink: 0;
+    .press-logo-item:hover { filter: grayscale(.3) opacity(.7); }
+    .press-logo-img {
+      height: 28px; width: auto; max-width: 120px;
+      display: block; object-fit: contain;
     }
 
     /* ════════════════════════════
@@ -993,78 +997,91 @@
 
   <!-- ── Quote Carousel (full bleed) ── -->
   <div class="quote-carousel-wrap reveal">
-    <div class="quote-carousel" id="quoteCarousel" aria-label="Press quote carousel">
+    <!-- aria-hidden on duplicated set; original set is labelled -->
+    <div class="quote-carousel" aria-label="Press quotes">
 
+      <!-- ── Set 1 (original) ── -->
       <div class="quote-card" style="background:#FEF0F6">
         <span class="quote-mark" style="color:var(--pink)">❝</span>
         <p class="quote-text">High interest, high appeal videos that kids are sure to love every single time they open the app.</p>
-        <div class="quote-source-row">
-          <span class="quote-source-pip" style="background:var(--pink)"></span>
-          <span class="quote-source-name" style="color:var(--pink)">Common Sense</span>
-        </div>
+        <div class="quote-source-row"><span class="quote-source-pip" style="background:var(--pink)"></span><span class="quote-source-name" style="color:var(--pink)">Common Sense</span></div>
       </div>
-
       <div class="quote-card" style="background:#EFF6FF">
         <span class="quote-mark" style="color:var(--sky)">❝</span>
         <p class="quote-text">Fills the need for engaging interactive experiences that keep kids coming back day after day.</p>
-        <div class="quote-source-row">
-          <span class="quote-source-pip" style="background:var(--sky)"></span>
-          <span class="quote-source-name" style="color:var(--sky)">Kidscreen</span>
-        </div>
+        <div class="quote-source-row"><span class="quote-source-pip" style="background:var(--sky)"></span><span class="quote-source-name" style="color:var(--sky)">Kidscreen</span></div>
       </div>
-
       <div class="quote-card" style="background:#EDFFF8">
         <span class="quote-mark" style="color:var(--mint)">❝</span>
         <p class="quote-text">The content comes to life, taking children from passive observers to active joyful participants.</p>
-        <div class="quote-source-row">
-          <span class="quote-source-pip" style="background:var(--mint)"></span>
-          <span class="quote-source-name" style="color:var(--mint)">Parentology</span>
-        </div>
+        <div class="quote-source-row"><span class="quote-source-pip" style="background:var(--mint)"></span><span class="quote-source-name" style="color:var(--mint)">Parentology</span></div>
       </div>
-
       <div class="quote-card" style="background:#FFFBEA">
         <span class="quote-mark" style="color:var(--orange)">❝</span>
         <p class="quote-text">One of the most exciting kids platforms we have seen in years. Truly a world changing idea.</p>
-        <div class="quote-source-row">
-          <span class="quote-source-pip" style="background:var(--orange)"></span>
-          <span class="quote-source-name" style="color:var(--orange)">Fast Company</span>
-        </div>
+        <div class="quote-source-row"><span class="quote-source-pip" style="background:var(--orange)"></span><span class="quote-source-name" style="color:var(--orange)">Fast Company</span></div>
       </div>
-
       <div class="quote-card" style="background:#FFF4EE">
         <span class="quote-mark" style="color:#FF6B35">❝</span>
         <p class="quote-text">A genuinely safe space where creativity and learning coexist beautifully for young minds.</p>
-        <div class="quote-source-row">
-          <span class="quote-source-pip" style="background:#FF6B35"></span>
-          <span class="quote-source-name" style="color:#FF6B35">TechCrunch</span>
-        </div>
+        <div class="quote-source-row"><span class="quote-source-pip" style="background:#FF6B35"></span><span class="quote-source-name" style="color:#FF6B35">TechCrunch</span></div>
       </div>
-
       <div class="quote-card" style="background:#F3F0FF">
         <span class="quote-mark" style="color:var(--purple)">❝</span>
         <p class="quote-text">The kind of product that makes you genuinely optimistic about kids and technology coexisting.</p>
-        <div class="quote-source-row">
-          <span class="quote-source-pip" style="background:var(--purple)"></span>
-          <span class="quote-source-name" style="color:var(--purple)">Product Hunt</span>
-        </div>
+        <div class="quote-source-row"><span class="quote-source-pip" style="background:var(--purple)"></span><span class="quote-source-name" style="color:var(--purple)">Product Hunt</span></div>
       </div>
-
       <div class="quote-card" style="background:#E8F4FD">
         <span class="quote-mark" style="color:#4A90D9">❝</span>
         <p class="quote-text">KidNation is reshaping what parents and kids expect from digital entertainment and education.</p>
-        <div class="quote-source-row">
-          <span class="quote-source-pip" style="background:#4A90D9"></span>
-          <span class="quote-source-name" style="color:#4A90D9">Axios</span>
-        </div>
+        <div class="quote-source-row"><span class="quote-source-pip" style="background:#4A90D9"></span><span class="quote-source-name" style="color:#4A90D9">Axios</span></div>
       </div>
-
       <div class="quote-card" style="background:#FFF0F5">
         <span class="quote-mark" style="color:var(--pink)">❝</span>
         <p class="quote-text">A rare example of a kids platform that puts safety, joy, and learning in equal measure.</p>
-        <div class="quote-source-row">
-          <span class="quote-source-pip" style="background:var(--pink)"></span>
-          <span class="quote-source-name" style="color:var(--pink)">The Information</span>
-        </div>
+        <div class="quote-source-row"><span class="quote-source-pip" style="background:var(--pink)"></span><span class="quote-source-name" style="color:var(--pink)">The Information</span></div>
+      </div>
+
+      <!-- ── Set 2 (duplicate for seamless loop) ── -->
+      <div class="quote-card" style="background:#FEF0F6" aria-hidden="true">
+        <span class="quote-mark" style="color:var(--pink)">❝</span>
+        <p class="quote-text">High interest, high appeal videos that kids are sure to love every single time they open the app.</p>
+        <div class="quote-source-row"><span class="quote-source-pip" style="background:var(--pink)"></span><span class="quote-source-name" style="color:var(--pink)">Common Sense</span></div>
+      </div>
+      <div class="quote-card" style="background:#EFF6FF" aria-hidden="true">
+        <span class="quote-mark" style="color:var(--sky)">❝</span>
+        <p class="quote-text">Fills the need for engaging interactive experiences that keep kids coming back day after day.</p>
+        <div class="quote-source-row"><span class="quote-source-pip" style="background:var(--sky)"></span><span class="quote-source-name" style="color:var(--sky)">Kidscreen</span></div>
+      </div>
+      <div class="quote-card" style="background:#EDFFF8" aria-hidden="true">
+        <span class="quote-mark" style="color:var(--mint)">❝</span>
+        <p class="quote-text">The content comes to life, taking children from passive observers to active joyful participants.</p>
+        <div class="quote-source-row"><span class="quote-source-pip" style="background:var(--mint)"></span><span class="quote-source-name" style="color:var(--mint)">Parentology</span></div>
+      </div>
+      <div class="quote-card" style="background:#FFFBEA" aria-hidden="true">
+        <span class="quote-mark" style="color:var(--orange)">❝</span>
+        <p class="quote-text">One of the most exciting kids platforms we have seen in years. Truly a world changing idea.</p>
+        <div class="quote-source-row"><span class="quote-source-pip" style="background:var(--orange)"></span><span class="quote-source-name" style="color:var(--orange)">Fast Company</span></div>
+      </div>
+      <div class="quote-card" style="background:#FFF4EE" aria-hidden="true">
+        <span class="quote-mark" style="color:#FF6B35">❝</span>
+        <p class="quote-text">A genuinely safe space where creativity and learning coexist beautifully for young minds.</p>
+        <div class="quote-source-row"><span class="quote-source-pip" style="background:#FF6B35"></span><span class="quote-source-name" style="color:#FF6B35">TechCrunch</span></div>
+      </div>
+      <div class="quote-card" style="background:#F3F0FF" aria-hidden="true">
+        <span class="quote-mark" style="color:var(--purple)">❝</span>
+        <p class="quote-text">The kind of product that makes you genuinely optimistic about kids and technology coexisting.</p>
+        <div class="quote-source-row"><span class="quote-source-pip" style="background:var(--purple)"></span><span class="quote-source-name" style="color:var(--purple)">Product Hunt</span></div>
+      </div>
+      <div class="quote-card" style="background:#E8F4FD" aria-hidden="true">
+        <span class="quote-mark" style="color:#4A90D9">❝</span>
+        <p class="quote-text">KidNation is reshaping what parents and kids expect from digital entertainment and education.</p>
+        <div class="quote-source-row"><span class="quote-source-pip" style="background:#4A90D9"></span><span class="quote-source-name" style="color:#4A90D9">Axios</span></div>
+      </div>
+      <div class="quote-card" style="background:#FFF0F5" aria-hidden="true">
+        <span class="quote-mark" style="color:var(--pink)">❝</span>
+        <p class="quote-text">A rare example of a kids platform that puts safety, joy, and learning in equal measure.</p>
+        <div class="quote-source-row"><span class="quote-source-pip" style="background:var(--pink)"></span><span class="quote-source-name" style="color:var(--pink)">The Information</span></div>
       </div>
 
     </div>
@@ -1137,22 +1154,30 @@
 
     </div>
 
-    <!-- Press Wordmarks -->
+    <!-- Press Logos (swap src to your own assets at any time) -->
     <div class="press-divider-line" aria-hidden="true"></div>
     <div class="press-logo-row reveal">
-      <div class="press-logo-item"><span class="press-wordmark" style="font-style:italic;letter-spacing:.03em">Kidscreen</span></div>
-      <span class="press-logo-sep"></span>
-      <div class="press-logo-item"><span class="press-wordmark" style="font-weight:900;letter-spacing:-.01em">TechCrunch</span></div>
-      <span class="press-logo-sep"></span>
-      <div class="press-logo-item"><span class="press-wordmark" style="font-style:italic;font-weight:900">Fortune</span></div>
-      <span class="press-logo-sep"></span>
-      <div class="press-logo-item"><span class="press-wordmark" style="font-weight:900;letter-spacing:.1em;font-size:.95rem">AXIOS</span></div>
-      <span class="press-logo-sep"></span>
-      <div class="press-logo-item"><span class="press-wordmark" style="letter-spacing:.05em">Fast Company</span></div>
-      <span class="press-logo-sep"></span>
-      <div class="press-logo-item"><span class="press-wordmark" style="font-weight:900">Product Hunt</span></div>
-      <span class="press-logo-sep"></span>
-      <div class="press-logo-item"><span class="press-wordmark" style="font-style:italic;font-size:.92rem">The Information</span></div>
+      <div class="press-logo-item">
+        <img class="press-logo-img" src="https://logo.clearbit.com/kidscreen.com" alt="Kidscreen" loading="lazy" />
+      </div>
+      <div class="press-logo-item">
+        <img class="press-logo-img" src="https://logo.clearbit.com/techcrunch.com" alt="TechCrunch" loading="lazy" />
+      </div>
+      <div class="press-logo-item">
+        <img class="press-logo-img" src="https://logo.clearbit.com/fortune.com" alt="Fortune" loading="lazy" />
+      </div>
+      <div class="press-logo-item">
+        <img class="press-logo-img" src="https://logo.clearbit.com/axios.com" alt="Axios" loading="lazy" />
+      </div>
+      <div class="press-logo-item">
+        <img class="press-logo-img" src="https://logo.clearbit.com/fastcompany.com" alt="Fast Company" loading="lazy" />
+      </div>
+      <div class="press-logo-item">
+        <img class="press-logo-img" src="https://logo.clearbit.com/producthunt.com" alt="Product Hunt" loading="lazy" />
+      </div>
+      <div class="press-logo-item">
+        <img class="press-logo-img" src="https://logo.clearbit.com/theinformation.com" alt="The Information" loading="lazy" />
+      </div>
     </div>
 
   </div>
@@ -1579,46 +1604,6 @@
     btn.textContent = video.muted ? '🔇' : '🔊';
     btn.setAttribute('aria-label', video.muted ? 'Unmute video' : 'Mute video');
   }
-
-  /* ── QUOTE CAROUSEL ── */
-  (function () {
-    const el = document.getElementById('quoteCarousel');
-    if (!el) return;
-    let isDown = false, startX = 0, scrollLeft = 0, autoTimer = null;
-
-    function startAuto() {
-      stopAuto();
-      autoTimer = setInterval(function () {
-        if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 4) {
-          el.scrollLeft = 0;
-        } else { el.scrollLeft += 1; }
-      }, 22);
-    }
-    function stopAuto()    { clearInterval(autoTimer); }
-    function delayStart()  { stopAuto(); setTimeout(startAuto, 1800); }
-
-    el.addEventListener('mouseenter', stopAuto);
-    el.addEventListener('mouseleave', startAuto);
-    el.addEventListener('touchstart', stopAuto,  { passive: true });
-    el.addEventListener('touchend',   delayStart, { passive: true });
-
-    el.addEventListener('mousedown', function (e) {
-      isDown = true; el.classList.add('dragging');
-      startX = e.pageX - el.offsetLeft; scrollLeft = el.scrollLeft;
-      stopAuto();
-    });
-    document.addEventListener('mouseup', function () {
-      if (!isDown) return;
-      isDown = false; el.classList.remove('dragging'); delayStart();
-    });
-    el.addEventListener('mousemove', function (e) {
-      if (!isDown) return;
-      e.preventDefault();
-      el.scrollLeft = scrollLeft - (e.pageX - el.offsetLeft - startX) * 1.5;
-    });
-
-    startAuto();
-  }());
 
   /* ── HAMBURGER ── */
   function toggleMenu() {
