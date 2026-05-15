@@ -910,8 +910,12 @@
       position: relative; z-index: 1;
       animation: float-b 5.2s ease-in-out infinite;
     }
-    .fh2-card img {
-      width: 100%; display: block; aspect-ratio: 16/10; object-fit: cover;
+    .fh2-card-video {
+      position: relative; width: 100%; aspect-ratio: 16/10; display: block;
+    }
+    .fh2-card-video iframe {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      border: none; display: block;
     }
     .fh2-character {
       position: absolute; bottom: -60px; left: -100px;
@@ -1378,7 +1382,14 @@
     <div class="fh2-media reveal d2">
       <div class="fh2-glow" aria-hidden="true"></div>
       <div class="fh2-card">
-        <img src="assets/screen-03.png" alt="Happy child using KidNation on a tablet and interacting with characters" loading="lazy" />
+        <div class="fh2-card-video">
+          <iframe
+            src="https://player.vimeo.com/video/710567921?autoplay=1&muted=1&loop=1&background=1&quality=auto"
+            allow="autoplay; fullscreen; picture-in-picture"
+            title="KidNation — where every kid is a superstar"
+            loading="lazy"
+          ></iframe>
+        </div>
       </div>
       <img class="fh2-character" src="assets/melli-pointing.png" alt="" aria-hidden="true" />
     </div>
