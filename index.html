@@ -736,19 +736,34 @@
 
     /* ── Press Logos ── */
     .press-logo-row {
-      display: flex; align-items: center; gap: 32px;
-      justify-content: center; flex-wrap: wrap;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: nowrap;
     }
     .press-logo-item {
       display: flex; align-items: center;
+      justify-content: center;
+      flex: var(--logo-flex, 1) 1 0;
+      min-width: 0;
+      height: 56px;
       transition: filter .25s, opacity .25s;
       filter: grayscale(1) opacity(.28);
     }
     .press-logo-item:hover { filter: grayscale(.3) opacity(.7); }
     .press-logo-img {
-      height: 28px; width: auto; max-width: 120px;
+      width: 100%; height: 100%;
       display: block; object-fit: contain;
     }
+    .press-logo-item--tonies { --logo-flex: 2.55; }
+    .press-logo-item--delta  { --logo-flex: 1.95; }
+    .press-logo-item--pressed { --logo-flex: 1.85; }
+    .press-logo-item--moose { --logo-flex: 1.45; }
+    .press-logo-item--cutie { --logo-flex: 1; }
+    .press-logo-img--tonies { transform: scale(1.06); }
+    .press-logo-img--moose { transform: scale(1.12); }
+    .press-logo-img--cutie { transform: scale(.82); }
 
     /* ════════════════════════════
        FEATURE HIGHLIGHT
@@ -924,6 +939,8 @@
       .phone-float, .edu-phone, .par-phone { width: 230px; margin: 0 auto; }
       .edu-slaps { font-size: clamp(3.6rem, 14vw, 6rem); }
       .gang-showcase { max-width: 100%; }
+      .press-logo-row { flex-wrap: wrap; gap: 16px; }
+      .press-logo-item { flex: 0 1 calc(33.333% - 16px); }
       .test-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
       .pillars-grid { grid-template-columns: repeat(2,1fr); gap: 16px; }
       .trust-list { align-items: center; }
@@ -934,6 +951,7 @@
       .footer-bottom { flex-direction: column; text-align: center; }
     }
     @media (max-width: 520px) {
+      .press-logo-item { flex-basis: calc(50% - 16px); }
       .pillars-grid { grid-template-columns: 1fr; }
       .hero-video { max-width: 340px; }
     }
@@ -1192,26 +1210,20 @@
     <!-- Press Logos (swap src to your own assets at any time) -->
     <div class="press-divider-line" aria-hidden="true"></div>
     <div class="press-logo-row reveal">
-      <div class="press-logo-item">
-        <img class="press-logo-img" src="https://logo.clearbit.com/kidscreen.com" alt="Kidscreen" loading="lazy" />
+      <div class="press-logo-item press-logo-item--tonies">
+        <img class="press-logo-img press-logo-img--tonies" src="assets/logo-tonies.png" alt="Tonies" loading="lazy" />
       </div>
-      <div class="press-logo-item">
-        <img class="press-logo-img" src="https://logo.clearbit.com/techcrunch.com" alt="TechCrunch" loading="lazy" />
+      <div class="press-logo-item press-logo-item--delta">
+        <img class="press-logo-img" src="assets/logo-delta.png" alt="Delta" loading="lazy" />
       </div>
-      <div class="press-logo-item">
-        <img class="press-logo-img" src="https://logo.clearbit.com/fortune.com" alt="Fortune" loading="lazy" />
+      <div class="press-logo-item press-logo-item--pressed">
+        <img class="press-logo-img" src="assets/logo-pressed.png" alt="Pressed" loading="lazy" />
       </div>
-      <div class="press-logo-item">
-        <img class="press-logo-img" src="https://logo.clearbit.com/axios.com" alt="Axios" loading="lazy" />
+      <div class="press-logo-item press-logo-item--moose">
+        <img class="press-logo-img press-logo-img--moose" src="assets/logo-moose-toys.png" alt="Moose Toys" loading="lazy" />
       </div>
-      <div class="press-logo-item">
-        <img class="press-logo-img" src="https://logo.clearbit.com/fastcompany.com" alt="Fast Company" loading="lazy" />
-      </div>
-      <div class="press-logo-item">
-        <img class="press-logo-img" src="https://logo.clearbit.com/producthunt.com" alt="Product Hunt" loading="lazy" />
-      </div>
-      <div class="press-logo-item">
-        <img class="press-logo-img" src="https://logo.clearbit.com/theinformation.com" alt="The Information" loading="lazy" />
+      <div class="press-logo-item press-logo-item--cutie">
+        <img class="press-logo-img press-logo-img--cutie" src="assets/logo-cutie-cuts.jpg" alt="Cutie Cuts" loading="lazy" />
       </div>
     </div>
 
