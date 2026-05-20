@@ -322,7 +322,7 @@
     .wave-pu-yellow svg { display: block; }
     .wave-yellow-pink { background: var(--yellow); line-height: 0; }
     .wave-yellow-pink svg { display: block; }
-    .wave-pink-paper { background: var(--pink); line-height: 0; }
+    .wave-pink-paper { background: #F31D6F; line-height: 0; }
     .wave-pink-paper svg { display: block; }
     .wave-paper-sky { background: var(--paper); line-height: 0; }
     .wave-paper-sky svg { display: block; }
@@ -453,52 +453,15 @@
     /* ════════════════════════════
        MEET THE GANG
     ════════════════════════════ */
-    #gang { background: var(--pink); padding: 110px 48px; }
-    .gang-header { text-align: center; margin-bottom: 60px; }
-    .gang-pill { background: var(--yellow); color: var(--ink); margin-bottom: 20px; transform: rotate(-2deg); }
-    .gang-hed {
-      font-family: 'Fredoka', sans-serif; font-weight: 700;
-      font-size: clamp(3.2rem, 6.5vw, 6rem); color: #fff;
-      text-shadow: 5px 7px 0 var(--shadow-soft); transform: rotate(-1.5deg);
-      display: inline-block; margin-bottom: 16px; letter-spacing: .02em;
+    #gang { background: #F31D6F; padding: 88px 48px 96px; }
+    #gang .confetti,
+    #gang .star-deco { display: none; }
+    .gang-showcase {
+      max-width: 1320px; margin: 0 auto;
+      background: #F31D6F;
     }
-    .gang-sub {
-      font-family: 'Nunito', sans-serif; font-weight: 600; color: rgba(255,255,255,.95);
-      font-size: 1.2rem; max-width: 500px; margin: 0 auto; line-height: 1.65;
-    }
-    .gang-layout { display: flex; align-items: center; gap: 56px; }
-    .gang-grid {
-      flex: 1; display: grid; grid-template-columns: repeat(3,1fr); gap: 18px;
-    }
-    .char-card {
-      background: #fff; border: 3px solid rgba(26,15,74,.2);
-      border-radius: 24px; box-shadow: 4px 6px 0 var(--shadow-soft);
-      padding: 28px 16px 24px; text-align: center;
-      transition: transform .2s cubic-bezier(.16,1,.3,1), box-shadow .2s;
-    }
-    .char-card:hover { transform: translateY(-8px) rotate(-2deg); box-shadow: 4px 14px 0 var(--shadow-soft); }
-    .char-card:nth-child(even) { transform: rotate(1deg); }
-    .char-card:nth-child(even):hover { transform: translateY(-8px) rotate(-1deg); }
-    .char-avatar {
-      width: 70px; height: 70px; border-radius: 50%;
-      border: 3px solid rgba(26,15,74,.2); box-shadow: 2px 3px 0 var(--shadow-soft);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 2rem; margin: 0 auto 14px;
-    }
-    .char-name {
-      font-family: 'Fredoka', sans-serif; font-weight: 600;
-      font-size: 1.1rem; color: var(--ink); display: block; margin-bottom: 5px;
-      letter-spacing: .01em;
-    }
-    .char-vibe {
-      font-family: 'Nunito', sans-serif; font-weight: 700;
-      font-size: .75rem; color: rgba(26,15,74,.55);
-      text-transform: uppercase; letter-spacing: .08em;
-    }
-    .gang-phone { flex-shrink: 0; width: 270px; animation: float-b 5s ease-in-out infinite; }
-    .gang-phone img {
-      width: 100%; display: block; border-radius: 38px;
-      filter: drop-shadow(8px 12px 0 var(--shadow-md));
+    .gang-showcase img {
+      width: 100%; height: auto; display: block;
     }
 
     /* ════════════════════════════
@@ -749,40 +712,26 @@
       width: 100%; height: 1px; background: rgba(26,15,74,.08); margin-bottom: 36px;
     }
     .awards-seal-row {
-      display: flex; gap: 28px; flex-wrap: wrap;
-      justify-content: center; margin-bottom: 44px;
+      display: flex; gap: 24px;
+      justify-content: center; align-items: flex-start;
+      margin-bottom: 44px; overflow-x: auto;
+      padding: 0 4px 12px;
+      scrollbar-width: thin;
     }
     .award-seal {
-      display: flex; flex-direction: column; align-items: center;
+      display: block; flex: 1 1 0;
+      min-width: 320px; max-width: 560px;
       transition: transform .2s cubic-bezier(.16,1,.3,1);
-      cursor: default;
+      background: var(--paper);
     }
-    .award-seal:hover { transform: scale(1.07); }
-    .award-seal-ring {
-      width: 116px; height: 116px; border-radius: 50%;
-      border: 3px dashed rgba(79,45,201,.22);
-      display: flex; align-items: center; justify-content: center;
-      background: #fff;
-      box-shadow: 0 4px 14px rgba(26,15,74,.09), inset 0 0 0 6px rgba(79,45,201,.04);
-      position: relative;
+    .award-seal:hover { transform: translateY(-4px); }
+    .award-seal img {
+      display: block; width: 100%; height: auto;
+      filter: sepia(.04) saturate(.97) brightness(1.01);
     }
-    .award-seal-ring::before {
-      content: ''; position: absolute; inset: 7px; border-radius: 50%;
-      border: 1.5px solid rgba(79,45,201,.12);
-    }
-    .award-seal-body {
-      display: flex; flex-direction: column; align-items: center;
-      gap: 3px; text-align: center; padding: 10px;
-    }
-    .award-seal-icon { font-size: 1.7rem; line-height: 1; margin-bottom: 2px; }
-    .award-seal-name {
-      font-family: 'Fredoka', sans-serif; font-weight: 700;
-      font-size: .62rem; color: var(--ink); letter-spacing: .05em;
-      line-height: 1.25; text-transform: uppercase; text-align: center;
-    }
-    .award-seal-by {
-      font-family: 'Nunito', sans-serif; font-size: .57rem;
-      color: rgba(26,15,74,.38); letter-spacing: .03em; text-align: center;
+    @media (max-width: 900px) {
+      .awards-seal-row { justify-content: flex-start; }
+      .award-seal { flex: 0 0 min(480px, 88vw); min-width: 280px; }
     }
 
     /* ── Press Logos ── */
@@ -944,10 +893,8 @@
        RESPONSIVE
     ════════════════════════════ */
     @media (max-width: 1050px) {
-      .gang-grid { grid-template-columns: repeat(2,1fr); }
+      #gang { padding-top: 72px; padding-bottom: 80px; }
       .pillars-grid { grid-template-columns: repeat(2,1fr); }
-      .gang-layout { flex-direction: column; text-align: center; }
-      .gang-phone { margin: 0 auto; }
     }
     @media (max-width: 860px) {
       nav { padding: 14px 20px; }
@@ -976,9 +923,7 @@
       .hero-sub, .wprl-sub, .edu-body, .cta-sub { margin-left: auto; margin-right: auto; }
       .phone-float, .edu-phone, .par-phone { width: 230px; margin: 0 auto; }
       .edu-slaps { font-size: clamp(3.6rem, 14vw, 6rem); }
-      .gang-grid { grid-template-columns: repeat(3,1fr); gap: 12px; }
-      .char-avatar { width: 58px; height: 58px; font-size: 1.8rem; }
-      .char-card { padding: 22px 10px 18px; }
+      .gang-showcase { max-width: 100%; }
       .test-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
       .pillars-grid { grid-template-columns: repeat(2,1fr); gap: 16px; }
       .trust-list { align-items: center; }
@@ -989,7 +934,6 @@
       .footer-bottom { flex-direction: column; text-align: center; }
     }
     @media (max-width: 520px) {
-      .gang-grid { grid-template-columns: repeat(2,1fr); }
       .pillars-grid { grid-template-columns: 1fr; }
       .hero-video { max-width: 340px; }
     }
@@ -1236,68 +1180,13 @@
   <div class="inner">
     <!-- Award Seals -->
     <div class="press-divider-line" aria-hidden="true"></div>
-    <div class="awards-seal-row reveal">
-
+    <div class="awards-seal-row reveal" aria-label="KidNation awards and recognition">
       <div class="award-seal">
-        <div class="award-seal-ring">
-          <div class="award-seal-body">
-            <span class="award-seal-icon">🏆</span>
-            <span class="award-seal-name">App of the Day</span>
-            <span class="award-seal-by">Apple App Store</span>
-          </div>
-        </div>
+        <img src="assets/award-strip-left.png" alt="KidNation award collection featuring 2026 Top 5 Apps for Kids, 2026 Top 5 Social-Emotional Apps, and 2026 Must-Have Kids Apps." loading="lazy" />
       </div>
-
       <div class="award-seal">
-        <div class="award-seal-ring">
-          <div class="award-seal-body">
-            <span class="award-seal-icon">⭐</span>
-            <span class="award-seal-name">Top Apps for Kids</span>
-            <span class="award-seal-by">Google Play</span>
-          </div>
-        </div>
+        <img src="assets/award-strip-right.png" alt="KidNation award collection featuring Kidscreen 2026 winner Best Kids-Only Streaming Service, Kidscreen 2026 winner Best Web/App Original Series, and World Changing Ideas 2026." loading="lazy" />
       </div>
-
-      <div class="award-seal">
-        <div class="award-seal-ring">
-          <div class="award-seal-body">
-            <span class="award-seal-icon">🎬</span>
-            <span class="award-seal-name">Best Kids Streaming</span>
-            <span class="award-seal-by">Kidscreen Awards</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="award-seal">
-        <div class="award-seal-ring">
-          <div class="award-seal-body">
-            <span class="award-seal-icon">🎖️</span>
-            <span class="award-seal-name">Best Original Series</span>
-            <span class="award-seal-by">Kidscreen Awards</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="award-seal">
-        <div class="award-seal-ring">
-          <div class="award-seal-body">
-            <span class="award-seal-icon">🌍</span>
-            <span class="award-seal-name">World Changing Ideas</span>
-            <span class="award-seal-by">Fast Company</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="award-seal">
-        <div class="award-seal-ring">
-          <div class="award-seal-body">
-            <span class="award-seal-icon">🚀</span>
-            <span class="award-seal-name">Product of the Day</span>
-            <span class="award-seal-by">Product Hunt</span>
-          </div>
-        </div>
-      </div>
-
     </div>
 
     <!-- Press Logos (swap src to your own assets at any time) -->
@@ -1546,7 +1435,7 @@
 <!-- WAVE: yellow → pink -->
 <div class="wave-yellow-pink" aria-hidden="true">
   <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" width="100%" height="56">
-    <path d="M0,42 C360,0 720,56 1080,14 C1200,0 1320,42 1440,28 L1440,56 L0,56 Z" fill="#FF3D8A"/>
+    <path d="M0,42 C360,0 720,56 1080,14 C1200,0 1320,42 1440,28 L1440,56 L0,56 Z" fill="#F31D6F"/>
   </svg>
 </div>
 
@@ -1567,47 +1456,8 @@
   <i class="star-deco" style="bottom:9%;left:2%;color:var(--sky);font-size:2.6rem;transform:rotate(5deg)">★</i>
 
   <div class="inner">
-    <div class="gang-header reveal">
-      <div class="pill gang-pill">Six Best Friends</div>
-      <h2 class="gang-hed">MEET THE GANG</h2>
-      <p class="gang-sub">Six wildly different vibes. One hometown. Your kid will find their person.</p>
-    </div>
-    <div class="gang-layout">
-      <div class="gang-grid">
-        <div class="char-card reveal d1">
-          <div class="char-avatar" style="background:var(--orange)">💃</div>
-          <span class="char-name">Salome</span>
-          <span class="char-vibe">The Performer</span>
-        </div>
-        <div class="char-card reveal d2">
-          <div class="char-avatar" style="background:var(--mint)">🎮</div>
-          <span class="char-name">Nari</span>
-          <span class="char-vibe">The Tech Wizard</span>
-        </div>
-        <div class="char-card reveal d3">
-          <div class="char-avatar" style="background:var(--yellow)">🎨</div>
-          <span class="char-name">Melli</span>
-          <span class="char-vibe">The Artist</span>
-        </div>
-        <div class="char-card reveal d4">
-          <div class="char-avatar" style="background:var(--sky)">⚽</div>
-          <span class="char-name">Jordan</span>
-          <span class="char-vibe">The Athlete</span>
-        </div>
-        <div class="char-card reveal d5">
-          <div class="char-avatar" style="background:#C4B5FD">🔬</div>
-          <span class="char-name">Bjorn</span>
-          <span class="char-vibe">The Explorer</span>
-        </div>
-        <div class="char-card reveal d6">
-          <div class="char-avatar" style="background:var(--pink)">🎵</div>
-          <span class="char-name">Arjun</span>
-          <span class="char-vibe">The Musician</span>
-        </div>
-      </div>
-      <div class="gang-phone reveal d3">
-        <img src="assets/screen-03.png" alt="KidNation meet the gang" loading="lazy" />
-      </div>
+    <div class="gang-showcase reveal d2">
+      <img src="assets/meet-the-gang-showcase.png" alt="Meet the Gang artwork featuring Arjun, Bjorn, Jordan, Melli, Nari, and Salome." loading="lazy" />
     </div>
   </div>
 </section>
