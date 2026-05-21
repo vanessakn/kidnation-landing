@@ -212,8 +212,8 @@
       min-height: 92vh; display: flex; align-items: center;
       overflow: visible;
     }
-    #hero .inner { display: flex; align-items: center; justify-content: space-between; gap: 72px; }
-    .hero-copy { flex: 1; max-width: 580px; }
+    #hero .inner { display: flex; align-items: center; justify-content: space-between; gap: 56px; }
+    .hero-copy { flex: 1 1 640px; max-width: 760px; min-width: 0; }
 
     .hero-badges {
       display: flex; align-items: center; gap: 14px;
@@ -239,13 +239,14 @@
     .hero-tag { background: #fff; color: var(--ink); white-space: nowrap; flex-shrink: 0; }
     .hero-h1 {
       font-family: 'Fredoka', sans-serif; font-weight: 700;
-      font-size: clamp(3rem, 5vw, 5.2rem);
+      font-size: clamp(2.7rem, 4vw, 4.55rem);
       color: var(--yellow);
       text-shadow: 4px 6px 0 var(--shadow-soft);
-      line-height: 1.1;
-      display: inline-block; margin-bottom: 26px;
+      line-height: 1.02;
+      display: inline-block; width: max-content; max-width: 100%; margin-bottom: 26px;
       letter-spacing: .01em;
     }
+    .hero-h1-line { display: block; white-space: nowrap; }
     .hero-sub {
       font-family: 'Nunito', sans-serif; font-weight: 600;
       font-size: clamp(1.05rem, 1.8vw, 1.2rem);
@@ -1094,6 +1095,7 @@
       .fh2-badges { align-items: center; }
       .fh2-character { display: none; }
       .hero-h1 { font-size: clamp(2.8rem, 10vw, 4rem); }
+      .hero-h1-line { white-space: normal; }
       .hero-video { width: 100%; max-width: 420px; margin: 0 auto; }
       .hero-visual { padding-bottom: 0; }
       .hero-character { display: none; }
@@ -1193,7 +1195,11 @@
         </div>
         <div class="pill hero-tag">FREE TO PLAY &nbsp; · &nbsp; AGES 6 TO 11</div>
       </div>
-      <h1 class="hero-h1">WHERE EVERY<br>KID IS A<br>SUPERSTAR</h1>
+      <h1 class="hero-h1">
+        <span class="hero-h1-line">WHERE&nbsp;EVERY</span>
+        <span class="hero-h1-line">KID IS A</span>
+        <span class="hero-h1-line">SUPERSTAR</span>
+      </h1>
       <p class="hero-sub">Videos, music, AI stories and games. All in one safe ad free world built for kids 6 to 11. We're here to inspire kids to be smarter, kinder and healthier.</p>
       <div class="hero-stats" aria-label="App statistics">
         <div class="hero-stat">
