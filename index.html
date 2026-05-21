@@ -381,7 +381,161 @@
     .pillar-card:nth-child(2):hover { transform: translateY(-7px) rotate(0deg); }
     .pillar-card:nth-child(4) { transform: rotate(-1.5deg); }
     .pillar-card:nth-child(4):hover { transform: translateY(-7px) rotate(-2.5deg); }
-    .pillar-emoji { font-size: 3.6rem; margin-bottom: 18px; display: block; }
+    .pillar-icon-scene {
+      position: relative;
+      width: 120px; height: 92px;
+      margin: 0 auto 18px;
+      display: flex; align-items: center; justify-content: center;
+      filter: drop-shadow(0 10px 14px rgba(26,15,74,.12));
+    }
+    .pillar-accent {
+      position: absolute; display: block; pointer-events: none;
+      filter: drop-shadow(0 2px 0 rgba(26,15,74,.08));
+    }
+    .pillar-accent.star {
+      width: 12px; height: 12px; background: var(--yellow);
+      clip-path: polygon(50% 0%, 62% 35%, 100% 38%, 70% 58%, 80% 100%, 50% 74%, 20% 100%, 30% 58%, 0% 38%, 38% 35%);
+    }
+    .pillar-accent.dot {
+      width: 10px; height: 10px; border-radius: 50%;
+    }
+    .pillar-accent.spark {
+      width: 22px; height: 22px;
+    }
+    .pillar-accent.spark::before,
+    .pillar-accent.spark::after {
+      content: ""; position: absolute; inset: 0; margin: auto;
+      background: currentColor; border-radius: 999px;
+    }
+    .pillar-accent.spark::before { width: 22px; height: 6px; }
+    .pillar-accent.spark::after { width: 6px; height: 22px; }
+    .pillar-accent.wave {
+      width: 26px; height: 12px;
+      border-top: 4px solid currentColor;
+      border-radius: 999px;
+      opacity: .9;
+    }
+
+    .icon-watch-board {
+      position: relative;
+      width: 90px; height: 66px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, #7B59FF 0%, #4F2DC9 100%);
+      border: 3px solid rgba(26,15,74,.18);
+      box-shadow: inset 0 3px 0 rgba(255,255,255,.24);
+    }
+    .icon-watch-top {
+      position: absolute; top: -10px; left: 8px;
+      width: 74px; height: 24px;
+      border-radius: 14px;
+      background:
+        repeating-linear-gradient(135deg, #B9A5FF 0 11px, #6E4DF0 11px 22px);
+      border: 3px solid rgba(26,15,74,.18);
+      transform: rotate(-7deg);
+    }
+    .icon-watch-play {
+      position: absolute; inset: 0; margin: auto;
+      width: 30px; height: 30px; border-radius: 50%;
+      background: rgba(255,255,255,.18);
+      border: 2px solid rgba(255,255,255,.24);
+    }
+    .icon-watch-play::before {
+      content: ""; position: absolute; top: 7px; left: 11px;
+      border-top: 7px solid transparent;
+      border-bottom: 7px solid transparent;
+      border-left: 12px solid #FFD23F;
+    }
+
+    .icon-play-controller {
+      position: relative;
+      width: 100px; height: 60px;
+      border-radius: 28px 28px 24px 24px;
+      background: linear-gradient(180deg, #3D4355 0%, #171B28 100%);
+      border: 3px solid rgba(26,15,74,.18);
+      box-shadow: inset 0 4px 0 rgba(255,255,255,.08);
+    }
+    .icon-play-controller::before,
+    .icon-play-controller::after {
+      content: ""; position: absolute; bottom: -4px;
+      width: 28px; height: 20px; background: inherit;
+      border-radius: 0 0 20px 20px;
+    }
+    .icon-play-controller::before { left: 6px; transform: rotate(18deg); }
+    .icon-play-controller::after { right: 6px; transform: rotate(-18deg); }
+    .icon-play-dpad,
+    .icon-play-btns,
+    .icon-play-stick {
+      position: absolute; display: block;
+    }
+    .icon-play-dpad {
+      left: 18px; top: 21px; width: 18px; height: 18px;
+    }
+    .icon-play-dpad::before,
+    .icon-play-dpad::after {
+      content: ""; position: absolute; background: #F5F7FA; border-radius: 999px;
+    }
+    .icon-play-dpad::before { width: 18px; height: 6px; top: 6px; left: 0; }
+    .icon-play-dpad::after { width: 6px; height: 18px; top: 0; left: 6px; }
+    .icon-play-btns {
+      right: 16px; top: 18px; width: 28px; height: 24px;
+    }
+    .icon-play-btns::before,
+    .icon-play-btns::after {
+      content: ""; position: absolute; border-radius: 50%;
+      width: 10px; height: 10px;
+    }
+    .icon-play-btns::before {
+      background: #FF5A95; top: 0; left: 10px;
+      box-shadow: -12px 8px 0 #4CE0B3, 0 16px 0 #FFD23F, 12px 8px 0 #4DA8FF;
+    }
+    .icon-play-stick {
+      left: 43px; top: 32px; width: 14px; height: 14px; border-radius: 50%;
+      background: #5B647C; box-shadow: inset 0 3px 0 rgba(255,255,255,.1);
+    }
+
+    .icon-read-book {
+      position: relative;
+      width: 92px; height: 68px;
+    }
+    .icon-read-book::before,
+    .icon-read-book::after {
+      content: ""; position: absolute; top: 6px;
+      width: 44px; height: 54px; border-radius: 14px 14px 18px 18px;
+      background: linear-gradient(180deg, #FFFFFF 0%, #FFF9EF 100%);
+      border: 3px solid rgba(26,15,74,.14);
+      box-shadow: inset 0 3px 0 rgba(255,255,255,.7);
+    }
+    .icon-read-book::before { left: 4px; transform: rotate(-8deg); }
+    .icon-read-book::after { right: 4px; transform: rotate(8deg); }
+    .icon-read-glow {
+      position: absolute; top: 18px; left: 50%; transform: translateX(-50%);
+      width: 32px; height: 26px;
+      background: radial-gradient(circle, rgba(255,210,63,.75) 0%, rgba(255,210,63,0) 72%);
+    }
+    .icon-read-spine {
+      position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
+      width: 10px; height: 48px; border-radius: 999px;
+      background: linear-gradient(180deg, #FFB347 0%, #FF7A45 100%);
+      border: 2px solid rgba(26,15,74,.12);
+    }
+
+    .icon-listen-note {
+      position: relative;
+      width: 76px; height: 82px;
+    }
+    .icon-listen-note::before {
+      content: ""; position: absolute; right: 14px; top: 0;
+      width: 18px; height: 58px; border-radius: 999px;
+      background: linear-gradient(180deg, #8A67FF 0%, #4F2DC9 100%);
+      border: 3px solid rgba(26,15,74,.16);
+    }
+    .icon-listen-note::after {
+      content: ""; position: absolute; left: 10px; bottom: 6px;
+      width: 34px; height: 34px; border-radius: 50%;
+      background: linear-gradient(180deg, #A991FF 0%, #6B49F5 100%);
+      border: 3px solid rgba(26,15,74,.16);
+      box-shadow: 26px -10px 0 -4px #A991FF, 26px -10px 0 0 rgba(26,15,74,.16);
+    }
     .pillar-word {
       font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 2rem;
       text-shadow: 2px 3px 0 var(--shadow-soft); display: block; margin-bottom: 12px;
@@ -671,6 +825,7 @@
     }
     .quote-carousel {
       display: flex; gap: 20px;
+      align-items: stretch;
       width: max-content;
       padding: 10px 0 28px;
       animation: marquee-quotes 55s linear infinite;
@@ -684,27 +839,34 @@
     }
 
     .quote-card {
-      flex: 0 0 290px;
-      border-radius: 24px; padding: 28px 24px 22px;
+      flex: 0 0 auto;
+      inline-size: fit-content;
+      min-inline-size: 300px;
+      max-inline-size: clamp(330px, 23vw, 420px);
+      border-radius: 22px; padding: 18px 20px 14px;
       border: 2px solid rgba(26,15,74,.07);
       box-shadow: 4px 6px 0 rgba(26,15,74,.08);
-      display: flex; flex-direction: column; gap: 16px;
+      display: flex; flex-direction: column; gap: 10px;
       transition: transform .25s cubic-bezier(.16,1,.3,1), box-shadow .25s;
+    }
+    .quote-card--wide {
+      min-inline-size: 360px;
+      max-inline-size: clamp(430px, 46vw, 560px);
     }
     .quote-card:hover { transform: translateY(-6px); box-shadow: 4px 12px 0 rgba(26,15,74,.11); }
     .quote-mark {
-      font-size: 2.6rem; line-height: .8;
+      font-size: 2rem; line-height: .78;
       font-family: Georgia, serif; display: block;
     }
     .quote-text {
       font-family: 'Nunito', sans-serif; font-weight: 700;
-      font-size: 1rem; color: var(--ink); line-height: 1.68; flex: 1;
+      font-size: .94rem; color: var(--ink); line-height: 1.5; flex: 1;
     }
-    .quote-source-row { display: flex; align-items: center; gap: 8px; }
+    .quote-source-row { display: flex; align-items: center; gap: 8px; margin-top: 0; }
     .quote-source-pip { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
     .quote-source-name {
       font-family: 'Fredoka', sans-serif; font-weight: 600;
-      font-size: .8rem; letter-spacing: .09em; text-transform: uppercase;
+      font-size: .72rem; letter-spacing: .07em; text-transform: uppercase;
     }
 
     /* ── Award Seals ── */
@@ -834,13 +996,14 @@
     #fh2 .inner { display: flex; align-items: center; gap: 72px; }
 
     /* Copy */
-    .fh2-copy { flex: 1; }
+    .fh2-copy { flex: 1 1 560px; max-width: 620px; }
     .fh2-hed {
       font-family: 'Fredoka', sans-serif; font-weight: 700;
       font-size: clamp(2.8rem, 5vw, 4.6rem);
       color: #fff; line-height: 1.12; margin-bottom: 28px;
       letter-spacing: .01em;
     }
+    .fh2-hed-line { display: block; white-space: nowrap; }
     .fh2-h { color: var(--pink); }
     .fh2-e { color: var(--yellow); }
     .fh2-l1 { color: var(--mint); }
@@ -898,8 +1061,8 @@
       border: none; display: block;
     }
     .fh2-character {
-      position: absolute; bottom: -60px; left: -100px;
-      width: 260px; pointer-events: none; z-index: 5;
+      position: absolute; bottom: -150px; left: -100px;
+      width: 180px; pointer-events: none; z-index: 5;
       filter: drop-shadow(4px 8px 0 rgba(26,15,74,.6));
       animation: float-a 4.5s ease-in-out infinite;
     }
@@ -939,6 +1102,15 @@
       .phone-float, .edu-phone, .par-phone { width: 230px; margin: 0 auto; }
       .edu-slaps { font-size: clamp(3.6rem, 14vw, 6rem); }
       .gang-showcase { max-width: 100%; }
+      .quote-card {
+        min-inline-size: 280px;
+        max-inline-size: min(82vw, 360px);
+        padding: 18px 18px 14px;
+      }
+      .quote-card--wide {
+        min-inline-size: 320px;
+        max-inline-size: min(88vw, 430px);
+      }
       .press-logo-row { flex-wrap: wrap; gap: 16px; }
       .press-logo-item { flex: 0 1 calc(33.333% - 16px); }
       .test-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
@@ -951,6 +1123,8 @@
       .footer-bottom { flex-direction: column; text-align: center; }
     }
     @media (max-width: 520px) {
+      .quote-card { min-inline-size: 260px; max-inline-size: 82vw; }
+      .quote-card--wide { min-inline-size: 280px; max-inline-size: 88vw; }
       .press-logo-item { flex-basis: calc(50% - 16px); }
       .pillars-grid { grid-template-columns: 1fr; }
       .hero-video { max-width: 340px; }
@@ -1111,85 +1285,85 @@
       <!-- ── Set 1 (original) ── -->
       <div class="quote-card" style="background:#FEF0F6">
         <span class="quote-mark" style="color:var(--pink)">❝</span>
-        <p class="quote-text">High interest, high appeal videos that kids are sure to love every single time they open the app.</p>
-        <div class="quote-source-row"><span class="quote-source-pip" style="background:var(--pink)"></span><span class="quote-source-name" style="color:var(--pink)">Common Sense</span></div>
+        <p class="quote-text">KidNation speaks to the fact that you deeply care, not just for the PR, but genuinely.</p>
+        <div class="quote-source-row"><span class="quote-source-pip" style="background:var(--pink)"></span><span class="quote-source-name" style="color:var(--pink)">Trevor Noah, The Daily Show</span></div>
       </div>
       <div class="quote-card" style="background:#EFF6FF">
         <span class="quote-mark" style="color:var(--sky)">❝</span>
-        <p class="quote-text">Fills the need for engaging interactive experiences that keep kids coming back day after day.</p>
-        <div class="quote-source-row"><span class="quote-source-pip" style="background:var(--sky)"></span><span class="quote-source-name" style="color:var(--sky)">Kidscreen</span></div>
+        <p class="quote-text">This is something kids need right now. My kids need this right now. So thank you for doing it.</p>
+        <div class="quote-source-row"><span class="quote-source-pip" style="background:var(--sky)"></span><span class="quote-source-name" style="color:var(--sky)">Conan O'Brien, TBS</span></div>
       </div>
       <div class="quote-card" style="background:#EDFFF8">
         <span class="quote-mark" style="color:var(--mint)">❝</span>
-        <p class="quote-text">The content comes to life, taking children from passive observers to active joyful participants.</p>
-        <div class="quote-source-row"><span class="quote-source-pip" style="background:var(--mint)"></span><span class="quote-source-name" style="color:var(--mint)">Parentology</span></div>
+        <p class="quote-text">Children are asking a lot of questions, and music is a way for them to express themselves.</p>
+        <div class="quote-source-row"><span class="quote-source-pip" style="background:var(--mint)"></span><span class="quote-source-name" style="color:var(--mint)">Zohreen Shah, ABC News</span></div>
       </div>
       <div class="quote-card" style="background:#FFFBEA">
         <span class="quote-mark" style="color:var(--orange)">❝</span>
-        <p class="quote-text">One of the most exciting kids platforms we have seen in years. Truly a world changing idea.</p>
-        <div class="quote-source-row"><span class="quote-source-pip" style="background:var(--orange)"></span><span class="quote-source-name" style="color:var(--orange)">Fast Company</span></div>
+        <p class="quote-text">KidNation is a safe place as a parent, I don't have to look over my child's shoulder. It's nothing but positive content. Kids watch, and it reinforces all the morals parents are trying to teach them.</p>
+        <div class="quote-source-row"><span class="quote-source-pip" style="background:var(--orange)"></span><span class="quote-source-name" style="color:var(--orange)">Big Boy, Fuse TV</span></div>
       </div>
       <div class="quote-card" style="background:#FFF4EE">
         <span class="quote-mark" style="color:#FF6B35">❝</span>
-        <p class="quote-text">A genuinely safe space where creativity and learning coexist beautifully for young minds.</p>
-        <div class="quote-source-row"><span class="quote-source-pip" style="background:#FF6B35"></span><span class="quote-source-name" style="color:#FF6B35">TechCrunch</span></div>
+        <p class="quote-text">Trying to help kids make sense of all the headlines these days, using music to get messages across. KidNation is a new media platform for children, combining passion for music and current events. If they love a song, they want to sing it over and over, and lead to powerful change.</p>
+        <div class="quote-source-row"><span class="quote-source-pip" style="background:#FF6B35"></span><span class="quote-source-name" style="color:#FF6B35">Erina Shah, ABC News Reporter</span></div>
       </div>
       <div class="quote-card" style="background:#F3F0FF">
         <span class="quote-mark" style="color:var(--purple)">❝</span>
-        <p class="quote-text">The kind of product that makes you genuinely optimistic about kids and technology coexisting.</p>
-        <div class="quote-source-row"><span class="quote-source-pip" style="background:var(--purple)"></span><span class="quote-source-name" style="color:var(--purple)">Product Hunt</span></div>
+        <p class="quote-text">This is literally the best timing for us to do this. Imagine making a beat and thinking, This would work perfectly for a song about eating your vegetables.</p>
+        <div class="quote-source-row"><span class="quote-source-pip" style="background:var(--purple)"></span><span class="quote-source-name" style="color:var(--purple)">Jess Cagle, SiriusXM</span></div>
       </div>
-      <div class="quote-card" style="background:#E8F4FD">
+      <div class="quote-card quote-card--wide" style="background:#E8F4FD">
         <span class="quote-mark" style="color:#4A90D9">❝</span>
-        <p class="quote-text">KidNation is reshaping what parents and kids expect from digital entertainment and education.</p>
-        <div class="quote-source-row"><span class="quote-source-pip" style="background:#4A90D9"></span><span class="quote-source-name" style="color:#4A90D9">Axios</span></div>
+        <p class="quote-text">Our partnership with Ludacris and KidNation allows us to reach kids in a fun way in the quickly growing digital audio space. Kids and families are listening to digital audio more than ever and looking for great music. We've delivered an incredibly catchy song with the important Scruff-a-Luvs core message of rescuing and caring for pets. Kids will love to sing along as they shave and style their Cutie Cuts at home.</p>
+        <div class="quote-source-row"><span class="quote-source-pip" style="background:#4A90D9"></span><span class="quote-source-name" style="color:#4A90D9">Alex Ries, SVP and Head of U.S. marketing, Moose Toys</span></div>
       </div>
       <div class="quote-card" style="background:#FFF0F5">
         <span class="quote-mark" style="color:var(--pink)">❝</span>
-        <p class="quote-text">A rare example of a kids platform that puts safety, joy, and learning in equal measure.</p>
-        <div class="quote-source-row"><span class="quote-source-pip" style="background:var(--pink)"></span><span class="quote-source-name" style="color:var(--pink)">The Information</span></div>
+        <p class="quote-text">This has been great for my kids. Now they sing about Science instead of the latest pop song!</p>
+        <div class="quote-source-row"><span class="quote-source-pip" style="background:var(--pink)"></span><span class="quote-source-name" style="color:var(--pink)">Simone, 4th Grade Teacher in Atlanta, GA</span></div>
       </div>
 
       <!-- ── Set 2 (duplicate for seamless loop) ── -->
       <div class="quote-card" style="background:#FEF0F6" aria-hidden="true">
         <span class="quote-mark" style="color:var(--pink)">❝</span>
-        <p class="quote-text">High interest, high appeal videos that kids are sure to love every single time they open the app.</p>
-        <div class="quote-source-row"><span class="quote-source-pip" style="background:var(--pink)"></span><span class="quote-source-name" style="color:var(--pink)">Common Sense</span></div>
+        <p class="quote-text">KidNation speaks to the fact that you deeply care, not just for the PR, but genuinely.</p>
+        <div class="quote-source-row"><span class="quote-source-pip" style="background:var(--pink)"></span><span class="quote-source-name" style="color:var(--pink)">Trevor Noah, The Daily Show</span></div>
       </div>
       <div class="quote-card" style="background:#EFF6FF" aria-hidden="true">
         <span class="quote-mark" style="color:var(--sky)">❝</span>
-        <p class="quote-text">Fills the need for engaging interactive experiences that keep kids coming back day after day.</p>
-        <div class="quote-source-row"><span class="quote-source-pip" style="background:var(--sky)"></span><span class="quote-source-name" style="color:var(--sky)">Kidscreen</span></div>
+        <p class="quote-text">This is something kids need right now. My kids need this right now. So thank you for doing it.</p>
+        <div class="quote-source-row"><span class="quote-source-pip" style="background:var(--sky)"></span><span class="quote-source-name" style="color:var(--sky)">Conan O'Brien, TBS</span></div>
       </div>
       <div class="quote-card" style="background:#EDFFF8" aria-hidden="true">
         <span class="quote-mark" style="color:var(--mint)">❝</span>
-        <p class="quote-text">The content comes to life, taking children from passive observers to active joyful participants.</p>
-        <div class="quote-source-row"><span class="quote-source-pip" style="background:var(--mint)"></span><span class="quote-source-name" style="color:var(--mint)">Parentology</span></div>
+        <p class="quote-text">Children are asking a lot of questions, and music is a way for them to express themselves.</p>
+        <div class="quote-source-row"><span class="quote-source-pip" style="background:var(--mint)"></span><span class="quote-source-name" style="color:var(--mint)">Zohreen Shah, ABC News</span></div>
       </div>
       <div class="quote-card" style="background:#FFFBEA" aria-hidden="true">
         <span class="quote-mark" style="color:var(--orange)">❝</span>
-        <p class="quote-text">One of the most exciting kids platforms we have seen in years. Truly a world changing idea.</p>
-        <div class="quote-source-row"><span class="quote-source-pip" style="background:var(--orange)"></span><span class="quote-source-name" style="color:var(--orange)">Fast Company</span></div>
+        <p class="quote-text">KidNation is a safe place as a parent, I don't have to look over my child's shoulder. It's nothing but positive content. Kids watch, and it reinforces all the morals parents are trying to teach them.</p>
+        <div class="quote-source-row"><span class="quote-source-pip" style="background:var(--orange)"></span><span class="quote-source-name" style="color:var(--orange)">Big Boy, Fuse TV</span></div>
       </div>
       <div class="quote-card" style="background:#FFF4EE" aria-hidden="true">
         <span class="quote-mark" style="color:#FF6B35">❝</span>
-        <p class="quote-text">A genuinely safe space where creativity and learning coexist beautifully for young minds.</p>
-        <div class="quote-source-row"><span class="quote-source-pip" style="background:#FF6B35"></span><span class="quote-source-name" style="color:#FF6B35">TechCrunch</span></div>
+        <p class="quote-text">Trying to help kids make sense of all the headlines these days, using music to get messages across. KidNation is a new media platform for children, combining passion for music and current events. If they love a song, they want to sing it over and over, and lead to powerful change.</p>
+        <div class="quote-source-row"><span class="quote-source-pip" style="background:#FF6B35"></span><span class="quote-source-name" style="color:#FF6B35">Erina Shah, ABC News Reporter</span></div>
       </div>
       <div class="quote-card" style="background:#F3F0FF" aria-hidden="true">
         <span class="quote-mark" style="color:var(--purple)">❝</span>
-        <p class="quote-text">The kind of product that makes you genuinely optimistic about kids and technology coexisting.</p>
-        <div class="quote-source-row"><span class="quote-source-pip" style="background:var(--purple)"></span><span class="quote-source-name" style="color:var(--purple)">Product Hunt</span></div>
+        <p class="quote-text">This is literally the best timing for us to do this. Imagine making a beat and thinking, This would work perfectly for a song about eating your vegetables.</p>
+        <div class="quote-source-row"><span class="quote-source-pip" style="background:var(--purple)"></span><span class="quote-source-name" style="color:var(--purple)">Jess Cagle, SiriusXM</span></div>
       </div>
-      <div class="quote-card" style="background:#E8F4FD" aria-hidden="true">
+      <div class="quote-card quote-card--wide" style="background:#E8F4FD" aria-hidden="true">
         <span class="quote-mark" style="color:#4A90D9">❝</span>
-        <p class="quote-text">KidNation is reshaping what parents and kids expect from digital entertainment and education.</p>
-        <div class="quote-source-row"><span class="quote-source-pip" style="background:#4A90D9"></span><span class="quote-source-name" style="color:#4A90D9">Axios</span></div>
+        <p class="quote-text">Our partnership with Ludacris and KidNation allows us to reach kids in a fun way in the quickly growing digital audio space. Kids and families are listening to digital audio more than ever and looking for great music. We've delivered an incredibly catchy song with the important Scruff-a-Luvs core message of rescuing and caring for pets. Kids will love to sing along as they shave and style their Cutie Cuts at home.</p>
+        <div class="quote-source-row"><span class="quote-source-pip" style="background:#4A90D9"></span><span class="quote-source-name" style="color:#4A90D9">Alex Ries, SVP and Head of U.S. marketing, Moose Toys</span></div>
       </div>
       <div class="quote-card" style="background:#FFF0F5" aria-hidden="true">
         <span class="quote-mark" style="color:var(--pink)">❝</span>
-        <p class="quote-text">A rare example of a kids platform that puts safety, joy, and learning in equal measure.</p>
-        <div class="quote-source-row"><span class="quote-source-pip" style="background:var(--pink)"></span><span class="quote-source-name" style="color:var(--pink)">The Information</span></div>
+        <p class="quote-text">This has been great for my kids. Now they sing about Science instead of the latest pop song!</p>
+        <div class="quote-source-row"><span class="quote-source-pip" style="background:var(--pink)"></span><span class="quote-source-name" style="color:var(--pink)">Simone, 4th Grade Teacher in Atlanta, GA</span></div>
       </div>
 
     </div>
@@ -1213,17 +1387,17 @@
       <div class="press-logo-item press-logo-item--tonies">
         <img class="press-logo-img press-logo-img--tonies" src="assets/logo-tonies.png" alt="Tonies" loading="lazy" />
       </div>
-      <div class="press-logo-item press-logo-item--delta">
-        <img class="press-logo-img" src="assets/logo-delta.png" alt="Delta" loading="lazy" />
-      </div>
-      <div class="press-logo-item press-logo-item--pressed">
-        <img class="press-logo-img" src="assets/logo-pressed.png" alt="Pressed" loading="lazy" />
-      </div>
       <div class="press-logo-item press-logo-item--moose">
         <img class="press-logo-img press-logo-img--moose" src="assets/logo-moose-toys.png" alt="Moose Toys" loading="lazy" />
       </div>
+      <div class="press-logo-item press-logo-item--delta">
+        <img class="press-logo-img" src="assets/logo-delta.png" alt="Delta" loading="lazy" />
+      </div>
       <div class="press-logo-item press-logo-item--cutie">
         <img class="press-logo-img press-logo-img--cutie" src="assets/logo-cutie-cuts.jpg" alt="Cutie Cuts" loading="lazy" />
+      </div>
+      <div class="press-logo-item press-logo-item--pressed">
+        <img class="press-logo-img" src="assets/logo-pressed.png" alt="Pressed" loading="lazy" />
       </div>
     </div>
 
@@ -1288,8 +1462,9 @@
     <!-- Left: headline + copy + badges -->
     <div class="fh2-copy reveal">
       <h2 class="fh2-hed">
-        Say <span class="fh2-h">H</span><span class="fh2-e">E</span><span class="fh2-l1">L</span><span class="fh2-l2">L</span><span class="fh2-o">O</span> to your<br>
-        kid's favorite way<br>to learn
+        <span class="fh2-hed-line">Say <span class="fh2-h">H</span><span class="fh2-e">E</span><span class="fh2-l1">L</span><span class="fh2-l2">L</span><span class="fh2-o">O</span> to</span>
+        <span class="fh2-hed-line">your kid's favorite</span>
+        <span class="fh2-hed-line">way to learn</span>
       </h2>
       <p class="fh2-desc">KidNation content is designed to increase enjoyment, engagement, and learning comprehension through fun interactive experiences kids actually love.</p>
       <div class="fh2-badges">
@@ -1316,7 +1491,7 @@
           </div>
         </div>
       </div>
-      <img class="fh2-character" src="assets/melli-pointing.png" alt="" aria-hidden="true" />
+      <img class="fh2-character" src="assets/bjorn-corner.png" alt="" aria-hidden="true" />
     </div>
 
   </div>
@@ -1345,22 +1520,52 @@
     </div>
     <div class="pillars-grid">
       <div class="pillar-card reveal d1">
-        <span class="pillar-emoji">🎬</span>
+        <div class="pillar-icon-scene" aria-hidden="true">
+          <span class="pillar-accent star" style="top:2px;left:8px"></span>
+          <span class="pillar-accent spark" style="top:6px;right:6px;color:#FFD23F"></span>
+          <span class="pillar-accent dot" style="bottom:10px;left:4px;background:#4CE0B3"></span>
+          <div class="icon-watch-board">
+            <div class="icon-watch-top"></div>
+            <div class="icon-watch-play"></div>
+          </div>
+        </div>
         <span class="pillar-word" style="color:var(--purple)">WATCH</span>
         <span class="pillar-desc">Original shows and music videos that are catchy, danceable, and perfect for brain breaks.</span>
       </div>
       <div class="pillar-card reveal d2">
-        <span class="pillar-emoji">🎮</span>
+        <div class="pillar-icon-scene" aria-hidden="true">
+          <span class="pillar-accent spark" style="top:8px;left:4px;color:#FF5A95;transform:scale(.72)"></span>
+          <span class="pillar-accent wave" style="top:16px;right:0;color:#4CE0B3;transform:rotate(18deg)"></span>
+          <span class="pillar-accent dot" style="bottom:8px;right:10px;background:#FFD23F"></span>
+          <div class="icon-play-controller">
+            <span class="icon-play-dpad"></span>
+            <span class="icon-play-btns"></span>
+            <span class="icon-play-stick"></span>
+          </div>
+        </div>
         <span class="pillar-word" style="color:var(--pink)">PLAY</span>
         <span class="pillar-desc">Interactive mini games that build real skills disguised as pure fun.</span>
       </div>
       <div class="pillar-card reveal d3">
-        <span class="pillar-emoji">📖</span>
+        <div class="pillar-icon-scene" aria-hidden="true">
+          <span class="pillar-accent spark" style="top:4px;left:6px;color:#FFD23F;transform:scale(.78)"></span>
+          <span class="pillar-accent star" style="top:12px;right:12px;background:#4CE0B3"></span>
+          <span class="pillar-accent dot" style="bottom:14px;right:2px;background:#4DA8FF"></span>
+          <div class="icon-read-book">
+            <div class="icon-read-glow"></div>
+            <div class="icon-read-spine"></div>
+          </div>
+        </div>
         <span class="pillar-word" style="color:var(--mint)">READ</span>
         <span class="pillar-desc">Storybooks and illustrated adventures starring the popular characters and the KidNation crew.</span>
       </div>
       <div class="pillar-card reveal d4">
-        <span class="pillar-emoji">🎵</span>
+        <div class="pillar-icon-scene" aria-hidden="true">
+          <span class="pillar-accent wave" style="top:10px;left:6px;color:#FFD23F"></span>
+          <span class="pillar-accent wave" style="top:26px;left:0;color:#4CE0B3;transform:scale(.85)"></span>
+          <span class="pillar-accent spark" style="bottom:8px;right:6px;color:#FF5A95;transform:scale(.7)"></span>
+          <div class="icon-listen-note"></div>
+        </div>
         <span class="pillar-word" style="color:var(--sky)">LISTEN</span>
         <span class="pillar-desc">Original songs, audio stories, and rhythms kids love to hear on repeat.</span>
       </div>
