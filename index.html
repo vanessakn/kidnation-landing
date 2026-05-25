@@ -1216,7 +1216,10 @@
       .nav-links { display: none; }
       .hamburger { display: flex; }
       section { padding: 72px 24px !important; }
-      #hero { padding: 88px 24px 80px !important; min-height: auto; }
+      #hero { padding: 88px 20px 72px !important; min-height: auto; overflow: hidden; }
+      .hero-copy { width: 100%; max-width: 100%; }
+      .hero-badges { justify-content: center; flex-wrap: wrap; width: 100%; }
+      .luda-badge, .hero-tag { max-width: 100%; white-space: normal; justify-content: center; }
       .hero-rating { flex-wrap: wrap; justify-content: center; }
       .hero-stats { justify-content: center; }
       .hero-stat-div { display: none; }
@@ -1236,6 +1239,7 @@
       .hero-visual { padding-bottom: 0; }
       .hero-character { display: none; }
       .hero-btns { justify-content: center; }
+      .hero-btns .btn { width: min(100%, 360px); justify-content: center; }
       .hero-sub, .wprl-sub, .edu-body, .cta-sub { margin-left: auto; margin-right: auto; }
       .phone-float, .edu-phone, .par-phone { width: 230px; margin: 0 auto; }
       .movie-phone { padding: 9px; border-radius: 38px; }
