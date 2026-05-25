@@ -1212,34 +1212,39 @@
       .pillars-grid { grid-template-columns: repeat(2,1fr); }
     }
     @media (max-width: 860px) {
+      html, body { max-width: 100%; overflow-x: hidden; }
       nav { padding: 14px 20px; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
       section { padding: 72px 24px !important; }
       #hero { padding: 88px 20px 72px !important; min-height: auto; overflow: hidden; }
       .hero-copy { width: 100%; max-width: 100%; }
-      .hero-badges { justify-content: center; flex-wrap: wrap; width: 100%; }
+      .hero-badges { justify-content: center; flex-wrap: wrap; width: 100%; max-width: 100%; }
       .luda-badge, .hero-tag { max-width: 100%; white-space: normal; justify-content: center; }
       .hero-rating { flex-wrap: wrap; justify-content: center; }
       .hero-stats { justify-content: center; }
+      .hero-stat { min-width: 0; }
       .hero-stat-div { display: none; }
       #hero .inner, #wprl .inner, #edu .inner, #parents .inner,
       #feature-highlight .inner, #fh2 .inner {
         flex-direction: column; text-align: center; gap: 48px;
       }
+      #hero .inner { width: 100%; max-width: 100%; }
       .fh-mockup { width: 100%; max-width: 420px; margin: 0 auto; transform: none; }
       .fh-desc { margin-left: auto; margin-right: auto; }
       .fh-icons { justify-content: center; }
       .fh2-card { width: 100%; max-width: 460px; margin: 0 auto; transform: none; }
       .fh2-badges { align-items: center; }
       .fh2-character { display: none; }
-      .hero-h1 { font-size: clamp(2.8rem, 10vw, 4rem); }
-      .hero-h1-line { white-space: normal; }
+      .hero-h1 { display: block; width: 100%; max-width: 100%; font-size: clamp(2.35rem, 12vw, 3.2rem); line-height: 1.04; overflow-wrap: anywhere; word-break: normal; }
+      .hero-h1-line { white-space: normal; overflow-wrap: anywhere; }
       .hero-video { width: 100%; max-width: 420px; margin: 0 auto; }
       .hero-visual { padding-bottom: 0; }
       .hero-character { display: none; }
       .hero-btns { justify-content: center; }
       .hero-btns .btn { width: min(100%, 360px); justify-content: center; }
+      .hero-sub { width: 100%; max-width: 340px; overflow-wrap: anywhere; }
+      .hero-stats { width: 100%; gap: 18px; }
       .hero-sub, .wprl-sub, .edu-body, .cta-sub { margin-left: auto; margin-right: auto; }
       .phone-float, .edu-phone, .par-phone { width: 230px; margin: 0 auto; }
       .movie-phone { padding: 9px; border-radius: 38px; }
@@ -1345,7 +1350,7 @@
         <div class="pill hero-tag">FREE TO PLAY &nbsp; · &nbsp; AGES 6 TO 11</div>
       </div>
       <h1 class="hero-h1">
-        <span class="hero-h1-line">WHERE&nbsp;EVERY</span>
+        <span class="hero-h1-line">WHERE EVERY</span>
         <span class="hero-h1-line">KID IS A</span>
         <span class="hero-h1-line">SUPERSTAR</span>
       </h1>
