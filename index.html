@@ -175,10 +175,12 @@
     .confetti span:nth-child(3n)   { animation-delay: -2.9s; }
     .confetti span:nth-child(4n+1) { animation-delay: -.7s; }
 
-    .hero-particles {
+    .hero-particles,
+    .learning-particles {
       position: absolute; inset: -44px -72px 0;
       z-index: 1; pointer-events: none; overflow: hidden;
     }
+    .wprl-particles { inset: -26px -72px 0; }
     .hero-particle {
       position: absolute; display: inline-grid; place-items: center;
       font-family: 'Fredoka', sans-serif; font-size: 1.45rem; font-weight: 700;
@@ -1627,15 +1629,19 @@
 
 <!-- ══ WATCH.PLAY.READ.LISTEN ══ -->
 <section id="wprl">
-  <div class="confetti" aria-hidden="true">
-    <span class="dot fb"  style="width:16px;height:16px;background:var(--yellow);top:10%;left:5%"></span>
-    <span class="rect fa" style="width:18px;height:18px;background:var(--pink);top:30%;left:2%;transform:rotate(20deg)"></span>
-    <span class="dot fc"  style="width:12px;height:12px;background:var(--mint);top:54%;left:7%"></span>
-    <span class="rect fb" style="width:14px;height:14px;background:var(--sky);top:74%;left:3%;transform:rotate(-10deg)"></span>
-    <span class="dot fa"  style="width:16px;height:16px;background:var(--yellow);top:8%;right:5%;transform:rotate(30deg)"></span>
-    <span class="dot fc"  style="width:14px;height:14px;background:var(--pink);top:34%;right:3%"></span>
-    <span class="squig fa" style="width:26px;height:7px;background:var(--mint);top:58%;right:4%;transform:rotate(5deg)"></span>
-    <span class="rect fb" style="width:18px;height:18px;background:var(--sky);top:78%;right:6%;transform:rotate(15deg)"></span>
+  <div class="learning-particles wprl-particles" aria-hidden="true">
+    <span class="hero-particle note">♪</span>
+    <span class="hero-particle star">★</span>
+    <span class="hero-particle plus">+</span>
+    <span class="hero-particle dot"></span>
+    <span class="hero-particle sprinkle"></span>
+    <span class="hero-particle note">♪</span>
+    <span class="hero-particle star">★</span>
+    <span class="hero-particle dot"></span>
+    <span class="hero-particle plus">+</span>
+    <span class="hero-particle sprinkle"></span>
+    <span class="hero-particle note">♪</span>
+    <span class="hero-particle star">★</span>
   </div>
   <i class="star-deco" style="top:7%;left:1%;color:var(--pink);font-size:3rem;transform:rotate(-5deg)">★</i>
   <i class="star-deco" style="top:9%;right:1%;color:var(--mint);font-size:2.6rem;transform:rotate(10deg)">★</i>
