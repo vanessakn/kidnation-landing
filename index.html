@@ -359,6 +359,8 @@
     .wave-pu-ink svg { display: block; }
     .wave-ink-paper { background: var(--ink); line-height: 0; }
     .wave-ink-paper svg { display: block; }
+    .wave-paper-ink { background: var(--paper); color: var(--ink); line-height: 0; margin-bottom: -1px; }
+    .wave-paper-ink svg { display: block; }
     .wave-paper-pu { background: var(--paper); line-height: 0; }
     .wave-paper-pu svg { display: block; }
     .wave-pu-yellow { background: var(--purple); line-height: 0; }
@@ -1565,9 +1567,9 @@
 </section>
 
 <!-- WAVE: paper → ink -->
-<div style="background:var(--paper);line-height:0" aria-hidden="true">
+<div class="wave-paper-ink" aria-hidden="true">
   <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" width="100%" height="56">
-    <path d="M0,14 C360,56 720,0 1080,42 C1200,56 1320,14 1440,28 L1440,56 L0,56 Z" fill="#1A0F4A"/>
+    <path d="M0,14 C360,56 720,0 1080,42 C1200,56 1320,14 1440,28 L1440,56 L0,56 Z" fill="currentColor"/>
   </svg>
 </div>
 
