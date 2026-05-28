@@ -402,6 +402,937 @@
     }
 
     /* ════════════════════════════
+       NEXT GENERATION
+    ════════════════════════════ */
+    #next-gen {
+      background: var(--paper);
+      padding: 104px 48px 36px;
+    }
+    .next-gen-wrap { max-width: 1280px; margin: 0 auto; }
+    .next-gen-head {
+      text-align: center;
+      margin-bottom: 54px;
+    }
+    .next-gen-hed {
+      font-family: 'Fredoka', sans-serif; font-weight: 700;
+      font-size: clamp(2.5rem, 4.8vw, 4.5rem);
+      line-height: 1.08;
+      color: #5E3D96;
+      letter-spacing: -.02em;
+      text-shadow: 0 2px 0 rgba(255,255,255,.55);
+    }
+    .next-gen-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 32px;
+      align-items: stretch;
+    }
+    .next-gen-card {
+      position: relative;
+      min-height: 710px;
+      border-radius: 34px;
+      overflow: hidden;
+      border: 3px solid rgba(26,15,74,.1);
+      box-shadow: 0 20px 40px rgba(26,15,74,.12);
+      padding: 30px 28px 26px;
+      display: flex;
+      flex-direction: column;
+    }
+    .next-gen-card--thinkers {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.12) 0%, rgba(255,255,255,0) 22%),
+        #F38DC4;
+    }
+    .next-gen-card--collaborators {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.14) 0%, rgba(255,255,255,0) 24%),
+        #FFD919;
+    }
+    .next-gen-card--leaders {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.1) 0%, rgba(255,255,255,0) 24%),
+        #19D0BA;
+    }
+    .next-gen-visual {
+      position: relative;
+      height: 318px;
+      border-radius: 28px;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      margin-bottom: 28px;
+      isolation: isolate;
+    }
+    .next-gen-visual::before {
+      content: "";
+      position: absolute;
+      width: 250px;
+      height: 250px;
+      top: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      background:
+        radial-gradient(circle at 50% 50%, rgba(255,255,255,.22) 0 25%, transparent 25%),
+        radial-gradient(circle at 50% 50%, transparent 0 48%, rgba(255,255,255,.18) 48% 62%, transparent 62%),
+        radial-gradient(circle at 50% 50%, #B56AF5 0 28%, transparent 28%);
+      filter: saturate(1.08);
+      opacity: .92;
+      z-index: 0;
+      clip-path: polygon(50% 0%, 63% 15%, 82% 8%, 83% 30%, 100% 38%, 88% 55%, 98% 74%, 76% 78%, 74% 100%, 50% 88%, 26% 100%, 24% 78%, 2% 74%, 12% 55%, 0% 38%, 17% 30%, 18% 8%, 37% 15%);
+    }
+    .next-gen-card--collaborators .next-gen-visual::before {
+      background:
+        radial-gradient(circle at 50% 50%, rgba(255,255,255,.18) 0 22%, transparent 22%),
+        radial-gradient(circle at 50% 50%, transparent 0 48%, rgba(41,160,69,.16) 48% 63%, transparent 63%),
+        radial-gradient(circle at 50% 50%, #3AAE3E 0 29%, transparent 29%);
+    }
+    .next-gen-card--leaders .next-gen-visual::before {
+      background:
+        radial-gradient(circle at 50% 50%, rgba(255,255,255,.16) 0 22%, transparent 22%),
+        radial-gradient(circle at 50% 50%, transparent 0 48%, rgba(255,255,255,.2) 48% 62%, transparent 62%),
+        radial-gradient(circle at 50% 50%, #FF9CE3 0 28%, transparent 28%);
+    }
+    .next-gen-visual::after {
+      content: "";
+      position: absolute;
+      inset: auto 26px 22px;
+      height: 84px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(26,15,74,.18) 0%, rgba(26,15,74,0) 70%);
+      filter: blur(16px);
+      z-index: 0;
+    }
+    .next-gen-doodle,
+    .next-gen-figure,
+    .next-gen-buddy {
+      position: absolute;
+      z-index: 1;
+    }
+    .next-gen-figure {
+      bottom: -4px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 188px;
+      object-fit: contain;
+      filter: drop-shadow(0 16px 24px rgba(26,15,74,.22));
+    }
+    .next-gen-card--thinkers .next-gen-figure {
+      width: 202px;
+      transform: translateX(-38%);
+    }
+    .next-gen-card--collaborators .next-gen-figure {
+      width: 174px;
+      transform: translateX(-8%);
+    }
+    .next-gen-buddy {
+      bottom: -6px;
+      left: 50%;
+      width: 172px;
+      object-fit: contain;
+      filter: drop-shadow(0 14px 22px rgba(26,15,74,.18));
+    }
+    .next-gen-card--thinkers .next-gen-buddy {
+      transform: translateX(-78%) scaleX(-1);
+    }
+    .next-gen-card--collaborators .next-gen-buddy {
+      transform: translateX(-96%);
+      width: 160px;
+    }
+    .next-gen-shield {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 194px;
+      height: 230px;
+      border-radius: 44px 44px 54px 54px;
+      background: linear-gradient(180deg, #3E9AFF 0%, #1E5ED4 100%);
+      border: 8px solid rgba(255,255,255,.86);
+      box-shadow: 0 14px 24px rgba(26,15,74,.2);
+      clip-path: polygon(10% 8%, 90% 8%, 90% 68%, 50% 100%, 10% 68%);
+      z-index: 1;
+    }
+    .next-gen-shield::before {
+      content: "";
+      position: absolute;
+      top: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 106px;
+      height: 40px;
+      background:
+        radial-gradient(circle, #FF3D8A 0 10px, transparent 11px) left center / 34px 28px no-repeat,
+        radial-gradient(circle, #FFD23F 0 12px, transparent 13px) center center / 36px 32px no-repeat,
+        radial-gradient(circle, #4DA8FF 0 10px, transparent 11px) right center / 34px 28px no-repeat;
+    }
+    .next-gen-shield::after {
+      content: "";
+      position: absolute;
+      inset: 78px 24px 30px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.1), rgba(255,255,255,.02)),
+        radial-gradient(circle at 50% 32%, rgba(255,255,255,.22) 0 12%, transparent 13%),
+        repeating-linear-gradient(180deg, transparent 0 28px, rgba(255,210,63,.75) 28px 31px, transparent 31px 44px);
+      border-radius: 18px 18px 36px 36px;
+      opacity: .9;
+    }
+    .next-gen-leaf,
+    .next-gen-loop,
+    .next-gen-zig {
+      position: absolute;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .next-gen-leaf {
+      width: 84px;
+      height: 84px;
+      border-radius: 28px;
+      background: linear-gradient(180deg, #D54BFF, #7E57FF);
+      border: 6px solid rgba(26,15,74,.12);
+      top: 52px;
+      right: 34px;
+      transform: rotate(15deg);
+      box-shadow: 0 12px 18px rgba(26,15,74,.12);
+    }
+    .next-gen-leaf::before {
+      content: "";
+      position: absolute;
+      inset: 16px;
+      border-radius: 50%;
+      border: 6px solid rgba(255,255,255,.8);
+      border-top-color: transparent;
+      border-right-color: transparent;
+      transform: rotate(-28deg);
+    }
+    .next-gen-loop {
+      left: 26px;
+      bottom: 34px;
+      width: 92px;
+      height: 60px;
+      border: 10px solid #7C4DE2;
+      border-top-color: transparent;
+      border-left-color: transparent;
+      border-radius: 50%;
+      transform: rotate(28deg);
+      opacity: .92;
+    }
+    .next-gen-zig {
+      right: 16px;
+      bottom: 36px;
+      width: 44px;
+      height: 112px;
+      background: linear-gradient(180deg, #FFB82E, #FFB82E);
+      clip-path: polygon(0 0, 100% 0, 58% 30%, 100% 30%, 42% 64%, 82% 64%, 0 100%, 22% 66%, 0 66%, 46% 30%, 8% 30%);
+      filter: drop-shadow(0 6px 10px rgba(255,184,46,.2));
+    }
+    .next-gen-card-title {
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
+      font-size: clamp(2rem, 3vw, 2.35rem);
+      color: #5E3D96;
+      line-height: 1.05;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+    .next-gen-card-desc {
+      font-family: 'Nunito', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      text-align: center;
+      color: rgba(94,61,150,.94);
+      line-height: 1.48;
+      max-width: 330px;
+      margin: 0 auto 24px;
+    }
+    .next-gen-tags {
+      margin-top: auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      padding-top: 8px;
+    }
+    .next-gen-tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-family: 'Nunito', sans-serif;
+      font-size: .96rem;
+      font-weight: 800;
+      color: rgba(94,61,150,.95);
+      background: rgba(255,255,255,.35);
+      border: 2px solid rgba(255,255,255,.26);
+      backdrop-filter: blur(6px);
+    }
+    .next-gen-card--collaborators .next-gen-tag {
+      background: rgba(255,250,214,.44);
+    }
+    .next-gen-card--leaders .next-gen-tag {
+      background: rgba(225,255,248,.35);
+    }
+    .next-gen-signup {
+      display: grid;
+      gap: 18px;
+      justify-items: center;
+      margin-top: 40px;
+      text-align: center;
+    }
+    .next-gen-form {
+      width: min(100%, 640px);
+      padding: 10px;
+      border-radius: 24px;
+      border: 3px solid rgba(26,15,74,.18);
+      background: rgba(255,255,255,.92);
+      box-shadow: 0 14px 28px rgba(26,15,74,.12);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+    }
+    .next-gen-form input {
+      border: none;
+      background: transparent;
+      font-family: 'Nunito', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--ink);
+      padding: 0 22px;
+      min-width: 0;
+    }
+    .next-gen-form input::placeholder {
+      color: rgba(94,61,150,.62);
+    }
+    .next-gen-form input:focus-visible {
+      outline: none;
+    }
+    .next-gen-submit {
+      border: none;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #A24FFF, #8C45F8);
+      color: #fff;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      padding: 20px 36px;
+      cursor: pointer;
+      box-shadow: inset 0 2px 0 rgba(255,255,255,.22);
+    }
+    .next-gen-note {
+      font-family: 'Nunito', sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      color: rgba(94,61,150,.95);
+    }
+
+    /* ════════════════════════════
+       KIDNATION INTERACTIVES
+    ════════════════════════════ */
+    #interactives {
+      background: #1977F2;
+      padding: 104px 48px 110px;
+    }
+    .interactives-wrap {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .interactives-head {
+      max-width: 1120px;
+      margin: 0 auto 52px;
+      text-align: center;
+    }
+    .interactives-hed {
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 600;
+      font-size: clamp(2.35rem, 4.5vw, 4.35rem);
+      line-height: 1.08;
+      color: #fff;
+      letter-spacing: -.025em;
+    }
+    .interactives-hed .pink { color: #FF8BDA; }
+    .interactives-hed .yellow { color: #FFD23F; }
+    .interactives-hed .mint { color: #4CE0B3; }
+    .interactives-stage {
+      position: relative;
+      max-width: 1008px;
+      margin: 0 auto 44px;
+      border-radius: 30px;
+      overflow: hidden;
+      border: 3px solid rgba(255,255,255,.26);
+      box-shadow: 0 26px 50px rgba(9,34,89,.28);
+      background: linear-gradient(180deg, rgba(255,255,255,.2), rgba(255,255,255,.06));
+    }
+    .interactives-stage img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+    }
+    .interactives-badge {
+      position: absolute;
+      z-index: 2;
+      border-radius: 999px;
+      border: 3px solid rgba(255,255,255,.72);
+      background: rgba(255,255,255,.9);
+      box-shadow: 0 8px 18px rgba(9,34,89,.16);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #6B42E8;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
+    }
+    .interactives-badge--pause {
+      left: 22px;
+      bottom: 26px;
+      width: 58px;
+      height: 58px;
+      font-size: 1.7rem;
+    }
+    .interactives-badge--swipe {
+      left: -20px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 64px;
+      height: 64px;
+      font-size: 1.35rem;
+    }
+    .interactives-logo {
+      position: absolute;
+      top: 22px;
+      right: 22px;
+      width: 78px;
+      height: 78px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #8DE8FF 0 20%, #4CE0B3 20% 46%, #FFD23F 46% 72%, #6B42E8 72%);
+      border: 4px solid rgba(255,255,255,.65);
+      box-shadow: 0 10px 20px rgba(9,34,89,.22);
+    }
+    .interactives-logo::before {
+      content: "";
+      position: absolute;
+      inset: 22px 16px 18px 28px;
+      border-radius: 40px 34px 34px 14px;
+      background: #fff;
+      transform: rotate(-8deg);
+      opacity: .92;
+    }
+    .interactives-logo::after {
+      content: "";
+      position: absolute;
+      top: 16px;
+      left: 28px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #1A0F4A;
+      box-shadow: 0 22px 0 #1A0F4A, 18px 11px 0 #1A0F4A;
+    }
+    .interactives-caption {
+      position: absolute;
+      right: 22px;
+      bottom: 22px;
+      z-index: 2;
+      background: rgba(82, 101, 128, .88);
+      color: #fff;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      line-height: 1.05;
+      padding: 10px 14px;
+      border-radius: 14px;
+      box-shadow: 0 8px 16px rgba(9,34,89,.18);
+    }
+    .interactives-toolbar {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translate(-50%, 32%);
+      z-index: 2;
+      width: min(340px, 54%);
+      height: 96px;
+      border-radius: 24px;
+      background: #5B418E;
+      box-shadow: 0 18px 26px rgba(9,34,89,.24);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 12px;
+      padding: 18px 18px 0;
+    }
+    .interactives-pencil {
+      width: 26px;
+      border-radius: 999px 999px 6px 6px;
+      box-shadow: inset 0 -8px 0 rgba(0,0,0,.08);
+    }
+    .interactives-pencil--pink { height: 78px; background: #FF7BC8; }
+    .interactives-pencil--red { height: 84px; background: #E53935; }
+    .interactives-pencil--orange { height: 86px; background: #FF8C42; }
+    .interactives-pencil--yellow { height: 92px; background: #FFD23F; }
+    .interactives-pencil--peach { height: 80px; background: #F9AF74; }
+    .interactives-tool-dot {
+      position: absolute;
+      left: 18px;
+      bottom: 24px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #FFF2B2;
+      box-shadow: inset 0 0 0 10px #fff;
+    }
+    .interactives-tool-slider {
+      position: absolute;
+      right: 18px;
+      bottom: 31px;
+      width: 70px;
+      height: 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.42);
+    }
+    .interactives-tool-slider::after {
+      content: "";
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(9,34,89,.18);
+    }
+    .interactives-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 22px;
+      align-items: start;
+    }
+    .interactive-card {
+      color: #fff;
+    }
+    .interactive-thumb {
+      position: relative;
+      height: 172px;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 4px solid var(--accent, #FFD23F);
+      box-shadow: 0 14px 24px rgba(9,34,89,.18);
+      background: rgba(255,255,255,.08);
+      margin-bottom: 14px;
+    }
+    .interactive-thumb img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+    .interactive-card-title {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.95rem;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--accent, #FFD23F);
+      margin-bottom: 8px;
+      letter-spacing: -.02em;
+    }
+    .interactive-card-desc {
+      font-family: 'Nunito', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      line-height: 1.4;
+      color: rgba(255,255,255,.96);
+    }
+    .interactive-chip {
+      position: absolute;
+      left: 14px;
+      top: 14px;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.96);
+      border: 3px solid var(--accent, #FFD23F);
+      box-shadow: 0 6px 10px rgba(9,34,89,.15);
+    }
+    .interactive-chip::before,
+    .interactive-chip::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      background: #5E3D96;
+    }
+    .interactive-chip--touch::before {
+      width: 16px; height: 22px; border-radius: 10px 10px 4px 4px;
+      clip-path: polygon(36% 0, 62% 0, 62% 52%, 90% 52%, 90% 100%, 10% 100%, 10% 52%, 36% 52%);
+    }
+    .interactive-chip--touch::after {
+      width: 8px; height: 8px; border-radius: 50%;
+      top: 8px; left: 26px; right: auto; bottom: auto;
+      box-shadow: 12px 4px 0 #5E3D96;
+      background: transparent;
+      border: 2px solid #5E3D96;
+    }
+    .interactive-chip--camera::before {
+      width: 20px; height: 16px; border-radius: 4px;
+      box-shadow: 0 -6px 0 -2px #5E3D96;
+    }
+    .interactive-chip--camera::after {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(255,255,255,.96);
+      box-shadow: inset 0 0 0 3px #5E3D96;
+    }
+    .interactive-chip--microphone::before {
+      width: 12px; height: 18px; border-radius: 999px;
+      top: 9px;
+    }
+    .interactive-chip--microphone::after {
+      width: 16px; height: 14px; background: transparent;
+      border: 3px solid #5E3D96; border-top: none;
+      border-radius: 0 0 12px 12px;
+      top: 16px;
+    }
+    .interactive-chip--motion::before {
+      width: 18px; height: 18px; border-radius: 50%;
+    }
+    .interactive-chip--motion::after {
+      width: 28px; height: 28px; background: transparent;
+      border: 3px solid #5E3D96; border-left-color: transparent; border-bottom-color: transparent;
+      border-radius: 50%;
+      transform: rotate(12deg);
+    }
+
+    /* ════════════════════════════
+       FAVORITE CHARACTERS
+    ════════════════════════════ */
+    #characters-showcase {
+      background: var(--paper);
+      padding: 104px 0 110px;
+      overflow: hidden;
+    }
+    .characters-showcase-inner {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+    .characters-showcase-head {
+      max-width: 980px;
+      margin: 0 auto 26px;
+      text-align: center;
+    }
+    .characters-showcase-hed {
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
+      font-size: clamp(2.35rem, 4.5vw, 4.3rem);
+      line-height: 1.06;
+      color: #5E3D96;
+      letter-spacing: -.03em;
+    }
+    .characters-showcase-hed .sky {
+      color: #2E8DFF;
+    }
+    .characters-hero {
+      position: relative;
+      max-width: 1100px;
+      margin: 0 auto 28px;
+      min-height: 340px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .characters-hero::before {
+      content: "";
+      position: absolute;
+      inset: 12px 70px 0;
+      border-radius: 999px 999px 0 0;
+      background:
+        radial-gradient(circle at 50% 4%, rgba(255,236,130,.95) 0, rgba(255,236,130,.5) 18%, rgba(255,236,130,0) 48%),
+        radial-gradient(circle at 28% 74%, rgba(163,124,255,.9) 0, rgba(163,124,255,.4) 22%, rgba(163,124,255,0) 52%),
+        radial-gradient(circle at 72% 72%, rgba(255,167,104,.95) 0, rgba(255,167,104,.38) 22%, rgba(255,167,104,0) 54%),
+        radial-gradient(circle at 46% 36%, rgba(76,224,179,.55) 0, rgba(76,224,179,0) 28%);
+      filter: blur(8px);
+    }
+    .characters-hero::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 24px;
+      background: linear-gradient(180deg, rgba(255,251,242,0), rgba(255,251,242,.95));
+    }
+    .characters-hero-figure {
+      position: relative;
+      z-index: 1;
+      object-fit: contain;
+      filter: drop-shadow(0 16px 22px rgba(26,15,74,.14));
+    }
+    .characters-hero-figure--left {
+      width: min(20vw, 230px);
+      margin-right: -14px;
+    }
+    .characters-hero-figure--center {
+      width: min(17vw, 198px);
+      margin-right: -10px;
+    }
+    .characters-hero-figure--right {
+      width: min(23vw, 270px);
+      margin-left: -12px;
+    }
+    .characters-wordmarks {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 22px 28px;
+      max-width: 980px;
+      margin: 0 auto 48px;
+      color: rgba(94,61,150,.58);
+    }
+    .characters-wordmark {
+      font-family: 'Fredoka', sans-serif;
+      font-size: clamp(1.45rem, 2vw, 2.3rem);
+      font-weight: 700;
+      line-height: .95;
+      letter-spacing: -.03em;
+      text-align: center;
+    }
+    .characters-wordmark--tiny {
+      font-size: clamp(1.05rem, 1.4vw, 1.55rem);
+      line-height: 1.12;
+      letter-spacing: -.01em;
+    }
+    .characters-rail-wrap {
+      overflow: hidden;
+      padding: 0 0 8px;
+    }
+    .characters-rail {
+      display: inline-grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(190px, 190px);
+      gap: 22px;
+      padding: 0 48px;
+      min-width: max-content;
+      animation: marquee-run 15s linear infinite;
+      will-change: transform;
+    }
+    .characters-rail-wrap:hover .characters-rail {
+      animation-play-state: paused;
+    }
+    .characters-rail-set {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(190px, 190px);
+      gap: 22px;
+    }
+    .characters-rail-set[aria-hidden="true"] {
+      pointer-events: none;
+    }
+    .character-app-card {
+      min-height: 362px;
+      border-radius: 28px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 18px 28px rgba(26,15,74,.14);
+      background: linear-gradient(180deg, #B38FFF 0%, #FF7BC8 100%);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 18px 14px 18px;
+    }
+    .character-app-card--red { background: linear-gradient(180deg, #FF5A36 0%, #FF2E00 100%); }
+    .character-app-card--sky { background: linear-gradient(180deg, #48B0FF 0%, #A8DBFF 100%); }
+    .character-app-card--yellow { background: linear-gradient(180deg, #FFC92E 0%, #FFA834 100%); }
+    .character-app-card--blue { background: linear-gradient(180deg, #7FC6FF 0%, #4D98E6 100%); }
+    .character-app-card--pink { background: linear-gradient(180deg, #FF43A8 0%, #FF74B6 100%); }
+    .character-app-card--aqua { background: linear-gradient(180deg, #0C9BE8 0%, #27E2C7 100%); }
+    .character-app-card--lime { background: linear-gradient(180deg, #B9E64E 0%, #6ED0FF 100%); }
+    .character-app-card--violet { background: linear-gradient(180deg, #8C6FFF 0%, #D682FF 100%); }
+    .character-app-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,.2), rgba(255,255,255,0) 40%);
+      pointer-events: none;
+    }
+    .character-app-card img {
+      position: relative;
+      z-index: 1;
+      width: 112%;
+      max-width: none;
+      object-fit: contain;
+      filter: drop-shadow(0 14px 18px rgba(26,15,74,.18));
+    }
+    .character-app-card--feature img {
+      width: 86%;
+    }
+    .character-app-pill {
+      position: absolute;
+      left: 50%;
+      bottom: 16px;
+      transform: translateX(-50%);
+      z-index: 2;
+      width: calc(100% - 44px);
+      min-height: 74px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.95);
+      box-shadow: 0 8px 20px rgba(26,15,74,.14);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 14px 16px;
+    }
+    .character-app-pill span {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.28rem;
+      font-weight: 700;
+      line-height: .95;
+      color: #5E3D96;
+      letter-spacing: -.03em;
+    }
+    .character-app-pill small {
+      display: block;
+      font-family: 'Nunito', sans-serif;
+      font-size: .72rem;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #9A7ED3;
+      margin-bottom: 4px;
+    }
+
+    /* ════════════════════════════
+       FAQ
+    ════════════════════════════ */
+    #faq {
+      background: #143A6B;
+      padding: 96px 48px 104px;
+      color: #fff;
+    }
+    .faq-inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .faq-head {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .faq-mascot {
+      width: 84px;
+      height: 84px;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #8DE8FF 0 20%, #4CE0B3 20% 46%, #FFD23F 46% 72%, #2E8DFF 72%);
+      box-shadow: 0 14px 24px rgba(8,20,43,.22);
+      position: relative;
+    }
+    .faq-mascot::before {
+      content: "";
+      position: absolute;
+      inset: 24px 16px 18px 30px;
+      border-radius: 40px 34px 34px 14px;
+      background: #fff;
+      transform: rotate(-8deg);
+      opacity: .94;
+    }
+    .faq-mascot::after {
+      content: "?";
+      position: absolute;
+      top: -8px;
+      right: 8px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #FF4FA2;
+      text-shadow: 0 2px 0 rgba(20,58,107,.2);
+    }
+    .faq-hed {
+      font-family: 'Fredoka', sans-serif;
+      font-size: clamp(2.35rem, 4.2vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.08;
+      color: #fff;
+      letter-spacing: -.03em;
+    }
+    .faq-list {
+      display: grid;
+      gap: 0;
+    }
+    .faq-item {
+      border-bottom: 2px solid rgba(255,255,255,.14);
+    }
+    .faq-item summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 22px 0 18px;
+    }
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+    .faq-q {
+      font-family: 'Fredoka', sans-serif;
+      font-size: clamp(1.45rem, 2.2vw, 2rem);
+      font-weight: 600;
+      line-height: 1.14;
+      letter-spacing: -.02em;
+    }
+    .faq-chevron {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      position: relative;
+      transition: transform .2s ease;
+    }
+    .faq-chevron::before,
+    .faq-chevron::after {
+      content: "";
+      position: absolute;
+      top: 10px;
+      width: 12px;
+      height: 4px;
+      border-radius: 999px;
+      background: currentColor;
+    }
+    .faq-chevron::before {
+      left: 1px;
+      transform: rotate(45deg);
+    }
+    .faq-chevron::after {
+      right: 1px;
+      transform: rotate(-45deg);
+    }
+    .faq-item[open] .faq-chevron {
+      transform: rotate(180deg);
+    }
+    .faq-a {
+      padding: 0 0 20px;
+      max-width: 720px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 1.03rem;
+      font-weight: 700;
+      line-height: 1.6;
+      color: rgba(255,255,255,.88);
+    }
+    .faq-item--pink .faq-q,
+    .faq-item--pink .faq-chevron { color: #FF8BDA; }
+    .faq-item--yellow .faq-q,
+    .faq-item--yellow .faq-chevron { color: #FFBE45; }
+    .faq-item--gold .faq-q,
+    .faq-item--gold .faq-chevron { color: #FFE34F; }
+    .faq-item--mint .faq-q,
+    .faq-item--mint .faq-chevron { color: #23E3C7; }
+    .faq-item--sky .faq-q,
+    .faq-item--sky .faq-chevron { color: #54B9FF; }
+
+    /* ════════════════════════════
        CONTENT PILLARS
     ════════════════════════════ */
     #pillars { background: var(--paper); padding: 110px 48px; }
@@ -1213,6 +2144,12 @@
     ════════════════════════════ */
     @media (max-width: 1050px) {
       #gang { padding-top: 72px; padding-bottom: 80px; }
+      .next-gen-grid { grid-template-columns: 1fr; max-width: 640px; margin: 0 auto; }
+      .next-gen-card { min-height: 0; }
+      .interactives-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .characters-hero-figure--left,
+      .characters-hero-figure--right { width: min(26vw, 220px); }
+      .characters-hero-figure--center { width: min(20vw, 172px); }
       .pillars-grid { grid-template-columns: repeat(2,1fr); }
     }
     @media (max-width: 860px) {
@@ -1240,6 +2177,77 @@
       .fh2-card { width: 100%; max-width: 460px; margin: 0 auto; transform: none; }
       .fh2-badges { align-items: center; }
       .fh2-character { display: none; }
+      .next-gen-head { margin-bottom: 42px; }
+      .next-gen-card { padding: 24px 22px 24px; }
+      .next-gen-visual { height: 280px; }
+      .interactives-head { margin-bottom: 38px; }
+      .interactives-stage {
+        margin-bottom: 72px;
+        border-radius: 24px;
+      }
+      .interactives-badge--swipe {
+        left: 12px;
+        top: auto;
+        bottom: 108px;
+        transform: none;
+      }
+      .interactives-logo {
+        width: 64px;
+        height: 64px;
+      }
+      .interactives-toolbar {
+        width: min(320px, calc(100% - 48px));
+        height: 82px;
+      }
+      .interactives-grid { grid-template-columns: 1fr; }
+      .characters-showcase-inner { padding: 0 24px; }
+      .characters-hero {
+        min-height: 250px;
+        margin-bottom: 22px;
+      }
+      .characters-hero::before {
+        inset: 12px 18px 0;
+      }
+      .characters-hero-figure--left,
+      .characters-hero-figure--center,
+      .characters-hero-figure--right {
+        width: min(34vw, 170px);
+      }
+      .characters-wordmarks {
+        gap: 16px 18px;
+        margin-bottom: 32px;
+      }
+      .characters-rail-wrap {
+        overflow-x: auto;
+        padding: 0 0 8px;
+        scrollbar-width: none;
+      }
+      .characters-rail-wrap::-webkit-scrollbar {
+        display: none;
+      }
+      .characters-rail {
+        animation: none;
+        padding: 0 24px;
+      }
+      .characters-rail-set {
+        grid-auto-columns: minmax(172px, 172px);
+      }
+      .character-app-card {
+        min-height: 320px;
+      }
+      #faq { padding: 80px 24px 88px !important; }
+      .faq-head { margin-bottom: 28px; }
+      .faq-item summary { padding: 18px 0 16px; }
+      .faq-a { padding-bottom: 18px; }
+      .next-gen-form {
+        width: min(100%, 520px);
+        grid-template-columns: 1fr;
+      }
+      .next-gen-form input {
+        min-height: 62px;
+        text-align: center;
+      }
+      .next-gen-submit { width: 100%; }
       .hero-h1 { display: block; width: 100%; max-width: 100%; font-size: clamp(2.35rem, 12vw, 3.2rem); line-height: 1.04; overflow-wrap: anywhere; word-break: normal; }
       .hero-h1-line { white-space: normal; overflow-wrap: anywhere; }
       .hero-video { width: 100%; max-width: 420px; margin: 0 auto; }
@@ -1667,6 +2675,331 @@
     <path d="M0,28 C240,0 480,56 720,28 C960,0 1200,56 1440,28 L1440,56 L0,56 Z" fill="currentColor"/>
   </svg>
 </div>
+
+<!-- ══ NEXT GENERATION ══ -->
+<section id="next-gen" aria-label="What KidNation is building for the next generation">
+  <div class="next-gen-wrap">
+    <div class="next-gen-head reveal">
+      <h2 class="next-gen-hed">We’re building the next generation of...</h2>
+    </div>
+
+    <div class="next-gen-grid">
+      <article class="next-gen-card next-gen-card--thinkers reveal d1">
+        <div class="next-gen-visual" aria-hidden="true">
+          <span class="next-gen-leaf"></span>
+          <span class="next-gen-loop"></span>
+          <img class="next-gen-buddy" src="assets/melli-cutout.png" alt="" />
+          <img class="next-gen-figure" src="assets/bjorn-corner.png" alt="" />
+        </div>
+        <h3 class="next-gen-card-title">Explore</h3>
+        <p class="next-gen-card-desc">Helping kids discover, imagine, and learn by diving into new ideas with confidence.</p>
+        <div class="next-gen-tags" aria-label="Explore skills">
+          <span class="next-gen-tag">Curiosity</span>
+          <span class="next-gen-tag">Discovery</span>
+          <span class="next-gen-tag">Problem Solving</span>
+          <span class="next-gen-tag">Creativity</span>
+          <span class="next-gen-tag">Independence</span>
+          <span class="next-gen-tag">Critical Thinking</span>
+          <span class="next-gen-tag">Imagination</span>
+          <span class="next-gen-tag">Confidence</span>
+        </div>
+      </article>
+
+      <article class="next-gen-card next-gen-card--collaborators reveal d2">
+        <div class="next-gen-visual" aria-hidden="true">
+          <span class="next-gen-zig"></span>
+          <img class="next-gen-buddy" src="assets/melli-cutout.png" alt="" />
+          <img class="next-gen-figure" src="assets/bjorn-corner.png" alt="" />
+        </div>
+        <h3 class="next-gen-card-title">Connect</h3>
+        <p class="next-gen-card-desc">Encouraging kids to build meaningful friendships through empathy, honesty, and teamwork.</p>
+        <div class="next-gen-tags" aria-label="Connect skills">
+          <span class="next-gen-tag">Empathy</span>
+          <span class="next-gen-tag">Kindness</span>
+          <span class="next-gen-tag">Teamwork</span>
+          <span class="next-gen-tag">Honesty</span>
+          <span class="next-gen-tag">Communication</span>
+          <span class="next-gen-tag">Friendship</span>
+          <span class="next-gen-tag">Compassion</span>
+          <span class="next-gen-tag">Respect</span>
+        </div>
+      </article>
+
+      <article class="next-gen-card next-gen-card--leaders reveal d3">
+        <div class="next-gen-visual" aria-hidden="true">
+          <span class="next-gen-loop" style="left:24px;bottom:42px;border-color:#6D60F2;border-top-color:transparent;border-left-color:transparent;"></span>
+          <span class="next-gen-leaf" style="top:62px;left:40px;right:auto;background:linear-gradient(180deg,#44E65A,#11B662);transform:rotate(-16deg);"></span>
+          <div class="next-gen-shield"></div>
+        </div>
+        <h3 class="next-gen-card-title">Shine</h3>
+        <p class="next-gen-card-desc">Giving kids the courage to express themselves, stand tall, and show the world who they are.</p>
+        <div class="next-gen-tags" aria-label="Shine skills">
+          <span class="next-gen-tag">Courage</span>
+          <span class="next-gen-tag">Self-Expression</span>
+          <span class="next-gen-tag">Leadership</span>
+          <span class="next-gen-tag">Resilience</span>
+          <span class="next-gen-tag">Responsibility</span>
+          <span class="next-gen-tag">Perseverance</span>
+          <span class="next-gen-tag">Confidence</span>
+          <span class="next-gen-tag">Joy</span>
+        </div>
+      </article>
+    </div>
+
+    <div class="next-gen-signup reveal d4">
+      <form class="next-gen-form" action="#cta">
+        <input type="email" name="email" placeholder="Email Address" aria-label="Email Address" />
+        <button class="next-gen-submit" type="submit">Get Started</button>
+      </form>
+      <p class="next-gen-note">First month FREE, then $7/month. Cancel anytime.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ KIDNATION INTERACTIVES ══ -->
+<section id="interactives" aria-label="KidNation interactive learning features">
+  <div class="interactives-wrap">
+    <div class="interactives-head reveal">
+      <h2 class="interactives-hed">
+        KidNation activates <span class="pink">multi-touch play</span>, <span class="yellow">camera moments</span>,
+        <span class="mint">microphone magic</span>, and motion-powered fun.
+      </h2>
+    </div>
+
+    <div class="interactives-stage reveal d1">
+      <img src="assets/screen-02.png" alt="KidNation interactive play experience" loading="lazy" />
+      <span class="interactives-badge interactives-badge--swipe" aria-hidden="true">↔</span>
+      <span class="interactives-badge interactives-badge--pause" aria-hidden="true">Ⅱ</span>
+      <span class="interactives-logo" aria-hidden="true"></span>
+      <span class="interactives-caption">With<br>KidNation</span>
+      <div class="interactives-toolbar" aria-hidden="true">
+        <span class="interactives-tool-dot"></span>
+        <span class="interactives-pencil interactives-pencil--red"></span>
+        <span class="interactives-pencil interactives-pencil--orange"></span>
+        <span class="interactives-pencil interactives-pencil--yellow"></span>
+        <span class="interactives-pencil interactives-pencil--pink"></span>
+        <span class="interactives-pencil interactives-pencil--peach"></span>
+        <span class="interactives-tool-slider"></span>
+      </div>
+    </div>
+
+    <div class="interactives-grid">
+      <article class="interactive-card reveal d1" style="--accent:#FFD23F">
+        <div class="interactive-thumb">
+          <img src="assets/screen-01.png" alt="KidNation multi-touch activity" loading="lazy" />
+          <span class="interactive-chip interactive-chip--touch" aria-hidden="true"></span>
+        </div>
+        <h3 class="interactive-card-title">Touch</h3>
+        <p class="interactive-card-desc">Control the action with immersive activities to create, solve, and build.</p>
+      </article>
+
+      <article class="interactive-card reveal d2" style="--accent:#FF8BDA">
+        <div class="interactive-thumb">
+          <img src="assets/screen-02.png" alt="KidNation camera feature" loading="lazy" />
+          <span class="interactive-chip interactive-chip--camera" aria-hidden="true"></span>
+        </div>
+        <h3 class="interactive-card-title">Camera Play</h3>
+        <p class="interactive-card-desc">Kids can jump inside the story with kid-safe video and playful photo moments.</p>
+      </article>
+
+      <article class="interactive-card reveal d3" style="--accent:#4CE0B3">
+        <div class="interactive-thumb">
+          <img src="assets/screen-05.png" alt="KidNation microphone feature" loading="lazy" />
+          <span class="interactive-chip interactive-chip--microphone" aria-hidden="true"></span>
+        </div>
+        <h3 class="interactive-card-title">Voice</h3>
+        <p class="interactive-card-desc">Kids are heard with voice activation, sing-alongs, commands, and recordings.</p>
+      </article>
+
+      <article class="interactive-card reveal d4" style="--accent:#8DD8FF">
+        <div class="interactive-thumb">
+          <img src="assets/screen-04.png" alt="KidNation motion sensor feature" loading="lazy" />
+          <span class="interactive-chip interactive-chip--motion" aria-hidden="true"></span>
+        </div>
+        <h3 class="interactive-card-title">Move</h3>
+        <p class="interactive-card-desc">Move the story forward with movement-based play, dancing, and real-world action.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FAVORITE CHARACTERS ══ -->
+<section id="characters-showcase" aria-label="KidNation favorite characters and interactive library">
+  <div class="characters-showcase-inner">
+    <div class="characters-showcase-head reveal">
+      <h2 class="characters-showcase-hed">
+        Home to <span class="sky">your kid’s favorite characters</span> and a
+        library of 50+ hours of interactive content.
+      </h2>
+    </div>
+
+    <div class="characters-hero reveal d1" aria-hidden="true">
+      <img class="characters-hero-figure characters-hero-figure--left" src="assets/bjorn-corner.png" alt="" />
+      <img class="characters-hero-figure characters-hero-figure--center" src="assets/melli-cutout.png" alt="" />
+      <img class="characters-hero-figure characters-hero-figure--right" src="assets/feature-graphic.png" alt="" />
+    </div>
+
+    <div class="characters-wordmarks reveal d2" aria-label="Types of KidNation content">
+      <span class="characters-wordmark">Originals</span>
+      <span class="characters-wordmark">Stories</span>
+      <span class="characters-wordmark">Songs</span>
+      <span class="characters-wordmark">Shows</span>
+      <span class="characters-wordmark">Games</span>
+      <span class="characters-wordmark">Friends</span>
+      <span class="characters-wordmark characters-wordmark--tiny">and so many<br>more!</span>
+    </div>
+  </div>
+
+  <div class="characters-rail-wrap reveal d3">
+    <div class="characters-rail" aria-label="KidNation featured character and content cards">
+      <div class="characters-rail-set">
+        <article class="character-app-card">
+          <img src="assets/bjorn-corner.png" alt="KidNation character spotlight" loading="lazy" />
+          <div class="character-app-pill"><span>Character<br>Club</span></div>
+        </article>
+
+        <article class="character-app-card character-app-card--red">
+          <img src="assets/melli-cutout.png" alt="KidNation stories spotlight" loading="lazy" />
+          <div class="character-app-pill"><span><small>Featured</small>Story Songs</span></div>
+        </article>
+
+        <article class="character-app-card character-app-card--sky character-app-card--feature">
+          <img src="assets/feature-graphic.png" alt="KidNation shows spotlight" loading="lazy" />
+          <div class="character-app-pill"><span><small>Watch</small>Show Time</span></div>
+        </article>
+
+        <article class="character-app-card character-app-card--yellow">
+          <img src="assets/screen-05.png" alt="KidNation play spotlight" loading="lazy" />
+          <div class="character-app-pill"><span><small>Play</small>Game Room</span></div>
+        </article>
+
+        <article class="character-app-card character-app-card--blue">
+          <img src="assets/screen-02.png" alt="KidNation originals spotlight" loading="lazy" />
+          <div class="character-app-pill"><span><small>Originals</small>KidNation Live</span></div>
+        </article>
+
+        <article class="character-app-card character-app-card--pink">
+          <img src="assets/screen-01.png" alt="KidNation storybook spotlight" loading="lazy" />
+          <div class="character-app-pill"><span><small>Stories</small>Read & Play</span></div>
+        </article>
+
+        <article class="character-app-card character-app-card--aqua">
+          <img src="assets/app-icon.png" alt="KidNation mascot spotlight" loading="lazy" />
+          <div class="character-app-pill"><span><small>Special</small>Birthday Show</span></div>
+        </article>
+
+        <article class="character-app-card character-app-card--lime character-app-card--feature">
+          <img src="assets/feature-graphic.png" alt="KidNation dance and music spotlight" loading="lazy" />
+          <div class="character-app-pill"><span><small>Move</small>Dance Party</span></div>
+        </article>
+
+        <article class="character-app-card character-app-card--violet">
+          <img src="assets/melli-cutout.png" alt="KidNation friends spotlight" loading="lazy" />
+          <div class="character-app-pill"><span><small>Friends</small>More to Love</span></div>
+        </article>
+      </div>
+
+      <div class="characters-rail-set" aria-hidden="true">
+        <article class="character-app-card">
+          <img src="assets/bjorn-corner.png" alt="" loading="lazy" />
+          <div class="character-app-pill"><span>Character<br>Club</span></div>
+        </article>
+
+        <article class="character-app-card character-app-card--red">
+          <img src="assets/melli-cutout.png" alt="" loading="lazy" />
+          <div class="character-app-pill"><span><small>Featured</small>Story Songs</span></div>
+        </article>
+
+        <article class="character-app-card character-app-card--sky character-app-card--feature">
+          <img src="assets/feature-graphic.png" alt="" loading="lazy" />
+          <div class="character-app-pill"><span><small>Watch</small>Show Time</span></div>
+        </article>
+
+        <article class="character-app-card character-app-card--yellow">
+          <img src="assets/screen-05.png" alt="" loading="lazy" />
+          <div class="character-app-pill"><span><small>Play</small>Game Room</span></div>
+        </article>
+
+        <article class="character-app-card character-app-card--blue">
+          <img src="assets/screen-02.png" alt="" loading="lazy" />
+          <div class="character-app-pill"><span><small>Originals</small>KidNation Live</span></div>
+        </article>
+
+        <article class="character-app-card character-app-card--pink">
+          <img src="assets/screen-01.png" alt="" loading="lazy" />
+          <div class="character-app-pill"><span><small>Stories</small>Read & Play</span></div>
+        </article>
+
+        <article class="character-app-card character-app-card--aqua">
+          <img src="assets/app-icon.png" alt="" loading="lazy" />
+          <div class="character-app-pill"><span><small>Special</small>Birthday Show</span></div>
+        </article>
+
+        <article class="character-app-card character-app-card--lime character-app-card--feature">
+          <img src="assets/feature-graphic.png" alt="" loading="lazy" />
+          <div class="character-app-pill"><span><small>Move</small>Dance Party</span></div>
+        </article>
+
+        <article class="character-app-card character-app-card--violet">
+          <img src="assets/melli-cutout.png" alt="" loading="lazy" />
+          <div class="character-app-pill"><span><small>Friends</small>More to Love</span></div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FAQ ══ -->
+<section id="faq" aria-label="Frequently asked questions">
+  <div class="faq-inner">
+    <div class="faq-head reveal">
+      <div class="faq-mascot" aria-hidden="true"></div>
+      <h2 class="faq-hed">Your questions, answered.</h2>
+    </div>
+
+    <div class="faq-list reveal d1">
+      <details class="faq-item faq-item--pink">
+        <summary>
+          <span class="faq-q">Can I try KidNation for free?</span>
+          <span class="faq-chevron" aria-hidden="true"></span>
+        </summary>
+        <div class="faq-a">Yes. KidNation includes a free first month so families can explore the app, meet the characters, and see which stories, songs, and games their kids love most.</div>
+      </details>
+
+      <details class="faq-item faq-item--yellow">
+        <summary>
+          <span class="faq-q">What age is KidNation designed for?</span>
+          <span class="faq-chevron" aria-hidden="true"></span>
+        </summary>
+        <div class="faq-a">KidNation is designed for kids ages 6 to 11, with content built to feel fun, safe, and engaging for both early and growing independent learners.</div>
+      </details>
+
+      <details class="faq-item faq-item--gold">
+        <summary>
+          <span class="faq-q">How will my child interact with KidNation?</span>
+          <span class="faq-chevron" aria-hidden="true"></span>
+        </summary>
+        <div class="faq-a">Kids can tap, move, sing, speak, create, and play through stories and activities using touch, voice, camera play, and movement-based interactive moments.</div>
+      </details>
+
+      <details class="faq-item faq-item--mint">
+        <summary>
+          <span class="faq-q">Do I need multiple accounts?</span>
+          <span class="faq-chevron" aria-hidden="true"></span>
+        </summary>
+        <div class="faq-a">No. One family subscription is designed to make it easy to get started, so parents can manage access while kids jump into their favorite characters and experiences.</div>
+      </details>
+
+      <details class="faq-item faq-item--sky">
+        <summary>
+          <span class="faq-q">What will my child learn with KidNation?</span>
+          <span class="faq-chevron" aria-hidden="true"></span>
+        </summary>
+        <div class="faq-a">KidNation helps kids build confidence, curiosity, kindness, creativity, communication, and real-world problem-solving through music, movement, stories, and play.</div>
+      </details>
+    </div>
+  </div>
+</section>
 
 <!-- ══ CONTENT PILLARS ══ -->
 <section id="pillars" aria-label="Content features">
