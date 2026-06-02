@@ -1105,104 +1105,100 @@
       line-height: 1.12;
       letter-spacing: -.01em;
     }
-    .characters-rail-wrap {
+    .video-library-wrap {
+      position: relative;
       overflow: hidden;
-      padding: 0 0 8px;
-    }
-    .characters-rail {
-      display: inline-grid;
-      grid-auto-flow: column;
-      grid-auto-columns: minmax(190px, 190px);
-      gap: 22px;
-      padding: 0 48px;
-      min-width: max-content;
-      animation: marquee-run 15s linear infinite;
-      will-change: transform;
-    }
-    .characters-rail-wrap:hover .characters-rail {
-      animation-play-state: paused;
-    }
-    .characters-rail-set {
+      padding: 8px 0 0;
       display: grid;
-      grid-auto-flow: column;
-      grid-auto-columns: minmax(190px, 190px);
-      gap: 22px;
+      gap: 18px;
     }
-    .characters-rail-set[aria-hidden="true"] {
+    .video-library-wrap::before,
+    .video-library-wrap::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 72px;
+      z-index: 3;
       pointer-events: none;
     }
-    .character-app-card {
-      min-height: 362px;
+    .video-library-wrap::before {
+      left: 0;
+      background: linear-gradient(90deg, var(--paper) 10%, rgba(255,251,242,0));
+    }
+    .video-library-wrap::after {
+      right: 0;
+      background: linear-gradient(270deg, var(--paper) 10%, rgba(255,251,242,0));
+    }
+    .video-library-row {
+      overflow: hidden;
+    }
+    .video-library-track {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      width: max-content;
+      min-width: max-content;
+      padding: 0 48px;
+      animation: marquee-run 30s linear infinite;
+      will-change: transform;
+    }
+    .video-library-row--bottom .video-library-track {
+      animation-direction: reverse;
+      animation-duration: 30s;
+      padding-left: 184px;
+    }
+    .video-library-wrap:hover .video-library-track {
+      animation-play-state: paused;
+    }
+    .video-library-set {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .video-library-set[aria-hidden="true"] {
+      pointer-events: none;
+    }
+    .video-library-card {
+      position: relative;
+      flex: 0 0 clamp(240px, 21vw, 292px);
+      aspect-ratio: 16 / 9;
       border-radius: 28px;
       overflow: hidden;
-      position: relative;
-      box-shadow: 0 18px 28px rgba(26,15,74,.14);
-      background: linear-gradient(180deg, #B38FFF 0%, #FF7BC8 100%);
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      padding: 18px 14px 18px;
+      background:
+        radial-gradient(circle at 18% 20%, rgba(255,255,255,.16), rgba(255,255,255,0) 36%),
+        linear-gradient(135deg, #5C3FA5, #1B7AFF);
+      box-shadow: 0 18px 32px rgba(26,15,74,.16);
+      border: 3px solid rgba(255,255,255,.6);
+      isolation: isolate;
     }
-    .character-app-card--red { background: linear-gradient(180deg, #FF5A36 0%, #FF2E00 100%); }
-    .character-app-card--sky { background: linear-gradient(180deg, #48B0FF 0%, #A8DBFF 100%); }
-    .character-app-card--yellow { background: linear-gradient(180deg, #FFC92E 0%, #FFA834 100%); }
-    .character-app-card--blue { background: linear-gradient(180deg, #7FC6FF 0%, #4D98E6 100%); }
-    .character-app-card--pink { background: linear-gradient(180deg, #FF43A8 0%, #FF74B6 100%); }
-    .character-app-card--aqua { background: linear-gradient(180deg, #0C9BE8 0%, #27E2C7 100%); }
-    .character-app-card--lime { background: linear-gradient(180deg, #B9E64E 0%, #6ED0FF 100%); }
-    .character-app-card--violet { background: linear-gradient(180deg, #8C6FFF 0%, #D682FF 100%); }
-    .character-app-card::before {
+    .video-library-card--mint { background: radial-gradient(circle at 18% 20%, rgba(255,255,255,.18), rgba(255,255,255,0) 34%), linear-gradient(135deg, #21C9AF, #2E8DFF); }
+    .video-library-card--gold { background: radial-gradient(circle at 18% 20%, rgba(255,255,255,.18), rgba(255,255,255,0) 34%), linear-gradient(135deg, #FFC92E, #FF8C43); }
+    .video-library-card--pink { background: radial-gradient(circle at 18% 20%, rgba(255,255,255,.18), rgba(255,255,255,0) 34%), linear-gradient(135deg, #FF65B8, #9D63FF); }
+    .video-library-card--sky { background: radial-gradient(circle at 18% 20%, rgba(255,255,255,.18), rgba(255,255,255,0) 34%), linear-gradient(135deg, #52C4FF, #5885FF); }
+    .video-library-card::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(255,255,255,.2), rgba(255,255,255,0) 40%);
+      background: linear-gradient(180deg, rgba(13,18,46,0) 55%, rgba(13,18,46,.36) 100%);
+      z-index: 1;
       pointer-events: none;
     }
-    .character-app-card img {
-      position: relative;
-      z-index: 1;
-      width: 112%;
-      max-width: none;
-      object-fit: contain;
-      filter: drop-shadow(0 14px 18px rgba(26,15,74,.18));
-    }
-    .character-app-card--feature img {
-      width: 86%;
-    }
-    .character-app-pill {
-      position: absolute;
-      left: 50%;
-      bottom: 16px;
-      transform: translateX(-50%);
-      z-index: 2;
-      width: calc(100% - 44px);
-      min-height: 74px;
-      border-radius: 22px;
-      background: rgba(255,255,255,.95);
-      box-shadow: 0 8px 20px rgba(26,15,74,.14);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 14px 16px;
-    }
-    .character-app-pill span {
-      font-family: 'Fredoka', sans-serif;
-      font-size: 1.28rem;
-      font-weight: 700;
-      line-height: .95;
-      color: #5E3D96;
-      letter-spacing: -.03em;
-    }
-    .character-app-pill small {
+    .video-library-card iframe {
+      width: 100%;
+      height: 100%;
       display: block;
-      font-family: 'Nunito', sans-serif;
-      font-size: .72rem;
-      font-weight: 900;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: #9A7ED3;
-      margin-bottom: 4px;
+      background: #1A0F4A;
+      border: 0;
+    }
+    .video-library-chip,
+    .video-library-title {
+      display: none;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .video-library-track {
+        animation: none !important;
+      }
     }
 
     /* ════════════════════════════
@@ -2452,23 +2448,37 @@
         gap: 16px 18px;
         margin-bottom: 32px;
       }
-      .characters-rail-wrap {
-        overflow-x: auto;
-        padding: 0 0 8px;
-        scrollbar-width: none;
+      .video-library-wrap::before,
+      .video-library-wrap::after {
+        width: 28px;
       }
-      .characters-rail-wrap::-webkit-scrollbar {
-        display: none;
-      }
-      .characters-rail {
-        animation: none;
+      .video-library-track {
+        gap: 14px;
         padding: 0 24px;
+        animation-duration: 30s;
       }
-      .characters-rail-set {
-        grid-auto-columns: minmax(172px, 172px);
+      .video-library-row--bottom .video-library-track {
+        animation-duration: 30s;
+        padding-left: 110px;
       }
-      .character-app-card {
-        min-height: 320px;
+      .video-library-set {
+        gap: 14px;
+      }
+      .video-library-card {
+        flex-basis: 220px;
+        border-radius: 22px;
+      }
+      .video-library-chip {
+        top: 12px;
+        left: 12px;
+        min-height: 30px;
+        padding: 7px 12px;
+        font-size: .72rem;
+      }
+      .video-library-title {
+        left: 12px;
+        bottom: 12px;
+        font-size: 1.02rem;
       }
       #social-feed { padding: 80px 24px 88px !important; }
       .social-feed-grid { grid-template-columns: 1fr; }
@@ -3125,100 +3135,100 @@
     </div>
   </div>
 
-  <div class="characters-rail-wrap reveal d3">
-    <div class="characters-rail" aria-label="KidNation featured character and content cards">
-      <div class="characters-rail-set">
-        <article class="character-app-card">
-          <img src="assets/bjorn-corner.png" alt="KidNation character spotlight" loading="lazy" />
-          <div class="character-app-pill"><span>Character<br>Club</span></div>
-        </article>
-
-        <article class="character-app-card character-app-card--red">
-          <img src="assets/melli-cutout.png" alt="KidNation stories spotlight" loading="lazy" />
-          <div class="character-app-pill"><span><small>Featured</small>Story Songs</span></div>
-        </article>
-
-        <article class="character-app-card character-app-card--sky character-app-card--feature">
-          <img src="assets/feature-graphic.png" alt="KidNation shows spotlight" loading="lazy" />
-          <div class="character-app-pill"><span><small>Watch</small>Show Time</span></div>
-        </article>
-
-        <article class="character-app-card character-app-card--yellow">
-          <img src="assets/screen-05.png" alt="KidNation play spotlight" loading="lazy" />
-          <div class="character-app-pill"><span><small>Play</small>Game Room</span></div>
-        </article>
-
-        <article class="character-app-card character-app-card--blue">
-          <img src="assets/screen-02.png" alt="KidNation originals spotlight" loading="lazy" />
-          <div class="character-app-pill"><span><small>Originals</small>KidNation Live</span></div>
-        </article>
-
-        <article class="character-app-card character-app-card--pink">
-          <img src="assets/screen-01.png" alt="KidNation storybook spotlight" loading="lazy" />
-          <div class="character-app-pill"><span><small>Stories</small>Read & Play</span></div>
-        </article>
-
-        <article class="character-app-card character-app-card--aqua">
-          <img src="assets/app-icon.png" alt="KidNation mascot spotlight" loading="lazy" />
-          <div class="character-app-pill"><span><small>Special</small>Birthday Show</span></div>
-        </article>
-
-        <article class="character-app-card character-app-card--lime character-app-card--feature">
-          <img src="assets/feature-graphic.png" alt="KidNation dance and music spotlight" loading="lazy" />
-          <div class="character-app-pill"><span><small>Move</small>Dance Party</span></div>
-        </article>
-
-        <article class="character-app-card character-app-card--violet">
-          <img src="assets/melli-cutout.png" alt="KidNation friends spotlight" loading="lazy" />
-          <div class="character-app-pill"><span><small>Friends</small>More to Love</span></div>
-        </article>
+  <div class="video-library-wrap reveal d3" aria-label="KidNation video library showcase">
+    <div class="video-library-row video-library-row--top" aria-label="Featured KidNation videos moving left">
+      <div class="video-library-track">
+        <div class="video-library-set">
+          <article class="video-library-card video-library-card--pink">
+            <span class="video-library-chip">Originals</span>
+            <iframe src="https://player.vimeo.com/video/931106458?autoplay=1&muted=1&loop=1&autopause=0&background=1&title=0&byline=0&portrait=0&dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy" title="KidNation video library clip 1"></iframe>
+            <span class="video-library-title">Story Songs</span>
+          </article>
+          <article class="video-library-card video-library-card--sky">
+            <span class="video-library-chip">Music</span>
+            <iframe src="https://player.vimeo.com/video/703795307?autoplay=1&muted=1&loop=1&autopause=0&background=1&title=0&byline=0&portrait=0&dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy" title="KidNation video library clip 2"></iframe>
+            <span class="video-library-title">KidNation Live</span>
+          </article>
+          <article class="video-library-card video-library-card--gold">
+            <span class="video-library-chip">Play</span>
+            <iframe src="https://player.vimeo.com/video/704721022?autoplay=1&muted=1&loop=1&autopause=0&background=1&title=0&byline=0&portrait=0&dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy" title="KidNation video library clip 3"></iframe>
+            <span class="video-library-title">Game Room</span>
+          </article>
+          <article class="video-library-card video-library-card--mint">
+            <span class="video-library-chip">Watch</span>
+            <iframe src="https://player.vimeo.com/video/704720059?autoplay=1&muted=1&loop=1&autopause=0&background=1&title=0&byline=0&portrait=0&dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy" title="KidNation video library clip 4"></iframe>
+            <span class="video-library-title">Show Time</span>
+          </article>
+          <article class="video-library-card">
+            <span class="video-library-chip">Friends</span>
+            <iframe src="https://player.vimeo.com/video/704715735?autoplay=1&muted=1&loop=1&autopause=0&background=1&title=0&byline=0&portrait=0&dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy" title="KidNation video library clip 5"></iframe>
+            <span class="video-library-title">Character Club</span>
+          </article>
+          <article class="video-library-card video-library-card--pink">
+            <span class="video-library-chip">Read</span>
+            <iframe src="https://player.vimeo.com/video/704715577?autoplay=1&muted=1&loop=1&autopause=0&background=1&title=0&byline=0&portrait=0&dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy" title="KidNation video library clip 6"></iframe>
+            <span class="video-library-title">Read &amp; Play</span>
+          </article>
+          <article class="video-library-card video-library-card--sky">
+            <span class="video-library-chip">Move</span>
+            <iframe src="https://player.vimeo.com/video/704715782?autoplay=1&muted=1&loop=1&autopause=0&background=1&title=0&byline=0&portrait=0&dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy" title="KidNation video library clip 7"></iframe>
+            <span class="video-library-title">Dance Party</span>
+          </article>
+        </div>
+        <div class="video-library-set" aria-hidden="true">
+          <article class="video-library-card video-library-card--pink"><span class="video-library-chip">Originals</span><iframe src="https://player.vimeo.com/video/931106458?autoplay=1&muted=1&loop=1&autopause=0&background=1&title=0&byline=0&portrait=0&dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy" title="KidNation video library clip 1 duplicate"></iframe><span class="video-library-title">Story Songs</span></article>
+          <article class="video-library-card video-library-card--sky"><span class="video-library-chip">Music</span><iframe src="https://player.vimeo.com/video/703795307?autoplay=1&muted=1&loop=1&autopause=0&background=1&title=0&byline=0&portrait=0&dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy" title="KidNation video library clip 2 duplicate"></iframe><span class="video-library-title">KidNation Live</span></article>
+          <article class="video-library-card video-library-card--gold"><span class="video-library-chip">Play</span><iframe src="https://player.vimeo.com/video/704721022?autoplay=1&muted=1&loop=1&autopause=0&background=1&title=0&byline=0&portrait=0&dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy" title="KidNation video library clip 3 duplicate"></iframe><span class="video-library-title">Game Room</span></article>
+          <article class="video-library-card video-library-card--mint"><span class="video-library-chip">Watch</span><iframe src="https://player.vimeo.com/video/704720059?autoplay=1&muted=1&loop=1&autopause=0&background=1&title=0&byline=0&portrait=0&dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy" title="KidNation video library clip 4 duplicate"></iframe><span class="video-library-title">Show Time</span></article>
+          <article class="video-library-card"><span class="video-library-chip">Friends</span><iframe src="https://player.vimeo.com/video/704715735?autoplay=1&muted=1&loop=1&autopause=0&background=1&title=0&byline=0&portrait=0&dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy" title="KidNation video library clip 5 duplicate"></iframe><span class="video-library-title">Character Club</span></article>
+          <article class="video-library-card video-library-card--pink"><span class="video-library-chip">Read</span><iframe src="https://player.vimeo.com/video/704715577?autoplay=1&muted=1&loop=1&autopause=0&background=1&title=0&byline=0&portrait=0&dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy" title="KidNation video library clip 6 duplicate"></iframe><span class="video-library-title">Read &amp; Play</span></article>
+          <article class="video-library-card video-library-card--sky"><span class="video-library-chip">Move</span><iframe src="https://player.vimeo.com/video/704715782?autoplay=1&muted=1&loop=1&autopause=0&background=1&title=0&byline=0&portrait=0&dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy" title="KidNation video library clip 7 duplicate"></iframe><span class="video-library-title">Dance Party</span></article>
+        </div>
       </div>
+    </div>
 
-      <div class="characters-rail-set" aria-hidden="true">
-        <article class="character-app-card">
-          <img src="assets/bjorn-corner.png" alt="" loading="lazy" />
-          <div class="character-app-pill"><span>Character<br>Club</span></div>
-        </article>
-
-        <article class="character-app-card character-app-card--red">
-          <img src="assets/melli-cutout.png" alt="" loading="lazy" />
-          <div class="character-app-pill"><span><small>Featured</small>Story Songs</span></div>
-        </article>
-
-        <article class="character-app-card character-app-card--sky character-app-card--feature">
-          <img src="assets/feature-graphic.png" alt="" loading="lazy" />
-          <div class="character-app-pill"><span><small>Watch</small>Show Time</span></div>
-        </article>
-
-        <article class="character-app-card character-app-card--yellow">
-          <img src="assets/screen-05.png" alt="" loading="lazy" />
-          <div class="character-app-pill"><span><small>Play</small>Game Room</span></div>
-        </article>
-
-        <article class="character-app-card character-app-card--blue">
-          <img src="assets/screen-02.png" alt="" loading="lazy" />
-          <div class="character-app-pill"><span><small>Originals</small>KidNation Live</span></div>
-        </article>
-
-        <article class="character-app-card character-app-card--pink">
-          <img src="assets/screen-01.png" alt="" loading="lazy" />
-          <div class="character-app-pill"><span><small>Stories</small>Read & Play</span></div>
-        </article>
-
-        <article class="character-app-card character-app-card--aqua">
-          <img src="assets/app-icon.png" alt="" loading="lazy" />
-          <div class="character-app-pill"><span><small>Special</small>Birthday Show</span></div>
-        </article>
-
-        <article class="character-app-card character-app-card--lime character-app-card--feature">
-          <img src="assets/feature-graphic.png" alt="" loading="lazy" />
-          <div class="character-app-pill"><span><small>Move</small>Dance Party</span></div>
-        </article>
-
-        <article class="character-app-card character-app-card--violet">
-          <img src="assets/melli-cutout.png" alt="" loading="lazy" />
-          <div class="character-app-pill"><span><small>Friends</small>More to Love</span></div>
-        </article>
+    <div class="video-library-row video-library-row--bottom" aria-label="Featured KidNation videos moving right">
+      <div class="video-library-track">
+        <div class="video-library-set">
+          <article class="video-library-card video-library-card--gold">
+            <span class="video-library-chip">Sing</span>
+            <iframe src="https://player.vimeo.com/video/704715002?autoplay=1&muted=1&loop=1&autopause=0&background=1&title=0&byline=0&portrait=0&dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy" title="KidNation video library clip 8"></iframe>
+            <span class="video-library-title">Sing Along</span>
+          </article>
+          <article class="video-library-card video-library-card--mint">
+            <span class="video-library-chip">Stories</span>
+            <iframe src="https://player.vimeo.com/video/704714962?autoplay=1&muted=1&loop=1&autopause=0&background=1&title=0&byline=0&portrait=0&dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy" title="KidNation video library clip 9"></iframe>
+            <span class="video-library-title">Story Time</span>
+          </article>
+          <article class="video-library-card video-library-card--pink">
+            <span class="video-library-chip">Quest</span>
+            <iframe src="https://player.vimeo.com/video/704714848?autoplay=1&muted=1&loop=1&autopause=0&background=1&title=0&byline=0&portrait=0&dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy" title="KidNation video library clip 10"></iframe>
+            <span class="video-library-title">Adventure Run</span>
+          </article>
+          <article class="video-library-card video-library-card--sky">
+            <span class="video-library-chip">Play</span>
+            <iframe src="https://player.vimeo.com/video/704714757?autoplay=1&muted=1&loop=1&autopause=0&background=1&title=0&byline=0&portrait=0&dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy" title="KidNation video library clip 11"></iframe>
+            <span class="video-library-title">Play Together</span>
+          </article>
+          <article class="video-library-card">
+            <span class="video-library-chip">Learn</span>
+            <iframe src="https://player.vimeo.com/video/704713283?autoplay=1&muted=1&loop=1&autopause=0&background=1&title=0&byline=0&portrait=0&dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy" title="KidNation video library clip 12"></iframe>
+            <span class="video-library-title">Learn &amp; Laugh</span>
+          </article>
+          <article class="video-library-card video-library-card--gold">
+            <span class="video-library-chip">Crew</span>
+            <iframe src="https://player.vimeo.com/video/704713322?autoplay=1&muted=1&loop=1&autopause=0&background=1&title=0&byline=0&portrait=0&dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy" title="KidNation video library clip 13"></iframe>
+            <span class="video-library-title">KidNation Crew</span>
+          </article>
+        </div>
+        <div class="video-library-set" aria-hidden="true">
+          <article class="video-library-card video-library-card--gold"><span class="video-library-chip">Sing</span><iframe src="https://player.vimeo.com/video/704715002?autoplay=1&muted=1&loop=1&autopause=0&background=1&title=0&byline=0&portrait=0&dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy" title="KidNation video library clip 8 duplicate"></iframe><span class="video-library-title">Sing Along</span></article>
+          <article class="video-library-card video-library-card--mint"><span class="video-library-chip">Stories</span><iframe src="https://player.vimeo.com/video/704714962?autoplay=1&muted=1&loop=1&autopause=0&background=1&title=0&byline=0&portrait=0&dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy" title="KidNation video library clip 9 duplicate"></iframe><span class="video-library-title">Story Time</span></article>
+          <article class="video-library-card video-library-card--pink"><span class="video-library-chip">Quest</span><iframe src="https://player.vimeo.com/video/704714848?autoplay=1&muted=1&loop=1&autopause=0&background=1&title=0&byline=0&portrait=0&dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy" title="KidNation video library clip 10 duplicate"></iframe><span class="video-library-title">Adventure Run</span></article>
+          <article class="video-library-card video-library-card--sky"><span class="video-library-chip">Play</span><iframe src="https://player.vimeo.com/video/704714757?autoplay=1&muted=1&loop=1&autopause=0&background=1&title=0&byline=0&portrait=0&dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy" title="KidNation video library clip 11 duplicate"></iframe><span class="video-library-title">Play Together</span></article>
+          <article class="video-library-card"><span class="video-library-chip">Learn</span><iframe src="https://player.vimeo.com/video/704713283?autoplay=1&muted=1&loop=1&autopause=0&background=1&title=0&byline=0&portrait=0&dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy" title="KidNation video library clip 12 duplicate"></iframe><span class="video-library-title">Learn &amp; Laugh</span></article>
+          <article class="video-library-card video-library-card--gold"><span class="video-library-chip">Crew</span><iframe src="https://player.vimeo.com/video/704713322?autoplay=1&muted=1&loop=1&autopause=0&background=1&title=0&byline=0&portrait=0&dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy" title="KidNation video library clip 13 duplicate"></iframe><span class="video-library-title">KidNation Crew</span></article>
+        </div>
       </div>
     </div>
   </div>
