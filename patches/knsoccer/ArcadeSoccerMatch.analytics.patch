@@ -1,0 +1,88 @@
+diff --git a/Assets/Scripts/ArcadeSoccerMatch.cs b/Assets/Scripts/ArcadeSoccerMatch.cs
+--- a/Assets/Scripts/ArcadeSoccerMatch.cs
++++ b/Assets/Scripts/ArcadeSoccerMatch.cs
+@@ -80,6 +80,8 @@ public sealed class ArcadeSoccerMatch : MonoBehaviour
+     private bool chargingShot;
+     private bool homeKickoff = true;
+     private bool lastTouchHome = true;
++    private bool matchStartedForAnalytics;
++    private float matchStartedAt;
+     private BallFlightKind ballFlightKind;
+     private int opponentIndex = 3;
+     private string momentText = string.Empty;
+@@ -119,6 +121,7 @@ public sealed class ArcadeSoccerMatch : MonoBehaviour
+         catch (Exception exception)
+         {
+             startupFailure = exception.Message;
++            WorldCupAnalytics.TrackGameError("unity_startup", "startup_failure");
+         }
+     }
+ 
+@@ -156,6 +159,12 @@ public sealed class ArcadeSoccerMatch : MonoBehaviour
+         {
+             GiveBallTo(kickoffPlayer);
+             kickoffPlayer = null;
++            if (!matchStartedForAnalytics)
++            {
++                matchStartedForAnalytics = true;
++                matchStartedAt = Time.realtimeSinceStartup;
++                WorldCupAnalytics.TrackMatchStart(OpponentCountries[opponentIndex].Name);
++            }
+         }
+ 
+         timeRemaining = Mathf.Max(0f, timeRemaining - deltaTime);
+@@ -224,6 +234,8 @@ public sealed class ArcadeSoccerMatch : MonoBehaviour
+ 
+     private void StartMatch()
+     {
++        matchStartedForAnalytics = false;
++        matchStartedAt = 0f;
+         homeScore = 0f;
+         awayScore = 0f;
+         timeRemaining = MatchDuration;
+@@ -236,12 +248,24 @@ public sealed class ArcadeSoccerMatch : MonoBehaviour
+     private void EndMatch()
+     {
+         var result = homeScore > awayScore ? "KIDNATION WINS!" : awayScore > homeScore ? $"{OpponentCountries[opponentIndex].Name.ToUpperInvariant()} WINS!" : "EPIC DRAW!";
++        var analyticsResult = homeScore > awayScore ? "win" : awayScore > homeScore ? "loss" : "draw";
++        var matchDurationSeconds = matchStartedForAnalytics
++            ? Mathf.Max(0, Mathf.RoundToInt(Time.realtimeSinceStartup - matchStartedAt))
++            : 0;
++        WorldCupAnalytics.TrackMatchComplete(
++            OpponentCountries[opponentIndex].Name,
++            analyticsResult,
++            Mathf.RoundToInt(homeScore),
++            Mathf.RoundToInt(awayScore),
++            matchDurationSeconds);
+         ShowMoment(result, 4f);
+         soccerAudio?.PlayWhistle();
+         ResetKickoff(result);
+         timeRemaining = MatchDuration;
+         homeScore = 0f;
+         awayScore = 0f;
++        matchStartedForAnalytics = false;
++        matchStartedAt = 0f;
+     }
+ 
+     private void ResetKickoff(string message)
+@@ -796,6 +821,12 @@ public sealed class ArcadeSoccerMatch : MonoBehaviour
+             BurstGoalSparks(ball.position, awayMaterial.color, 46);
+         }
+ 
++        WorldCupAnalytics.TrackGoalScored(
++            homeScored ? "kidnation" : "opponent",
++            OpponentCountries[opponentIndex].Name,
++            Mathf.RoundToInt(homeScore),
++            Mathf.RoundToInt(awayScore));
++
+         if (homeScore >= WinningScore || awayScore >= WinningScore)
+         {
+             EndMatch();
+@@ -1208,6 +1240,7 @@ public sealed class ArcadeSoccerMatch : MonoBehaviour
+         Destroy(awayGoalkeeper.Root.gameObject);
+         opponentIndex = (opponentIndex + 1) % OpponentCountries.Length;
+         BuildOpponentTeam();
++        WorldCupAnalytics.TrackOpponentSelected(OpponentCountries[opponentIndex].Name);
+         homeKickoff = true;
+         ResetKickoff($"NEW RIVAL: {OpponentCountries[opponentIndex].Name.ToUpperInvariant()}!");
+         soccerAudio?.PlayWelcome(OpponentCountries[opponentIndex].Name);
