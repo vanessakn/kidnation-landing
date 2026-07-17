@@ -11,6 +11,14 @@ internal static class WorldCupAnalytics
     private static extern void KidNationTrackGameEvent(string eventName, string payloadJson);
 #endif
 
+    public static void TrackGameReady(string gameVersion)
+    {
+        Send("game_ready", new EventPayload
+        {
+            game_version = gameVersion,
+        });
+    }
+
     public static void TrackOpponentSelected(string opponent)
     {
         Send("opponent_selected", new EventPayload
@@ -82,6 +90,7 @@ internal static class WorldCupAnalytics
     [Serializable]
     private sealed class EventPayload
     {
+        public string game_version = string.Empty;
         public string opponent = string.Empty;
         public string result = string.Empty;
         public string scoring_team = string.Empty;
