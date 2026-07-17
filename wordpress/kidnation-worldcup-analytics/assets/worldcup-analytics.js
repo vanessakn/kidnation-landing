@@ -110,6 +110,14 @@
     dataLayer.push(model);
   }
 
+  // Fire the page view before iframe discovery so the funnel order is stable.
+  // The script does not call GA4 directly; GTM or another approved analytics
+  // layer decides whether and where this event is sent.
+  if (!window.__kidNationWorldCupViewTracked) {
+    window.__kidNationWorldCupViewTracked = true;
+    pushEvent('worldcup_view', {}, 'landing_page');
+  }
+
   function normalizedText(element) {
     return cleanString((element.textContent || '').replace(/\s+/g, ' '), 80).toLowerCase();
   }
@@ -300,10 +308,4 @@
     pushEvent(eventName, parameters, 'game');
   });
 
-  // Fires once per real page load. The script does not call GA4 directly; GTM or
-  // another approved analytics layer decides whether and where this event is sent.
-  if (!window.__kidNationWorldCupViewTracked) {
-    window.__kidNationWorldCupViewTracked = true;
-    pushEvent('worldcup_view', {}, 'landing_page');
-  }
 }());
