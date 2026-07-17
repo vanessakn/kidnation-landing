@@ -1,0 +1,49 @@
+diff --git a/Assets/Editor/SuperSoccerSkiesWebGlBuild.cs b/Assets/Editor/SuperSoccerSkiesWebGlBuild.cs
+--- a/Assets/Editor/SuperSoccerSkiesWebGlBuild.cs
++++ b/Assets/Editor/SuperSoccerSkiesWebGlBuild.cs
+@@ -133,9 +133,48 @@ public static class SuperSoccerSkiesWebGlBuild
+              "</head>",
+              "<style>html,body{width:100%;height:100%;height:100svh;margin:0;overflow:hidden;overscroll-behavior:none;background:#050b20}body{display:grid;place-items:center;touch-action:none;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}canvas{display:block;max-width:100%;max-height:100%;aspect-ratio:16/9;outline:none;touch-action:none;-webkit-user-select:none;user-select:none;box-shadow:0 16px 50px rgba(0,0,0,.45)}#unity-loading,#rotate-device,#unity-error{position:fixed;inset:0;align-items:center;justify-content:center;text-align:center;font-family:Arial,sans-serif;font-weight:800;letter-spacing:.08em}#unity-loading{z-index:20;display:flex;flex-direction:column;gap:16px;color:#fff;background:#050b20;transition:opacity .25s ease}#unity-loading.is-ready{opacity:0;pointer-events:none}#unity-loading-title{font-size:clamp(24px,7vw,52px);color:#ffd62c;text-shadow:0 3px 0 #4b1e94}#unity-status{font-size:clamp(12px,3vw,18px)}#unity-progress-track{width:min(74vw,420px);height:14px;padding:3px;border:2px solid #fff;border-radius:999px;background:#172958}#unity-progress{width:0;height:100%;border-radius:999px;background:linear-gradient(90deg,#5c2bc9,#ffd62c);transition:width .16s ease}#rotate-device{z-index:30;display:none;color:#fff;background:#050b20;font-size:clamp(18px,5vw,34px);line-height:1.35}#unity-error{z-index:40;display:none;color:#fff;background:rgba(5,11,32,.96);font-size:clamp(16px,4vw,24px);line-height:1.6}#unity-error.is-visible{display:flex}#unity-retry{margin-top:18px;padding:12px 22px;border:0;border-radius:999px;background:#ffd62c;color:#220d54;font-weight:900;font-size:16px;cursor:pointer}@media (orientation:portrait) and (max-width:1024px){#rotate-device{display:flex}#unity-canvas{visibility:hidden}}</style></head>");
+         html = html.Replace("</style></head>", scrollLockCss + "</style></head>");
++        html = AddAnalyticsHooks(html);
+         File.WriteAllText(indexPath, html);
+     }
+ 
++    private static string AddAnalyticsHooks(string html)
++    {
++        const string analyticsAnchor = "      const unityError = document.querySelector(\"#unity-error\");\n";
++        const string retryHandler = "      document.querySelector(\"#unity-retry\").addEventListener(\"click\", () => window.location.reload());";
++        const string analyticsBridgeScript = "      const kidNationAllowedParents = { \"https://www.kidnation.com\": true, \"https://kidnation.com\": true };\n"
++            + "      let kidNationParentOrigin = \"\";\n"
++            + "      try {\n"
++            + "        const referrerOrigin = document.referrer ? new URL(document.referrer).origin : \"\";\n"
++            + "        if (kidNationAllowedParents[referrerOrigin]) kidNationParentOrigin = referrerOrigin;\n"
++            + "      } catch (_) {}\n"
++            + "      const kidNationPostLoaderEvent = (eventName, parameters) => {\n"
++            + "        if (!kidNationParentOrigin || window.parent === window) return;\n"
++            + "        window.parent.postMessage({ source: \"kidnation-worldcup-game\", version: 1, event: eventName, parameters: parameters || {} }, kidNationParentOrigin);\n"
++            + "      };\n"
++            + "      let kidNationLoaderErrorReported = false;\n"
++            + "      new MutationObserver(() => {\n"
++            + "        if (!kidNationLoaderErrorReported && unityError.classList.contains(\"is-visible\")) {\n"
++            + "          kidNationLoaderErrorReported = true;\n"
++            + "          kidNationPostLoaderEvent(\"game_error\", { error_stage: \"unity_loader\", error_code: \"create_instance_failed\" });\n"
++            + "        }\n"
++            + "      }).observe(unityError, { attributes: true, attributeFilter: [\"class\"] });\n";
++        const string analyticsRetryHandler = "      document.querySelector(\"#unity-retry\").addEventListener(\"click\", () => {\n"
++            + "        kidNationPostLoaderEvent(\"retry_click\", { error_stage: \"unity_loader\" });\n"
++            + "        window.location.reload();\n"
++            + "      });";
++
++        if (!html.Contains(analyticsAnchor) || !html.Contains(retryHandler))
++        {
++            throw new BuildFailedException("Unity's WebGL analytics anchors were not found.");
++        }
++
++        html = html.Replace(analyticsAnchor, analyticsAnchor + analyticsBridgeScript);
++        return html.Replace(retryHandler, analyticsRetryHandler);
++    }
++
+     private static void EnsureShaderIsIncluded(string shaderName)
+     {
+         var shader = Shader.Find(shaderName);
