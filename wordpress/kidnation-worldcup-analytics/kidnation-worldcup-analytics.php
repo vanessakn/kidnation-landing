@@ -29,7 +29,7 @@ function kidnation_worldcup_enqueue_analytics_bridge() {
         plugin_dir_url( __FILE__ ) . 'assets/worldcup-analytics.js',
         array(),
         $version,
-        true
+        false
     );
 
     $config = array(
