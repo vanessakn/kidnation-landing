@@ -10,7 +10,13 @@ diff --git a/Assets/Scripts/ArcadeSoccerMatch.cs b/Assets/Scripts/ArcadeSoccerMa
      private BallFlightKind ballFlightKind;
      private int opponentIndex = 3;
      private string momentText = string.Empty;
-@@ -119,6 +121,7 @@ public sealed class ArcadeSoccerMatch : MonoBehaviour
+@@ -111,6 +113,7 @@ public sealed class ArcadeSoccerMatch : MonoBehaviour
+             StartMatch();
+             // Establish the layered sprite-puppet pose before the first render.
+             // This prevents a one-frame stack of limbs at the character origin.
+             UpdatePuppets(0f);
++            WorldCupAnalytics.TrackGameReady(Application.version);
+         }
          catch (Exception exception)
          {
              startupFailure = exception.Message;
@@ -31,7 +37,7 @@ diff --git a/Assets/Scripts/ArcadeSoccerMatch.cs b/Assets/Scripts/ArcadeSoccerMa
          }
  
          timeRemaining = Mathf.Max(0f, timeRemaining - deltaTime);
-@@ -224,6 +234,8 @@ public sealed class ArcadeSoccerMatch : MonoBehaviour
+@@ -224,6 +233,8 @@ public sealed class ArcadeSoccerMatch : MonoBehaviour
  
      private void StartMatch()
      {
@@ -40,7 +46,7 @@ diff --git a/Assets/Scripts/ArcadeSoccerMatch.cs b/Assets/Scripts/ArcadeSoccerMa
          homeScore = 0f;
          awayScore = 0f;
          timeRemaining = MatchDuration;
-@@ -236,12 +248,24 @@ public sealed class ArcadeSoccerMatch : MonoBehaviour
+@@ -236,12 +247,24 @@ public sealed class ArcadeSoccerMatch : MonoBehaviour
      private void EndMatch()
      {
          var result = homeScore > awayScore ? "KIDNATION WINS!" : awayScore > homeScore ? $"{OpponentCountries[opponentIndex].Name.ToUpperInvariant()} WINS!" : "EPIC DRAW!";
@@ -65,7 +71,7 @@ diff --git a/Assets/Scripts/ArcadeSoccerMatch.cs b/Assets/Scripts/ArcadeSoccerMa
      }
  
      private void ResetKickoff(string message)
-@@ -796,6 +821,12 @@ public sealed class ArcadeSoccerMatch : MonoBehaviour
+@@ -796,6 +819,12 @@ public sealed class ArcadeSoccerMatch : MonoBehaviour
              BurstGoalSparks(ball.position, awayMaterial.color, 46);
          }
  
@@ -78,7 +84,7 @@ diff --git a/Assets/Scripts/ArcadeSoccerMatch.cs b/Assets/Scripts/ArcadeSoccerMa
          if (homeScore >= WinningScore || awayScore >= WinningScore)
          {
              EndMatch();
-@@ -1208,6 +1240,7 @@ public sealed class ArcadeSoccerMatch : MonoBehaviour
+@@ -1208,6 +1237,7 @@ public sealed class ArcadeSoccerMatch : MonoBehaviour
          Destroy(awayGoalkeeper.Root.gameObject);
          opponentIndex = (opponentIndex + 1) % OpponentCountries.Length;
          BuildOpponentTeam();
